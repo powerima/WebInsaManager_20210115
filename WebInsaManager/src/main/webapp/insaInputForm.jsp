@@ -62,8 +62,8 @@
 		
 		if(date1 > date2) {
 			alert('마지막 날짜가 더 커야 합니다.');
+			return false;
 		}
-		return false;
 	}
 
 	function password
