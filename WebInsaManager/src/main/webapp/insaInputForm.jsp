@@ -44,8 +44,7 @@
 <tr>
 	<td>연봉</td>
 	<td><input type="text" style="text-align:right" name="salary"
-			placeholder="원" id="money" onkeyup="num
-			berWithCommas(this.value)" ></td>
+			placeholder="원" id="money" onkeyup="numberWithCommas(this.value)" ></td>
 </tr>
 </table>
 </form>
