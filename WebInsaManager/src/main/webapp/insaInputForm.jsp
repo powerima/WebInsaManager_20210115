@@ -30,7 +30,7 @@
 </tr>
 <tr>
 	<td>아이디</td>
-	<td><input type="text" name="id"></td>
+	<td><input type="text" name="id">&nbsp;<input type="button" value="중복확인"></td>
 </tr>
 <tr>
 	<td>비밀번호</td>
@@ -50,6 +50,21 @@
 	<td><input type="text" style="text-align:right" name="salary"
 			placeholder="원" id="money" onkeyup="numberWithCommas(this.value)" ></td>
 </tr>
+<tr>
+	<td>군필여부</td>
+	<td><select id="mill">
+			<option value="1">군필</option>
+			<option value="0">미필</option>
+		</select>
+		<select class="mill_op" id="mill_op1">
+			<option value=null></option>
+			<option>육군</option>
+			<option>해군</option>
+			<option>공군</option>
+		</select>
+		<input type="text" class="mill_op">
+		<input type="text" class="mill_op">	
+</tr>
 </table>
 </form>
 
@@ -67,6 +82,17 @@
 </section>
 </body>
 <script>
+	$(document).ready(function() {
+		$('#mill').change(function(){			
+			if($('#mill option:selected').val() == '0') {
+				$('.mill_op').attr('disabled', true);
+				$('#mill_op1').val(null).prop('selected', true);
+			} else {
+				$('.mill_op').attr('disabled', false);
+			}
+		});	
+
+	});
 
 	// 입력 폼 값 유효성 검사
 	function checkForm() {
