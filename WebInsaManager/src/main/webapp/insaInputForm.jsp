@@ -37,6 +37,10 @@
 	<td><input type="password" name="pwd"></td>	
 </tr>
 <tr>
+	<td>비밀번호 확인</td>
+	<td><input type="password" name="pwd2"></td>	
+</tr>
+<tr>
 	<td>날짜</td>
 	<td><input type="text" class="testDatepicker" name="beforeDay">
 		<input type="text" class="testDatepicker" name="afterDay"></td>	
@@ -48,25 +52,53 @@
 </tr>
 </table>
 </form>
+
+<div id="modal" class="modal">
+	<div align="center">
+		<img src="https://cdn.pixabay.com/photo/2020/04/16/10/16/mountain-5050026__340.jpg" 
+			height="600"/><br>
+		<a href="#" rel="modal:close">닫기</a>
+	</div>
+</div>
+ 
+<p><a href="#modal" rel="modal:open">모달창띄우기</a></p>
+
+
 </section>
 </body>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script>
-	
+
 	// 입력 폼 값 유효성 검사
 	function checkForm() {
 		var date1 = new Date(joinForm.beforeDay.value);
 		var date2 = new Date(joinForm.afterDay.value);
 		
+		// 아이디 입력 여부 확인
+		if(joinForm.id.value == "") {
+			alert("아이디를 입력해야 합니다.");
+			return false;
+		}
+		
+		// 비밀번호 입력 여부 확인
+		if(joinForm.pwd.value == "") {
+			alert("비밀번호를 입력해야 합니다.");
+			return false;
+		}
+		
+		// 비밀번호 재입력 확인
+		if(joinForm.pwd.value != joinForm.pwd2.value) {
+			alert("비밀번호가 같아야 합니다.");
+			return false;
+		}
+		
+		// 날짜 체크
 		if(date1 > date2) {
 			alert('마지막 날짜가 더 커야 합니다.');
 			return false;
 		}
-	}
 
-	function password
+		return false;
+	}
 	
 	// 3자리 수 마다 콤마, 숫자만 입력
 	function numberWithCommas(x) {

@@ -5,37 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>인사관리시스템</title>
-<style>
-	body{
-		margin:0;
-		padding0;
-	}
-	
-	header {
-		padding:5px;
-		padding-bottom:25px;
-		background:lightgrey;
-	}
-	section {
-		padding:10px;
-	}
-	
-	.topleft {
-		float: left;
-		padding-left:50px;
-	}
-	
-	.topright {
-		float: right;
-		padding-right:30px;
-	}
-	
-	A:link{ color:#555555; text-decoration:none;}
-	A:visited{ color: #555555; text-decoration:none;}
-	A:active{ color: #555555; text-decoration:none;}
-	A:hover{ color: #000000; text-decoration:underline;}
-		
-</style>
+<!-- 모달 창을 위한 추가 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+ 
+<!-- datePickup을 위한 jquery -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="css/top_style.css" type="text/css">
 </head>
 <body>
 <header>
