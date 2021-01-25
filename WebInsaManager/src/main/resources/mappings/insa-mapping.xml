@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="InsaDao">
+
+	<insert id="insertInsa">
+		<![CDATA[
+			INSERT INTO INSA (SABUN, NAME, REG_NO,
+				HP, ID, PWD)
+			VALUES(#{sabun}, #{name}, #{reg_no}, 
+				#{hp}, #{id}, #{pwd})			
+		]]>
+	</insert>
+
+</mapper>
