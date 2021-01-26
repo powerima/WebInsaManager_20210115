@@ -36,6 +36,16 @@ $(document).ready(function() {
 			$('#mil_enddate').attr('disabled', false);
 		}
 	});	
+	
+	// KOSA 등록 검사 후 활성 - 비활성화
+	$('#kosa_reg_yn').change(function(){		
+		if($('#kosa_reg_yn option:selected').val() == 'N') {
+			$('#kosa_class_code').attr('disabled', true);
+			$('#kosa_class_code').val(null).prop('selected', true);
+		} else {
+			$('#kosa_class_code').attr('disabled', false);
+		}
+	});
 
 });
 
@@ -148,8 +158,14 @@ function phone_check(x) {
 	$('#phone').val(x);
 }
 
+function a() {
+	alert('a');
+	
+	return false;
+}
+
 // 입력 폼 값 유효성 검사
-function checkForm() {	
+function checkInputForm() {	
 
 	var date1 = new Date(inputForm.mil_startdate.value);
 	var date2 = new Date(inputForm.mil_enddate.value);
@@ -159,19 +175,35 @@ function checkForm() {
 
 	// 아이디 입력 여부 확인
 	if(inputForm.id.value == "") {
-		alert("아이디를 입력해야 합니다.");
+		alert('아이디를 입력해야 합니다.');
 		return false;
 	}
 	
 	// 비밀번호 입력 여부 확인
 	if(inputForm.pwd.value == "") {
-		alert("비밀번호를 입력해야 합니다.");
+		alert('비밀번호를 입력해야 합니다.');
 		return false;
 	}
 	
 	// 비밀번호 재입력 확인
 	if(inputForm.pwd.value != inputForm.pwd2.value) {
-		alert("비밀번호가 같아야 합니다.");
+		alert('비밀번호가 같아야 합니다.');
+		return false;
+	}
+	
+	// 주민등록번호 입력 확인
+	if(inputForm.reg_no1.value.length != 6) {
+		alert('주민등록번호를 입력해 주세요');
+		return false;
+	}
+	
+	if(inputForm.reg_no2.value.length != 1) {
+		alert('주민등록번호를 입력해 주세요');
+		return false;
+	}
+	
+	if(inputForm.reg_no3.value.length != 6) {
+		alert('주민등록번호를 입력해 주세요');
 		return false;
 	}
 	
@@ -186,7 +218,6 @@ function checkForm() {
 		alert('퇴사일이 입사일 보다 더 커야 합니다.');
 		return false;
 	}
-	
 
 	return false;
 }
@@ -200,7 +231,7 @@ function numberWithCommas(x) {
 	$("#salary").val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 }
 
-// 달력 
+// 달력 DatePicker
 $(function(){
 	$(".testDatepicker").datepicker({
 		showOn: "both",

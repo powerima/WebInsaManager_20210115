@@ -14,6 +14,13 @@ public class InsaServiceImpl implements InsaService {
 	@Autowired
 	private InsaDao insaDao;
 
+	// 최대 사번 값 얻어오기
+	@Override
+	public int getMaxSabun() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 	// 등록
 	@Override
 	public void insertInsa(InsaVo vo) {
@@ -35,7 +42,14 @@ public class InsaServiceImpl implements InsaService {
 		
 	}
 
-	// 조회
+	// 아이디 중복 체크를 위한 아이디 검색
+	@Override
+	public InsaVo getId(InsaVo vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// 조회	
 	@Override
 	public InsaVo getInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
@@ -48,4 +62,6 @@ public class InsaServiceImpl implements InsaService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }

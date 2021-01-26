@@ -29,5 +29,8 @@ https://wecanit.tistory.com/20
 자바스크립트 문자열 숫자 변환
 https://blog.outsider.ne.kr/361
 
+자바스크립트로 현재 연도 구하기
+http://blog.naver.com/PostView.nhn?blogId=jikime4u&logNo=130001382498&redirect=Dlog&widgetTypeCall=true&directAccess=false
+
 부트 스트랩
 https://codevang.tistory.com/222?category=847262

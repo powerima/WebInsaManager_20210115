@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="InsaDao">
 
+
+	
+
 	<insert id="insertInsa">
 		<![CDATA[
 			INSERT INTO INSA (SABUN, NAME, REG_NO,
@@ -11,4 +14,19 @@
 		]]>
 	</insert>
 
+	<select id="getMaxSabun" resultType="int">
+		<![CDATA[
+			SELECT NVL(MAX(SABUN), 100001) + 1
+			FROM INSA
+		]]>	
+	</select>
+	
+	<select id="getId" resultType="insa">
+		<![CDATA[
+			SELECT * FROM INSA
+			WHERE ID = #{id}
+		]]>
+	</select>
+
+	
 </mapper>

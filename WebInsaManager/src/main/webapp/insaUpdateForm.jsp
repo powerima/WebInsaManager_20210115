@@ -8,7 +8,7 @@
 
 <div align="center">
 <form name="inputForm" action="insaInputForm.do" method="post"
-		onsubmit="return checkForm();">
+		onsubmit="return checkInputForm();">
 		
 <table width="1300">
 	<tr>
@@ -172,16 +172,16 @@
 	</tr>
 	<tr>
 		<td>KOSA등록</td>
-		<td><select name="kosa_reg_yn" style="width:165px">
-				<option value="1">Y</option>
-				<option value="0">N</option>
+		<td><select name="kosa_reg_yn" id="kosa_reg_yn" style="width:165px">
+				<option value="Y">Y</option>
+				<option value="N">N</option>
 			</select></td>
 		<td>KOSA등급</td>
-		<td><select name="kosa_class_code" style="width:165px">
-				<option value="0">선택</option>
-				<option value="0">초급</option>
-				<option value="0">중급</option>
-				<option value="0">고급</option>
+		<td><select name="kosa_class_code" id="kosa_class_code" style="width:165px">
+				<option value=null>선택</option>
+				<option value="초급">초급</option>
+				<option value="중급">중급</option>
+				<option value="고급">고급</option>
 			</select></td>
 		<td>입사일자</td>
 		<td><input type="text" name="join_day" id="join_day" class="testDatepicker"></td>
