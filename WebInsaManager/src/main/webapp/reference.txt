@@ -1,0 +1,33 @@
+
+-- 참고 사이트 -- 
+
+
+자바스크립트 정규식 관련
+https://m.blog.naver.com/PostView.nhn?blogId=cacung82&logNo=220797633911&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+텍스트 박스 최대 글자 수 
+https://hianna.tistory.com/435
+
+사업자 등록 번호 형식
+https://m.blog.naver.com/PostView.nhn?blogId=bbqtax&logNo=30185016349&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+css padding 과 margin의 차이
+https://aboooks.tistory.com/81
+
+기본키 두개 이상일 때 쿼리문
+https://moonong.tistory.com/48
+
+제이쿼리 아이디값을 동적으로 할당하기
+https://okky.kr/article/258443
+
+주민등록번호 태어난 해 남여 구분
+https://m.blog.naver.com/PostView.nhn?blogId=sitos310&logNo=220789077656&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+자바스크립트 아이디로 문자열 길이 알아내기
+https://wecanit.tistory.com/20
+
+자바스크립트 문자열 숫자 변환
+https://blog.outsider.ne.kr/361
+
+부트 스트랩
+https://codevang.tistory.com/222?category=847262
