@@ -11,9 +11,11 @@ header {
 	background:lightgrey;
 	
 }
+
 section {
 	padding:10px;
 }
+
 
 .topleft {
 	float: left;
@@ -28,7 +30,11 @@ section {
 	font-size:12px;
 }
 
-#modal{		
+#section_title {
+	padding-left:120px;
+}
+
+#modal {		
 	height:650px;
 }
 

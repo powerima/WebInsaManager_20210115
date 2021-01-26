@@ -37,5 +37,17 @@ create table insa(
 	profile_image varchar2(100),
     carrier_image varchar2(100)
 );
+
+
+
+create table insa_com(
+	gubun varchar2(20) not null,
+	code varchar2(20) not null,
+	name varchar2(100),
+	note varchar2(100),
+	constraint insa_com_pk primary key(gubun, code)
+);
+
+
 	
 drop table insa;
