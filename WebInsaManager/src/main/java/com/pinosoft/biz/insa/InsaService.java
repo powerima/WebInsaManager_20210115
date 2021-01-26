@@ -3,12 +3,12 @@ package com.pinosoft.biz.insa;
 import java.util.List;
 
 public interface InsaService {
-	public int getMaxSabun();			// »õ·Î¿î »ç¹ø °ª ¾ò¾î¿À±â	
-	public void insertInsa(InsaVo vo);		// µî·Ï
-	public void deleteInsa(InsaVo vo);		// »èÁ¦
-	public void updateInsa(InsaVo vo);		// ¼öÁ¤
-	public InsaVo getInsa(InsaVo vo);		// Á¶È¸
-	public InsaVo getId(InsaVo vo);		// ¾ÆÀÌµğ Áßº¹¿©ºÎ Ã¼Å©
-	public List<InsaVo> getInsaLIst(InsaVo vo);	// ¸ñ·Ï Á¶È¸
+	public int getMaxSabun();			// ì‚¬ë²ˆ ìµœëŒ€ê°’ êµ¬í•˜ê¸°
+	public void insertInsa(InsaVo vo);		// ë“±ë¡
+	public void deleteInsa(InsaVo vo);		// ì‚­ì œ
+	public void updateInsa(InsaVo vo);		// ìˆ˜ì •
+	public InsaVo getInsa(InsaVo vo);		// ì‚¬ë²ˆ ì¡°íšŒ
+	public InsaVo checkId(InsaVo vo);			// ì•„ì´ë”” ì¤‘ë³µ ì—¬ë¶€ í™•ì¸
+	public List<InsaVo> getInsaList(InsaVo vo);	// ëª©ë¡ ì¡°íšŒ 
 	
 }

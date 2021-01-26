@@ -18,8 +18,8 @@ $(document).ready(function() {
 	
 	
 	// 군필 체크 검사 후 활성 - 비활성화
-	$('#mil_check').change(function(){			
-		if($('#mil_check option:selected').val() == 'N') {
+	$('#mil_yn').change(function(){			
+		if($('#mil_yn option:selected').val() == 'N') {
 			$('#mil_type').attr('disabled', true);
 			$('#mil_level').attr('disabled', true);
 			$('#mil_startdate').attr('disabled', true);
@@ -46,6 +46,53 @@ $(document).ready(function() {
 			$('#kosa_class_code').attr('disabled', false);
 		}
 	});
+	
+	
+	// 아이디 중복 체크
+	$("#idcheck").click(function(){	
+		$.ajax({
+			type: "GET",
+			url: "/biz/checkId.do",
+			data: {	id: $("#precheck_id").val() },
+			success: function(data) {
+				if(data != null) {
+					alert('아이디 사용이 가능합니다.');
+					$('#id').val(data);		
+				} else {
+					alert('아이디가 사용중 입니다.');
+				}
+			}
+		});	
+	});
+
+	/*
+	// 인사 등록 - 화면 이동 없음
+	$('#insaInputAjax').click(function(){
+		var query = {
+			sabun: joinForm.sabun.value,
+			name: joinForm.name.value,
+			eng_name: joinForm.eng_name.value,
+			id: joinForm.id.value,
+			pwd: joinForm.pwd.value,
+			phone: joinForm.phone.value,
+			hp: joinForm.hp.value,
+			reg_no: joinForm.reg_no1.value + '-' + joinForm.reg_no2.value
+					+ joinForm.reg_no3.value,
+			years: joinForm.years.value,
+			email: joinForm.email_id.value + joinForm.email_domain.value 
+					+ joinForm.email_domain2.value			
+		};
+	
+		$.ajax({
+			type: "POST",
+			url: "/biz/insaInputAjax.do",
+			data: query,
+			success: function(data) {
+				alert(data);
+			}			
+		});
+	});
+	*/
 
 });
 
@@ -158,20 +205,27 @@ function phone_check(x) {
 	$('#phone').val(x);
 }
 
-function a() {
-	alert('a');
-	
-	return false;
-}
 
 // 입력 폼 값 유효성 검사
 function checkInputForm() {	
-
+	
 	var date1 = new Date(inputForm.mil_startdate.value);
 	var date2 = new Date(inputForm.mil_enddate.value);
 	var day1 = new Date(inputForm.join_day.value);
 	var day2 = new Date(inputForm.retire_day.value);
 	
+	
+	// 이름 입력 여부 확인
+	if(inputForm.name.value == "") {
+		alert('이름을 입력해야 합니다.');
+		return false;
+	}
+		
+	// 아이디 중복 여부 확인
+	if(inputForm.id.value != inputForm.precheck_id.value) {
+		alert('아이디 중복을 확인해 주세요.');
+		return false;
+	}
 
 	// 아이디 입력 여부 확인
 	if(inputForm.id.value == "") {
@@ -187,13 +241,19 @@ function checkInputForm() {
 	
 	// 비밀번호 재입력 확인
 	if(inputForm.pwd.value != inputForm.pwd2.value) {
-		alert('비밀번호가 같아야 합니다.');
+		alert('비밀번호를 확인해 주세요.');
+		return false;
+	}
+	
+	// 핸드폰 번호 입력 확인
+	if(inputForm.hp.value.length < 10 ) {
+		alert('핸드폰 번호를 입력해 주세요.');
 		return false;
 	}
 	
 	// 주민등록번호 입력 확인
 	if(inputForm.reg_no1.value.length != 6) {
-		alert('주민등록번호를 입력해 주세요');
+		alert('주민등록번호를 입력해 주세요.');
 		return false;
 	}
 	
@@ -218,8 +278,6 @@ function checkInputForm() {
 		alert('퇴사일이 입사일 보다 더 커야 합니다.');
 		return false;
 	}
-
-	return false;
 }
 
 
