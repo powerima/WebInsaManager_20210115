@@ -8,13 +8,13 @@
 
 <div align="center">
 <form name="inputForm" action="insaInputForm.do" method="post"
-		onsubmit="return checkInputForm();">
+		onsubmit="return checkInputForm()">
 		
 <table width="1300">
 	<tr>
 		<td colspan="8" align="right">
-			<input type="submit" value="등록">
-			<input type="button" value="전화면">
+			<input type="button" id="insaInputAjax" value="등록">
+			<input type="submit" value="전화면">
 			<input type="reset" value="초기화">
 		</td>
 	</tr>
@@ -23,16 +23,18 @@
 			<img src="profile_img/profile_empty.jpg" height="120">
 		</td>
 		<td>사번</td>
-		<td><input type="number" name="sabun"></td>
+		<td><input type="number" name="sabun" value="${sabun }" disabled></td>
 		<td>한글성명</td>
 		<td><input type="text" name="name"></td>
 		<td>영문성명</td>
-		<td><input type="text" name="ent_name"></td>
+		<td><input type="text" name="eng_name"></td>
 	</tr>
 	<tr>	
 		<td>아이디</td>
-		<td><input type="text" name="id" >
-			<input type="button"value="중복확인"></td>
+		<td><input type="text" id="precheck_id" >
+			<input type="hidden" name="id" id="id"> 
+			<input type="button" id="idcheck" value="중복확인"></td>
+			
 		<td>패스워드</td>
 		<td><input type="password" name="pwd"></td>
 		<td>패스워드확인</td>
@@ -97,7 +99,7 @@
 			<input type="file" name="profile_image"></td>	
 		<td>직위</td>
 		<td>
-			<select name="pos_bgn_code" style="width:165px">
+			<select name="pos_gbn_code" style="width:165px">
 				<option value="1">사원</option>
 				<option value="2">주임</option>
 				<option value="2">대리</option>
@@ -145,7 +147,7 @@
 				<option value="0">N</option>
 			</select></td>
 		<td>군필여부</td>
-		<td><select id="mil_check" name="mil_yn" style="width:165px">
+		<td><select id="mil_yn" name="mil_yn" style="width:165px">
 				<option value="Y">Y</option>
 				<option value="N">N</option>
 			</select></td>
@@ -186,7 +188,7 @@
 		<td>입사일자</td>
 		<td><input type="text" name="join_day" id="join_day" class="testDatepicker"></td>
 		<td>퇴사일자</td>
-		<td><input type="text" name="retire_day" id="reire_day" class="testDatepicker"></td>
+		<td><input type="text" name="retire_day" id="retire_day" class="testDatepicker"></td>
 	</tr>	
 	<tr>
 		<td>사업자번호</td>

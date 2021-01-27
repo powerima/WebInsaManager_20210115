@@ -16,12 +16,12 @@
 
 	<select id="getMaxSabun" resultType="int">
 		<![CDATA[
-			SELECT NVL(MAX(SABUN), 100001) + 1
+			SELECT NVL(MAX(SABUN), 100000) + 1
 			FROM INSA
 		]]>	
 	</select>
 	
-	<select id="getId" resultType="insa">
+	<select id="checkId" resultType="insa">
 		<![CDATA[
 			SELECT * FROM INSA
 			WHERE ID = #{id}

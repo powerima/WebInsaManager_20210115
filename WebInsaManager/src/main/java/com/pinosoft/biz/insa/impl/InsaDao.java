@@ -14,44 +14,43 @@ public class InsaDao {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	// ÃÖ´ë »ç¹ø °ª ¾ò¾î¿À±â
+	// ìµœëŒ€ ì‚¬ë²ˆê°’ ì¡°íšŒ
 	public int getMaxSabun() {
 		// TODO Auto-generated method stub
-		return 0;
+		return mybatis.selectOne("InsaDao.getMaxSabun");
 	}
 	
-	// µî·Ï
+	// ë“±ë¡
 	public void insertInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		mybatis.insert("InsaDao.insertInsa", vo);
 	}
 
-	// »èÁ¦
+	// ì‚­ì œ
 	public void deleteInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	// ¼öÁ¤
+	// ìˆ˜ì •
 	public void updateInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	// ¾ÆÀÌµğ Áßº¹ Ã¼Å©¸¦ À§ÇÑ ¾ÆÀÌµğ °Ë»ö
-	public InsaVo getId(InsaVo vo) {
+	// ì•„ì´ë”” ì¤‘ë³µ ì—¬ë¶€ í™•ì¸
+	public InsaVo checkId(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectOne("InsaDao.checkId", vo);
 	}
 	
-	
-	// Á¶È¸
+	// ì‚¬ë²ˆ ì¡°íšŒ
 	public InsaVo getInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	// ¸ñ·Ï Á¶È¸
+	// ëª©ë¡ ì¡°íšŒ
 	public List<InsaVo> getInsaLIst(InsaVo vo) {
 		// TODO Auto-generated method stub
 		return null;

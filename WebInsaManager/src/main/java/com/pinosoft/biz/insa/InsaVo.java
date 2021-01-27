@@ -2,25 +2,29 @@ package com.pinosoft.biz.insa;
 
 public class InsaVo {
 	private int sabun;
-	private String joinday;
+	private String join_day;
 	private String retire_day;
 	private String put_yn;
 	private String name;
 	private String reg_no;
-	private String eng_name;
+	private String reg_no1;
+	private String reg_no2;
+	private String reg_no3;
+	private String eng_name;	
 	private String phone;
 	private String hp;
-	private String carrier;
 	private String pos_gbn_code;
 	private String cmp_reg_no;
 	private String cmp_reg_image;
 	private String sex;
 	private int years;
 	private String email;
+	private String email_id;
+	private String email_domain;
 	private String zip;
 	private String addr1;
 	private String addr2;
-	private String dep_code;
+	private String dept_code;
 	private String join_gbn_code;
 	private String id;
 	private String pwd;
@@ -45,11 +49,11 @@ public class InsaVo {
 	public void setSabun(int sabun) {
 		this.sabun = sabun;
 	}
-	public String getJoinday() {
-		return joinday;
+	public String getJoin_day() {
+		return join_day;
 	}
-	public void setJoinday(String joinday) {
-		this.joinday = joinday;
+	public void setJoin_day(String join_day) {
+		this.join_day = join_day;
 	}
 	public String getRetire_day() {
 		return retire_day;
@@ -75,6 +79,24 @@ public class InsaVo {
 	public void setReg_no(String reg_no) {
 		this.reg_no = reg_no;
 	}
+	public String getReg_no1() {
+		return reg_no1;
+	}
+	public void setReg_no1(String reg_no1) {
+		this.reg_no1 = reg_no1;
+	}
+	public String getReg_no2() {
+		return reg_no2;
+	}
+	public void setReg_no2(String reg_no2) {
+		this.reg_no2 = reg_no2;
+	}
+	public String getReg_no3() {
+		return reg_no3;
+	}
+	public void setReg_no3(String reg_no3) {
+		this.reg_no3 = reg_no3;
+	}
 	public String getEng_name() {
 		return eng_name;
 	}
@@ -92,12 +114,6 @@ public class InsaVo {
 	}
 	public void setHp(String hp) {
 		this.hp = hp;
-	}
-	public String getCarrier() {
-		return carrier;
-	}
-	public void setCarrier(String carrier) {
-		this.carrier = carrier;
 	}
 	public String getPos_gbn_code() {
 		return pos_gbn_code;
@@ -135,6 +151,18 @@ public class InsaVo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getEmail_id() {
+		return email_id;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+	public String getEmail_domain() {
+		return email_domain;
+	}
+	public void setEmail_domain(String email_domain) {
+		this.email_domain = email_domain;
+	}
 	public String getZip() {
 		return zip;
 	}
@@ -153,11 +181,11 @@ public class InsaVo {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	public String getDep_code() {
-		return dep_code;
+	public String getDept_code() {
+		return dept_code;
 	}
-	public void setDep_code(String dep_code) {
-		this.dep_code = dep_code;
+	public void setDept_code(String dept_code) {
+		this.dept_code = dept_code;
 	}
 	public String getJoin_gbn_code() {
 		return join_gbn_code;

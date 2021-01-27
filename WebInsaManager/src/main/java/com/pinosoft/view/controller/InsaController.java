@@ -1,8 +1,14 @@
 
 package com.pinosoft.view.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,42 +26,80 @@ public class InsaController {
 		return "index.jsp";
 	}
 	
-	// µî·Ï È­¸é ÀÌµ¿
+	// ë“±ë¡ í™”ë©´ ì´ë™
 	@RequestMapping(value="insaInputForm.do", method=RequestMethod.GET)
-	public String insaInputFormView() {
+	public String insaInputFormView(Model model) {
+		model.addAttribute("sabun", is.getMaxSabun());
 		return "insaInputForm.jsp";
 	}
 	
-	// µî·Ï
+	// ë“±ë¡ - ë©”ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™
 	@RequestMapping(value="insaInputForm.do", method=RequestMethod.POST)
 	public String insaInputForm(InsaVo vo) {
+		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
+		vo.setEmail(vo.getEmail_id() + vo.getEmail_domain());
+		
 		System.out.println(vo);
 		is.insertInsa(vo);
 		return "index.jsp";
 	}
 	
-	// ¸ñ·Ï Á¶È¸ Æû
+	// ë“±ë¡ - í™”ë©´ ì´ë™ ì—†ìŒ
+	@RequestMapping(value="insaInputAjax.do", method=RequestMethod.POST)
+	public void insaInputAjax(InsaVo vo, HttpServletResponse response) {
+				
+		System.out.println(vo);
+		is.insertInsa(vo);
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.print("ë“±ë¡í•˜ì˜€ìŠµë‹ˆë‹¤.");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
+	
+	// ëª©ë¡ ì¡°íšŒ
 	@RequestMapping(value="insaListForm.do")
 	public String insaListForm() {
 		return "insaListForm.jsp";
 	}
 	
-	// Á÷¿ø ¼öÁ¤ È­¸é ÀÌµ¿ 
+	// ìˆ˜ì • í™”ë©´ ì´ë™  
 	@RequestMapping(value="insaUpdateForm.do", method=RequestMethod.GET)
 	public String insaUpdateFormView() {
 		return "insaUpdateForm.jsp";
 	}
 	
-	// ¼öÁ¤
+	// ìˆ˜ì •
 	@RequestMapping(value="insaUpdateForm.do", method=RequestMethod.POST)
 	public String insaUpdateForm() {
 		return "insaUpdateForm.jsp";
 	}
 	
-	// »èÁ¦
+	// ì‚­ì œ
 	@RequestMapping(value="insaDelete.do")
 	public String insaDelete() {
 		return "redirect:insaListForm.do";
 	}
 	
+	// ì•„ì´ë”” ì¤‘ë³µ ì—¬ë¶€ í™•ì¸
+	@RequestMapping(value="checkId.do")
+	public void checkId(InsaVo vo, HttpServletResponse response) {
+		String id = vo.getId();
+		InsaVo insa = is.checkId(vo);
+		
+		if(insa != null && insa.getId().equals(id)) {
+			id = null;
+		}
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(id);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
