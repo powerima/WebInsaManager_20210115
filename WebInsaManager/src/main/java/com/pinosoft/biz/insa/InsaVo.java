@@ -29,6 +29,7 @@ public class InsaVo {
 	private String id;
 	private String pwd;
 	private int salary;
+	private String salary_str;
 	private String kosa_reg_yn;
 	private String kosa_class_code;
 	private String mil_yn;
@@ -211,6 +212,12 @@ public class InsaVo {
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
+	public String getSalary_str() {
+		return salary_str;
+	}
+	public void setSalary_str(String salary_str) {
+		this.salary_str = salary_str;
+	}
 	public String getKosa_reg_yn() {
 		return kosa_reg_yn;
 	}
@@ -291,7 +298,17 @@ public class InsaVo {
 	}
 	@Override
 	public String toString() {
-		return "InsaVo [sabun=" + sabun + ", name=" + name + ", hp=" + hp + ", sex=" + sex + ", years=" + years
-				+ ", id=" + id + "]";
+		return "InsaVo [sabun=" + sabun + ", join_day=" + join_day + ", retire_day=" + retire_day + ", put_yn=" + put_yn
+				+ ", name=" + name + ", reg_no=" + reg_no + ", reg_no1=" + reg_no1 + ", reg_no2=" + reg_no2
+				+ ", reg_no3=" + reg_no3 + ", eng_name=" + eng_name + ", phone=" + phone + ", hp=" + hp
+				+ ", pos_gbn_code=" + pos_gbn_code + ", cmp_reg_no=" + cmp_reg_no + ", cmp_reg_image=" + cmp_reg_image
+				+ ", sex=" + sex + ", years=" + years + ", email=" + email + ", email_id=" + email_id
+				+ ", email_domain=" + email_domain + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", dept_code=" + dept_code + ", join_gbn_code=" + join_gbn_code + ", id=" + id + ", pwd=" + pwd
+				+ ", salary=" + salary + ", kosa_reg_yn=" + kosa_reg_yn + ", kosa_class_code=" + kosa_class_code
+				+ ", mil_yn=" + mil_yn + ", mil_type=" + mil_type + ", mil_level=" + mil_level + ", mil_startdate="
+				+ mil_startdate + ", mil_enddate=" + mil_enddate + ", job_type=" + job_type + ", gart_level="
+				+ gart_level + ", self_intro=" + self_intro + ", crm_name=" + crm_name + ", profile_image="
+				+ profile_image + ", carrier_image=" + carrier_image + "]";
 	}
 }

@@ -14,49 +14,49 @@ public class InsaServiceImpl implements InsaService {
 	@Autowired
 	private InsaDao insaDao;
 
-	// ìµœëŒ€ ì‚¬ë²ˆê°’ ì¡°íšŒ
+	// »ç¹ø ÃÖ´ë°ª Á¶È¸
 	@Override
 	public int getMaxSabun() {
 		// TODO Auto-generated method stub
 		return insaDao.getMaxSabun();
 	}
 	
-	// ë“±ë¡
+	// µî·Ï
 	@Override
 	public void insertInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		insaDao.insertInsa(vo);
 	}
 
-	// ì‚­ì œ
+	// »èÁ¦
 	@Override
 	public void deleteInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	// ìˆ˜ì •
+	// ¼öÁ¤
 	@Override
 	public void updateInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	// ì•„ì´ë”” ì¤‘ë³µ ì—¬ë¶€ í™•ì¸
+	// ¾ÆÀÌµğ Áßº¹ ¿©ºÎ È®ÀÎ
 	@Override
 	public InsaVo checkId(InsaVo vo) {
 		// TODO Auto-generated method stub
 		return insaDao.checkId(vo);
 	}
 	
-	// ì‚¬ë²ˆ ì¡°íšŒ
+	// »ç¹øÀ¸·Î Á¶È¸
 	@Override
 	public InsaVo getInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	// ëª©ë¡ ì¡°íšŒ
+	// ¸ñ·Ï Á¶È¸
 	@Override
 	public List<InsaVo> getInsaList(InsaVo vo) {
 		// TODO Auto-generated method stub

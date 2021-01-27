@@ -3,6 +3,7 @@ package com.pinosoft.view.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,12 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pinosoft.biz.insa.InsaService;
 import com.pinosoft.biz.insa.InsaVo;
+import com.pinosoft.biz.insacom.InsacomService;
 
 @Controller
+@RequestMapping("/insa/")
 public class InsaController {
 
 	@Autowired
 	private InsaService is;
+	
+	@Autowired 
+	private InsacomService ics;
 	
 	@RequestMapping(value="index.do")
 	public String index() {
@@ -29,6 +35,13 @@ public class InsaController {
 	// 등록 화면 이동
 	@RequestMapping(value="insaInputForm.do", method=RequestMethod.GET)
 	public String insaInputFormView(Model model) {
+		
+		List<String> gubunList = ics.getGubunList();	// 공통 코드 구분 목록 조회
+		
+		for(String gubun : gubunList) {					// 공통 코드 목록 파라미터 등록
+			model.addAttribute(gubun + "_list", ics.getGubunTypeList(gubun));
+		}
+		
 		model.addAttribute("sabun", is.getMaxSabun());
 		return "insaInputForm.jsp";
 	}
@@ -36,12 +49,14 @@ public class InsaController {
 	// 등록 - 메인 화면으로 이동
 	@RequestMapping(value="insaInputForm.do", method=RequestMethod.POST)
 	public String insaInputForm(InsaVo vo) {
-		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
-		vo.setEmail(vo.getEmail_id() + vo.getEmail_domain());
+		//vo.setSalary(Integer.parseInt(vo.getSalary_str().replaceAll(",", "")));
+		//vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
+		//vo.setEmail(vo.getEmail_id() + '@' + vo.getEmail_domain());
 		
 		System.out.println(vo);
-		is.insertInsa(vo);
-		return "index.jsp";
+		//is.insertInsa(vo);
+		
+		return "insaInputForm.jsp";
 	}
 	
 	// 등록 - 화면 이동 없음
@@ -90,8 +105,9 @@ public class InsaController {
 		String id = vo.getId();
 		InsaVo insa = is.checkId(vo);
 		
+		// 아이디 사용 불가
 		if(insa != null && insa.getId().equals(id)) {
-			id = null;
+			id = "";
 		}
 		
 		try {

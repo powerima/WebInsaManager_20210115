@@ -8,10 +8,13 @@
 	<typeAliases>
 		<typeAlias type="com.pinosoft.biz.insa.InsaVo"
 			alias="insa" />
+		<typeAlias type="com.pinosoft.biz.insacom.InsacomVo"
+			alias="insacom" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mappings/insa-mapping.xml" />
+		<mapper resource="mappings/insacom-mapping.xml" />
 	</mappers>
 
 </configuration>

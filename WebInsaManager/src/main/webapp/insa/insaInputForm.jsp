@@ -1,38 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="top.jsp" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<%@ include file="../top.jsp" %>
+
 <section>
 <div id="section_title">
 	<h2>직원 상세 정보</h2>
 </div>
 
 <div align="center">
-<form name="inputForm" action="insaInputForm.do" method="post"
-		onsubmit="return checkInputForm();">
+<form name="inputForm" action="/biz/insa/insaInputForm.do" method="post"
+		onsubmit="return checkInputForm()" enctype="multipart/form-data">
 		
 <table width="1300">
 	<tr>
 		<td colspan="8" align="right">
-			<input type="submit" value="등록">
-			<input type="button" value="전화면">
+			<input type="button" id="insaInputAjax" value="등록">
+			<input type="submit" value="전화면">
 			<input type="reset" value="초기화">
 		</td>
 	</tr>
+	
 	<tr>
 		<td colspan="2" rowspan="5" align="center">
-			<img src="profile_img/profile_empty.jpg" height="120">
-		</td>
+			<img src="/biz/file/profile_empty.jpg" height="120">
+		</td> 
 		<td>사번</td>
-		<td><input type="number" name="sabun"></td>
+		<td><input type="number" name="sabun" value="${sabun }" readonly></td>
+		
+		
 		<td>한글성명</td>
 		<td><input type="text" name="name"></td>
 		<td>영문성명</td>
-		<td><input type="text" name="ent_name"></td>
+		<td><input type="text" name="eng_name"></td>
 	</tr>
 	<tr>	
 		<td>아이디</td>
-		<td><input type="text" name="id" >
-			<input type="button"value="중복확인"></td>
+		<td><input type="text" id="precheck_id" >
+			<input type="hidden" name="id" id="id"> 
+			<input type="button" id="idcheck" value="중복확인"></td>
+			
 		<td>패스워드</td>
 		<td><input type="password" name="pwd"></td>
 		<td>패스워드확인</td>
@@ -55,18 +63,18 @@
 	</tr>
 	<tr>	
 		<td>연령</td>
-		<td><input type="text" name="years" id="years" maxlength="3"
-				onkeyup="years_check(this.value)" ></td>
+		<td><input type="text" name="age" id="age" maxlength="3"
+				onkeyup="age_check(this.value)" ></td>
 		<td colspan="2">이메일
-			<input type="text" name="email_id" size="10">
-			<select name="email_domain" id="email_check1" style="width:110px">
-				<option value="@naver.com">@naver.com</option>
-				<option value="@hanmail.net">@hanmail.net</option>
-				<option value="@nate.com">@nate.com</option>
-				<option value="@gmail.com">@gmail.com</option>
+			<input type="text" name="email_id" size="10"> @ 
+			<select name="email_domain" id="email_domain" style="width:110px">
+				<option value="@naver.com">naver.com</option>
+				<option value="@hanmail.net">hanmail.net</option>
+				<option value="@nate.com">nate.com</option>
+				<option value="@gmail.com">gmail.com</option>
 				<option value="">직접입력</option>				
 			</select>
-		<input type="text" name="email_domain2" id="email_check2" disabled size="10"></td>
+		<input type="text" name="email_domain2" id="email_domain2" disabled size="10"></td>
 		<td colspan="2">
 			직종체크 <select name="job_type" style="width:100px">
 						<option value="1">영업</option>
@@ -92,39 +100,34 @@
 			<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" >			
 		</td>
 	</tr>
+	
 	<tr>
 		<td	colspan="2">
 			<input type="file" name="profile_image"></td>	
-		<td>직위</td>
+	<td>직위</td><!-- 
 		<td>
-			<select name="pos_bgn_code" style="width:165px">
-				<option value="1">사원</option>
-				<option value="2">주임</option>
-				<option value="2">대리</option>
-				<option value="2">과장</option>
-				<option value="2">차장</option>
-				<option value="2">부장</option>
-				<option value="2">이사</option>
-				<option value="2">상무</option>				
-				<option value="2">전무</option>
-			</select>
-		</td>
+			<select name="pos_gbn_code" style="width:165px">
+				<c:forEach items="${pos_gbn_code_list }" var="pos_gbn_code">
+					<option value="${pos_gbn_code.code }">${pos_gbn_code.name }</option>
+				</c:forEach>		
+			</select> -->
+		</td>	
 		<td>부서</td>
 		<td>
 			<select name="dept_code" style="width:165px">
-				<option value="1">SI사업부</option>
-				<option value="2">영업부</option>
-				<option value="2">개발부</option>
-				<option value="2">연구소</option>
+				<c:forEach items="${dept_code_list }" var="dept_code">
+					<option value="${dept_code.code }">${dept_code.name }</option>
+				</c:forEach>	
 			</select>
-		</td>
+		</td>   
 		<td>연봉</td>
 		<td>
-			<input type="text" style="text-align:right" name="salary"
+			<input type="text" style="text-align:right" name="salary_str"
 			placeholder="(만원)" id="salary" maxlengt="2" 
 				onkeyup="numberWithCommas(this.value)" >
-		</td>
+		</td> 
 	</tr>
+
 	<tr>
 		<td>입사구분</td>
 		<td><select style="width:165px">
@@ -133,19 +136,18 @@
 			</select></td>
 		<td>등급</td>
 		<td><select name="gart_level" style="width:165px">
-				<option value=null></option>
-				<option>고등학교 졸업</option>
-				<option>전문대학 졸업</option>
-				<option>대학교 졸업</option>
-				<option>대학원 졸업</option>
+				<c:forEach items="${gart_level_list }" var="gart_level">
+					<option value="${gart_level.code }">${gart_level.name }</option>
+				</c:forEach>					
 			</select></td>
 		<td>투입여부</td>
 		<td><select name="put_yn" style="width:165px">
 				<option value="1">Y</option>
 				<option value="0">N</option>
 			</select></td>
+				
 		<td>군필여부</td>
-		<td><select id="mil_check" name="mil_yn" style="width:165px">
+		<td><select id="mil_yn" name="mil_yn" style="width:165px">
 				<option value="Y">Y</option>
 				<option value="N">N</option>
 			</select></td>
@@ -153,23 +155,22 @@
 	<tr>
 		<td>군별</td>
 		<td><select id="mil_type" name="mil_type" style="width:165px">
-				<option value=null></option>
-				<option>육군</option>
-				<option>해군</option>
-				<option>공군</option>
+				<c:forEach items="${mil_type_list }" var="mil_type">
+					<option value="${mil_type.code }">${mil_type.name }</option>
+				</c:forEach>	
 			</select></td>
 		<td>계급</td>
 		<td><select id="mil_level" name="mil_level" style="width:165px">
-				<option value=null>(선택)</option>
-				<option value="0">병사</option>
-				<option value="0">부사관</option>
-				<option value="0">장교</option>				
+				<c:forEach items="${mil_level_list }" var="mil_level">
+					<option value="${mil_level.code }">${mil_level.name }</option>
+				</c:forEach>			
 			</select></td>
 		<td>입영일자</td>
 		<td><input type="text" id="mil_startdate" name="mil_startdate" class="testDatepicker"></td>
 		<td>전역일자</td>
 		<td><input type="text" id="mil_enddate" name="mil_enddate" class="testDatepicker"></td>
 	</tr>
+
 	<tr>
 		<td>KOSA등록</td>
 		<td><select name="kosa_reg_yn" id="kosa_reg_yn" style="width:165px">
@@ -178,15 +179,14 @@
 			</select></td>
 		<td>KOSA등급</td>
 		<td><select name="kosa_class_code" id="kosa_class_code" style="width:165px">
-				<option value=null>선택</option>
-				<option value="초급">초급</option>
-				<option value="중급">중급</option>
-				<option value="고급">고급</option>
+				<c:forEach items="${kosa_class_code_list }" var="kosa_class_code">
+					<option value="${kosa_class_code.code }">${kosa_class_code.name }</option>
+				</c:forEach>	
 			</select></td>
 		<td>입사일자</td>
 		<td><input type="text" name="join_day" id="join_day" class="testDatepicker"></td>
 		<td>퇴사일자</td>
-		<td><input type="text" name="retire_day" id="reire_day" class="testDatepicker"></td>
+		<td><input type="text" name="retire_day" id="retire_day" class="testDatepicker"></td>
 	</tr>	
 	<tr>
 		<td>사업자번호</td>
@@ -199,7 +199,7 @@
 		<td colspan ="2" align="center">
 			<input type="button" onclick="location.href='#modal'" rel="modal:open" value="미리보기" style="width:90px">
 			<input type="button" value="등록" style="width:90px">
-		</td>		
+		</td>	 	
 	</tr>	
 	<tr>
 		<td>자기소개</td>
@@ -215,7 +215,6 @@
 		</td>		
 	</tr>
 </table>
-<br>
 </form>
 </div>
 

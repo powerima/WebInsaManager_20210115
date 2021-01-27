@@ -1,36 +1,46 @@
 
--- Âü°í »çÀÌÆ® -- 
+utf-8
 
-
-ÀÚ¹Ù½ºÅ©¸³Æ® Á¤±Ô½Ä °ü·Ã
+-- ì°¸ê³  ì‚¬ì´íŠ¸ -- 
+ìë°”ìŠ¤í¬ë¦½íŠ¸ ì •ê·œì‹ ê´€ë ¨
 https://m.blog.naver.com/PostView.nhn?blogId=cacung82&logNo=220797633911&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-ÅØ½ºÆ® ¹Ú½º ÃÖ´ë ±ÛÀÚ ¼ö 
+í…ìŠ¤íŠ¸ ë°•ìŠ¤ ìµœëŒ€ ê¸€ì ìˆ˜ 
 https://hianna.tistory.com/435
 
-»ç¾÷ÀÚ µî·Ï ¹øÈ£ Çü½Ä
+ì‚¬ì—…ì ë“±ë¡ ë²ˆí˜¸ í˜•ì‹
 https://m.blog.naver.com/PostView.nhn?blogId=bbqtax&logNo=30185016349&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-css padding °ú marginÀÇ Â÷ÀÌ
+css padding ê³¼ marginì˜ ì°¨ì´
 https://aboooks.tistory.com/81
 
-±âº»Å° µÎ°³ ÀÌ»óÀÏ ¶§ Äõ¸®¹®
+ê¸°ë³¸í‚¤ ë‘ê°œ ì´ìƒì¼ ë•Œ ì¿¼ë¦¬ë¬¸
 https://moonong.tistory.com/48
 
-Á¦ÀÌÄõ¸® ¾ÆÀÌµğ°ªÀ» µ¿ÀûÀ¸·Î ÇÒ´çÇÏ±â
+ì œì´ì¿¼ë¦¬ ì•„ì´ë””ê°’ì„ ë™ì ìœ¼ë¡œ í• ë‹¹í•˜ê¸°
 https://okky.kr/article/258443
 
-ÁÖ¹Îµî·Ï¹øÈ£ ÅÂ¾î³­ ÇØ ³²¿© ±¸ºĞ
+ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ íƒœì–´ë‚œ í•´ ë‚¨ì—¬ êµ¬ë¶„
 https://m.blog.naver.com/PostView.nhn?blogId=sitos310&logNo=220789077656&proxyReferer=https:%2F%2Fwww.google.com%2F
 
-ÀÚ¹Ù½ºÅ©¸³Æ® ¾ÆÀÌµğ·Î ¹®ÀÚ¿­ ±æÀÌ ¾Ë¾Æ³»±â
+ìë°”ìŠ¤í¬ë¦½íŠ¸ ì•„ì´ë””ë¡œ ë¬¸ìì—´ ê¸¸ì´ ì•Œì•„ë‚´ê¸°
 https://wecanit.tistory.com/20
 
-ÀÚ¹Ù½ºÅ©¸³Æ® ¹®ÀÚ¿­ ¼ıÀÚ º¯È¯
+ìë°”ìŠ¤í¬ë¦½íŠ¸ ë¬¸ìì—´ ìˆ«ì ë³€í™˜
 https://blog.outsider.ne.kr/361
 
-ÀÚ¹Ù½ºÅ©¸³Æ®·Î ÇöÀç ¿¬µµ ±¸ÇÏ±â
+ìë°”ìŠ¤í¬ë¦½íŠ¸ë¡œ í˜„ì¬ ì—°ë„ êµ¬í•˜ê¸°
 http://blog.naver.com/PostView.nhn?blogId=jikime4u&logNo=130001382498&redirect=Dlog&widgetTypeCall=true&directAccess=false
 
-ºÎÆ® ½ºÆ®·¦
+ë¶€íŠ¸ ìŠ¤íŠ¸ë©
 https://codevang.tistory.com/222?category=847262
+
+ìë°” ë¬¸ìì—´ íŠ¹ì •ë¬¸ì ì œê±° replace() í•¨ìˆ˜
+https://www.delftstack.com/ko/howto/java/how-to-remove-a-substring-from-string-in-java/#java%25EC%2597%2590%25EC%2584%259C-%25EB%25B6%2580%25EB%25B6%2584-%25EB%25AC%25B8%25EC%259E%2590%25EC%2597%25B4%25EC%259D%2584-%25EC%25A0%259C%25EA%25B1%25B0%25ED%2595%2598%25EB%258A%2594replace%25EB%25A9%2594%25EC%2586%258C%25EB%2593%259C
+
+ë°ì´í„° ë² ì´ìŠ¤ í…Œì´ë¸” ëª… ìˆ˜ì •
+https://hyeonstorage.tistory.com/292
+
+ì¿¼ë¦¬ ì¤‘ë³µ ì œê±° ê²€ìƒ‰
+https://gent.tistory.com/222
+

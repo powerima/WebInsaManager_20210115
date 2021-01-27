@@ -14,9 +14,9 @@
 			<h2><a class="head" href="index.jsp">Pino Soft</a></h2>
 		</div>
 		<div class="nav">
-			<a href="index.jsp">Home</a>&emsp;&emsp;
-			<a href="insaInputForm.do">Input</a>&emsp;&emsp;
-			<a href="insaListForm.do">Search</a>
+			<a href="/biz/index.jsp">Home</a>&emsp;&emsp;
+			<a href="/biz/insa/insaInputForm.do">Input</a>&emsp;&emsp;
+			<a href="/biz/insa/insaListForm.do">Search</a>
 		</div>		
 	</div>
 </header>
@@ -24,8 +24,8 @@
 	<div align="center">
 		<hr><br><br><br>
 		<h2>인사관리 시스템</h2><br>
-		<p>인사정보를 입력하겠습니다. <input type="button" value="입력" onclick="location.href='insaInputForm.do'" /></p>
-		<p>인사정보를 조회하겠습니다. <input type="button" value="조회" onclick="location.href='insaListForm.do'"/></p>
+		<p>인사정보를 입력하겠습니다. <input type="button" value="입력" onclick="location.href='/biz/insa/insaInputForm.do'" /></p>
+		<p>인사정보를 조회하겠습니다. <input type="button" value="조회" onclick="location.href='/biz/insa/insaListForm.do'"/></p>
 	</div>
 </section>
 <footer>

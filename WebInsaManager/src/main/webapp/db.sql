@@ -12,7 +12,7 @@ create table insa(
 	cmp_reg_no varchar2(100),
 	cmp_reg_image varchar2(100),
 	sex varchar2(100),
-	years number,
+	age number,
 	email varchar2(100),
 	zip varchar2(100),
 	addr1 varchar2(100),
@@ -47,6 +47,83 @@ create table insa_com(
 	constraint insa_com_pk primary key(gubun, code)
 );
 
+
+-- 공통 코드 예시 
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10001', '사원', '직위 사원');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10002', '주임', '직위 주임');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10003', '대리', '직위 대리');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10004', '과장', '직위 과장');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10005', '차장', '직위 차장');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10006', '부장', '직위 부장');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10007', '이사', '직위 이사');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10008', '상무', '직위 상무');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10009', '전무', '직위 전무');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10010', '부사장', '직위 부사장');
+insert into insa_com(gubun, code, name, note)
+values('post_gbn_code','10011', '사장', '직위 사장');
+
+
+insert into insa_com(gubun, code, name, note)
+values('dept_code', '20001', 'SI사업부', '부서 SI사업부');
+insert into insa_com(gubun, code, name, note)
+values('dept_code', '20002', '영업부', '부서 영업부');
+insert into insa_com(gubun, code, name, note)
+values('dept_code', '20003', '개발부', '부서 개발부');
+insert into insa_com(gubun, code, name, note)
+values('dept_code', '20004', '연구소', '부서 연구소');
+insert into insa_com(gubun, code, name, note)
+values('dept_code', '20005', '회계부', '부서 회계부');
+
+insert into insa_com(gubun, code, name, note)
+values('gart_level', '30001', '중학교 졸업', '등급 중학교 졸업');
+insert into insa_com(gubun, code, name, note)
+values('gart_level', '30002', '고등학교 졸업', '등급 고등학교 졸업');
+insert into insa_com(gubun, code, name, note)
+values('gart_level', '30003', '대학교 졸업', '등급 대학교 졸업');
+insert into insa_com(gubun, code, name, note)
+values('gart_level', '30004', '전문대학 졸업', '등급 전문대학 졸업');
+insert into insa_com(gubun, code, name, note)
+values('gart_level', '30005', '대학원 졸업', '등급 대학원 졸업');
+
+
+insert into insa_com(gubun, code, name, note)
+values('mil_type', '40001', '육군', '군별 육군');
+insert into insa_com(gubun, code, name, note)
+values('mil_type', '40002', '해군', '군별 해군');
+insert into insa_com(gubun, code, name, note)
+values('mil_type', '40003', '공군', '군별 공군');
+insert into insa_com(gubun, code, name, note)
+values('mil_type', '40004', '의경', '군별 의경');
+
+insert into insa_com(gubun, code, name, note)
+values('mil_level', '50001', '이병', '계급 이병');
+insert into insa_com(gubun, code, name, note)
+values('mil_level', '50002', '일병', '계급 일병');
+insert into insa_com(gubun, code, name, note)
+values('mil_level', '50003', '상병', '계급 상병');
+insert into insa_com(gubun, code, name, note)
+values('mil_level', '50004', '병장', '계급 병장');
+insert into insa_com(gubun, code, name, note)
+values('mil_level', '50005', '부사관', '계급 부사관');
+insert into insa_com(gubun, code, name, note)
+values('mil_level', '50006', '장교', '계급 장교');
+
+insert into insa_com(gubun, code, name, note)
+values('kosa_class_code', '60001', '초급', 'KOSA등급 초급');
+insert into insa_com(gubun, code, name, note)
+values('kosa_class_code', '60002', '중급', 'KOSA등급 중급');
+insert into insa_com(gubun, code, name, note)
+values('kosa_class_code', '60003', '고급', 'KOSA등급 고급');
 
 	
 drop table insa;

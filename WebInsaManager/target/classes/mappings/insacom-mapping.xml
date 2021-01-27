@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="InsacomDao">
+	
+	<insert id="insertInsacom">
+		<![CDATA[
+			INSERT INTO INSA_COM(GUBUN, CODE, NAME, NOTE)
+			VALUES(#{gubun}, #{code}, #{name}, #{note})			
+		]]>
+	</insert>
+
+	<delete id="deleteInsacom">
+		<![CDATA[
+			DELETE FROM INSA_COM
+			WHERE GUBUN = #{gubun} AND CODE = #{code}
+		]]>
+	</delete>
+
+	<select id="getInsacomList" resultType="insacom">
+		<![CDATA[
+			SELECT * FROM INSA_COM
+		]]>
+	</select>
+	
+	
+	<select id="getGubunTypeList" parameterType="String" resultType="insacom">
+		<![CDATA[
+			SELECT * FROM INSA_COM
+			WHERE GUBUN = #{gubun}
+		]]>
+	</select>
+	
+	<select id="getGubunList" resultType="String">
+		<![CDATA[
+			SELECT DISTINCT GUBUN FROM INSA_COM
+		]]>
+	</select>
+	
+</mapper>

@@ -8,9 +8,22 @@
 	<insert id="insertInsa">
 		<![CDATA[
 			INSERT INTO INSA (SABUN, NAME, REG_NO,
-				HP, ID, PWD)
-			VALUES(#{sabun}, #{name}, #{reg_no}, 
-				#{hp}, #{id}, #{pwd})			
+				HP, ID, PWD, ENG_NAME, PHONE, AGE, EMAIL,
+				JOIN_GBN_CODE, SEX, ZIP, ADDR1, ADDR2, POS_GBN_CODE,
+				DEPT_CODE, SALARY, GART_LEVEL, PUT_YN, MIL_YN, 
+				MIL_TYPE, MIL_LEVEL, MIL_STARTDATE, MIL_ENDDATE,
+				KOSA_REG_YN, KOSA_CLASS_CODE, JOIN_DAY, RETIRE_DAY, 
+				CMP_REG_NO, CRM_NAME, CMP_REG_IMAGE, CARRIER_IMAGE, 
+				PROFILE_IMAGE, SELF_INTRO)
+			VALUES(#{sabun}, #{name}, #{reg_no}, #{hp}, #{id}, #{pwd},
+				#{eng_name}, #{phone}, #{age}, #{email}, #{join_gbn_code},
+				#{sex}, #{zip}, #{addr1}, #{addr2}, #{pos_gbn_code}, 
+				#{dept_code}, #{salary}, #{gart_level}, #{put_yn},
+				#{mil_yn}, #{mil_type}, #{mil_level}, #{mil_startdate},
+				#{mil_enddate}, #{kosa_reg_yn}, #{kosa_class_code}, 
+				#{join_day}, #{retire_day}, #{cmp_reg_no}, #{crm_name},
+				#{cmp_reg_image}, #{carrier_image}, #{profile_image},
+				#{self_intro})			
 		]]>
 	</insert>
 
@@ -27,6 +40,7 @@
 			WHERE ID = #{id}
 		]]>
 	</select>
+
 
 	
 </mapper>

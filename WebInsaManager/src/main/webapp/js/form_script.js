@@ -8,11 +8,11 @@
 
 $(document).ready(function() {
 	// 이메일 체크 후 활성 - 비활성화
-	$('#email_check1').change(function(){
-		if($('#email_check1 option:selected').val() == '') {
-			$('#email_check2').attr('disabled', false);
+	$('#email_domain').change(function(){
+		if($('#email_domain option:selected').val() == '') {
+			$('#email_domain2').attr('disabled', false);
 		} else {
-			$('#email_check2').attr('disabled', true);
+			$('#email_domain2').attr('disabled', true);
 		}
 	});
 	
@@ -52,14 +52,14 @@ $(document).ready(function() {
 	$("#idcheck").click(function(){	
 		$.ajax({
 			type: "GET",
-			url: "/biz/checkId.do",
+			url: "/biz/insa/checkId.do",
 			data: {	id: $("#precheck_id").val() },
 			success: function(data) {
-				if(data != null) {
+				if(data != '') {
 					alert('아이디 사용이 가능합니다.');
-					$('#id').val(data);		
+					$('#id').val(data);
 				} else {
-					alert('아이디가 사용중 입니다.');
+					alert('아이디가 사용중 입니다. 다른 아이디를 입력해 주세요');					
 				}
 			}
 		});	
@@ -78,7 +78,7 @@ $(document).ready(function() {
 			hp: joinForm.hp.value,
 			reg_no: joinForm.reg_no1.value + '-' + joinForm.reg_no2.value
 					+ joinForm.reg_no3.value,
-			years: joinForm.years.value,
+			age: joinForm.age.value,
 			email: joinForm.email_id.value + joinForm.email_domain.value 
 					+ joinForm.email_domain2.value			
 		};
@@ -138,7 +138,7 @@ function reg_no_check(x, obj) {
 			}
 		}
 		
-		$('#years').val(age);
+		$('#age').val(age);
 		
 	}
 	
@@ -167,9 +167,9 @@ function cmp_reg_no_check(x) {
 }
 
 // 나이 체크
-function years_check(x) {
+function age_check(x) {
 	x = x.replace(/[^0-9]/g,'');
-	$('#years').val(x.replace(/(\..*)\./g, '$1'));
+	$('#age').val(x.replace(/(\..*)\./g, '$1'));
 }
 
 // 핸드폰 번호 체크

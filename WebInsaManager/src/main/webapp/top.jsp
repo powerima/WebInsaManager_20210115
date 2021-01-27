@@ -18,19 +18,20 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="css/top_style.css" type="text/css">
 
 <!-- 자바스크립트 파일 추가 -->
-<script src="js/form_script.js"></script>
-
+<script src="/biz/js/form_script.js"></script>
+<!-- css 파일 추가 -->
+<link rel="stylesheet" href="/biz/css/top_style.css" type="text/css">
 </head>
 <body>
 <header>
 	<div class="topleft">
-		<a href="index.do">PinoSoft</a>		
+		<a href="/biz/index.jsp">PinoSoft</a>		
 	</div>
 	<div class="topright">
-		<a href="insaInputForm.do">입력하기</a>&emsp;
-		<a href="insaListForm.do">조회하기</a>
+		<a class="header_link" href="/biz/insa/insaInputForm.do">입력하기</a>
+		<a class="header_link" href="/biz/insa/insaListForm.do">조회하기</a>
+		<a class="header_link" href="/biz/insacom/getInsacomList.do">공통코드</a>
 	</div>
 </header>
