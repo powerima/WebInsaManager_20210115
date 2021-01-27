@@ -27,6 +27,11 @@ public class InsaController {
 	@Autowired 
 	private InsacomService ics;
 	
+	private final String CMP_REG_IMAGE_PATH = "../file/cmp_reg_image/";
+	private final String CARRIER_IMAGE_PATH = "../file/carrier_image/";
+	private final String PROFILE_IMAGE_PATH = "../file/profile_image/";
+	
+	
 	@RequestMapping(value="index.do")
 	public String index() {
 		return "index.jsp";
@@ -52,11 +57,14 @@ public class InsaController {
 		//vo.setSalary(Integer.parseInt(vo.getSalary_str().replaceAll(",", "")));
 		//vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
 		//vo.setEmail(vo.getEmail_id() + '@' + vo.getEmail_domain());
+		vo.setProfile_image(vo.getUpload_profile_image().getName());
+		vo.setCarrier_image(vo.getUpload_carrier_image().getName());
+		vo.setCmp_reg_image(vo.getUpload_cmp_reg_image().getName());
 		
 		System.out.println(vo);
 		//is.insertInsa(vo);
 		
-		return "insaInputForm.jsp";
+		return "../index.jsp";
 	}
 	
 	// 등록 - 화면 이동 없음

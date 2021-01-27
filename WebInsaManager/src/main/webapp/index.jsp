@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Pino Soft InsaManager</title>
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="/biz/css/style.css" type="text/css">
 </head>
 <body>
 <header>
 	<div>
 		<div class="banner">
-			<h2><a class="head" href="index.jsp">Pino Soft</a></h2>
+			<h2><a class="head" href="/biz/index.jsp">Pino Soft</a></h2>
 		</div>
 		<div class="nav">
 			<a href="/biz/index.jsp">Home</a>&emsp;&emsp;

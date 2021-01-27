@@ -19,6 +19,7 @@
 	<select id="getInsacomList" resultType="insacom">
 		<![CDATA[
 			SELECT * FROM INSA_COM
+			ORDER BY GUBUN
 		]]>
 	</select>
 	

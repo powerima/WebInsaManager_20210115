@@ -8,8 +8,8 @@
 
 $(document).ready(function() {
 	// 이메일 체크 후 활성 - 비활성화
-	$('#email_domain').change(function(){
-		if($('#email_domain option:selected').val() == '') {
+	$('#email_domain1').change(function(){
+		if($('#email_domain1 option:selected').val() == '') {
 			$('#email_domain2').attr('disabled', false);
 		} else {
 			$('#email_domain2').attr('disabled', true);
@@ -79,7 +79,7 @@ $(document).ready(function() {
 			reg_no: joinForm.reg_no1.value + '-' + joinForm.reg_no2.value
 					+ joinForm.reg_no3.value,
 			age: joinForm.age.value,
-			email: joinForm.email_id.value + joinForm.email_domain.value 
+			email: joinForm.email_id.value + joinForm.email_domain1.value 
 					+ joinForm.email_domain2.value			
 		};
 	

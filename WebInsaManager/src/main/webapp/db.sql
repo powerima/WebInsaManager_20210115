@@ -48,82 +48,95 @@ create table insa_com(
 );
 
 
--- °øÅë ÄÚµå ¿¹½Ã 
+-- ê³µí†µ ì½”ë“œ ì˜ˆì‹œ 
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10001', '»ç¿ø', 'Á÷À§ »ç¿ø');
+values('pos_gbn_code','10001', 'ì‚¬ì›', 'ì§ìœ„ ì‚¬ì›');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10002', 'ÁÖÀÓ', 'Á÷À§ ÁÖÀÓ');
+values('pos_gbn_code','10002', 'ì£¼ì„', 'ì§ìœ„ ì£¼ì„');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10003', '´ë¸®', 'Á÷À§ ´ë¸®');
+values('pos_gbn_code','10003', 'ëŒ€ë¦¬', 'ì§ìœ„ ëŒ€ë¦¬');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10004', '°úÀå', 'Á÷À§ °úÀå');
+values('pos_gbn_code','10004', 'ê³¼ì¥', 'ì§ìœ„ ê³¼ì¥');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10005', 'Â÷Àå', 'Á÷À§ Â÷Àå');
+values('pos_gbn_code','10005', 'ì°¨ì¥', 'ì§ìœ„ ì°¨ì¥');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10006', 'ºÎÀå', 'Á÷À§ ºÎÀå');
+values('pos_gbn_code','10006', 'ë¶€ì¥', 'ì§ìœ„ ë¶€ì¥');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10007', 'ÀÌ»ç', 'Á÷À§ ÀÌ»ç');
+values('pos_gbn_code','10007', 'ì´ì‚¬', 'ì§ìœ„ ì´ì‚¬');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10008', '»ó¹«', 'Á÷À§ »ó¹«');
+values('pos_gbn_code','10008', 'ìƒë¬´', 'ì§ìœ„ ìƒë¬´');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10009', 'Àü¹«', 'Á÷À§ Àü¹«');
+values('pos_gbn_code','10009', 'ì „ë¬´', 'ì§ìœ„ ì „ë¬´');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10010', 'ºÎ»çÀå', 'Á÷À§ ºÎ»çÀå');
+values('pos_gbn_code','10010', 'ë¶€ì‚¬ì¥', 'ì§ìœ„ ë¶€ì‚¬ì¥');
 insert into insa_com(gubun, code, name, note)
-values('post_gbn_code','10011', '»çÀå', 'Á÷À§ »çÀå');
+values('pos_gbn_code','10011', 'ì‚¬ì¥', 'ì§ìœ„ ì‚¬ì¥');
 
 
 insert into insa_com(gubun, code, name, note)
-values('dept_code', '20001', 'SI»ç¾÷ºÎ', 'ºÎ¼­ SI»ç¾÷ºÎ');
+values('dept_code', '20001', 'SIì‚¬ì—…ë¶€', 'ë¶€ì„œ SIì‚¬ì—…ë¶€');
 insert into insa_com(gubun, code, name, note)
-values('dept_code', '20002', '¿µ¾÷ºÎ', 'ºÎ¼­ ¿µ¾÷ºÎ');
+values('dept_code', '20002', 'ì˜ì—…ë¶€', 'ë¶€ì„œ ì˜ì—…ë¶€');
 insert into insa_com(gubun, code, name, note)
-values('dept_code', '20003', '°³¹ßºÎ', 'ºÎ¼­ °³¹ßºÎ');
+values('dept_code', '20003', 'ê°œë°œë¶€', 'ë¶€ì„œ ê°œë°œë¶€');
 insert into insa_com(gubun, code, name, note)
-values('dept_code', '20004', '¿¬±¸¼Ò', 'ºÎ¼­ ¿¬±¸¼Ò');
+values('dept_code', '20004', 'ì—°êµ¬ì†Œ', 'ë¶€ì„œ ì—°êµ¬ì†Œ');
 insert into insa_com(gubun, code, name, note)
-values('dept_code', '20005', 'È¸°èºÎ', 'ºÎ¼­ È¸°èºÎ');
+values('dept_code', '20005', 'íšŒê³„ë¶€', 'ë¶€ì„œ íšŒê³„ë¶€');
 
 insert into insa_com(gubun, code, name, note)
-values('gart_level', '30001', 'ÁßÇĞ±³ Á¹¾÷', 'µî±Ş ÁßÇĞ±³ Á¹¾÷');
+values('gart_level', '30001', 'ì¤‘í•™êµ ì¡¸ì—…', 'ë“±ê¸‰ ì¤‘í•™êµ ì¡¸ì—…');
 insert into insa_com(gubun, code, name, note)
-values('gart_level', '30002', '°íµîÇĞ±³ Á¹¾÷', 'µî±Ş °íµîÇĞ±³ Á¹¾÷');
+values('gart_level', '30002', 'ê³ ë“±í•™êµ ì¡¸ì—…', 'ë“±ê¸‰ ê³ ë“±í•™êµ ì¡¸ì—…');
 insert into insa_com(gubun, code, name, note)
-values('gart_level', '30003', '´ëÇĞ±³ Á¹¾÷', 'µî±Ş ´ëÇĞ±³ Á¹¾÷');
+values('gart_level', '30003', 'ëŒ€í•™êµ ì¡¸ì—…', 'ë“±ê¸‰ ëŒ€í•™êµ ì¡¸ì—…');
 insert into insa_com(gubun, code, name, note)
-values('gart_level', '30004', 'Àü¹®´ëÇĞ Á¹¾÷', 'µî±Ş Àü¹®´ëÇĞ Á¹¾÷');
+values('gart_level', '30004', 'ì „ë¬¸ëŒ€í•™ ì¡¸ì—…', 'ë“±ê¸‰ ì „ë¬¸ëŒ€í•™ ì¡¸ì—…');
 insert into insa_com(gubun, code, name, note)
-values('gart_level', '30005', '´ëÇĞ¿ø Á¹¾÷', 'µî±Ş ´ëÇĞ¿ø Á¹¾÷');
+values('gart_level', '30005', 'ëŒ€í•™ì› ì¡¸ì—…', 'ë“±ê¸‰ ëŒ€í•™ì› ì¡¸ì—…');
 
 
 insert into insa_com(gubun, code, name, note)
-values('mil_type', '40001', 'À°±º', '±ºº° À°±º');
+values('mil_type', '40001', 'ìœ¡êµ°', 'êµ°ë³„ ìœ¡êµ°');
 insert into insa_com(gubun, code, name, note)
-values('mil_type', '40002', 'ÇØ±º', '±ºº° ÇØ±º');
+values('mil_type', '40002', 'í•´êµ°', 'êµ°ë³„ í•´êµ°');
 insert into insa_com(gubun, code, name, note)
-values('mil_type', '40003', '°ø±º', '±ºº° °ø±º');
+values('mil_type', '40003', 'ê³µêµ°', 'êµ°ë³„ ê³µêµ°');
 insert into insa_com(gubun, code, name, note)
-values('mil_type', '40004', 'ÀÇ°æ', '±ºº° ÀÇ°æ');
+values('mil_type', '40004', 'ì˜ê²½', 'êµ°ë³„ ì˜ê²½');
 
 insert into insa_com(gubun, code, name, note)
-values('mil_level', '50001', 'ÀÌº´', '°è±Ş ÀÌº´');
+values('mil_level', '50001', 'ì´ë³‘', 'ê³„ê¸‰ ì´ë³‘');
 insert into insa_com(gubun, code, name, note)
-values('mil_level', '50002', 'ÀÏº´', '°è±Ş ÀÏº´');
+values('mil_level', '50002', 'ì¼ë³‘', 'ê³„ê¸‰ ì¼ë³‘');
 insert into insa_com(gubun, code, name, note)
-values('mil_level', '50003', '»óº´', '°è±Ş »óº´');
+values('mil_level', '50003', 'ìƒë³‘', 'ê³„ê¸‰ ìƒë³‘');
 insert into insa_com(gubun, code, name, note)
-values('mil_level', '50004', 'º´Àå', '°è±Ş º´Àå');
+values('mil_level', '50004', 'ë³‘ì¥', 'ê³„ê¸‰ ë³‘ì¥');
 insert into insa_com(gubun, code, name, note)
-values('mil_level', '50005', 'ºÎ»ç°ü', '°è±Ş ºÎ»ç°ü');
+values('mil_level', '50005', 'ë¶€ì‚¬ê´€', 'ê³„ê¸‰ ë¶€ì‚¬ê´€');
 insert into insa_com(gubun, code, name, note)
-values('mil_level', '50006', 'Àå±³', '°è±Ş Àå±³');
+values('mil_level', '50006', 'ì¥êµ', 'ê³„ê¸‰ ì¥êµ');
 
 insert into insa_com(gubun, code, name, note)
-values('kosa_class_code', '60001', 'ÃÊ±Ş', 'KOSAµî±Ş ÃÊ±Ş');
+values('kosa_class_code', '60001', 'ì´ˆê¸‰', 'KOSAë“±ê¸‰ ì´ˆê¸‰');
 insert into insa_com(gubun, code, name, note)
-values('kosa_class_code', '60002', 'Áß±Ş', 'KOSAµî±Ş Áß±Ş');
+values('kosa_class_code', '60002', 'ì¤‘ê¸‰', 'KOSAë“±ê¸‰ ì¤‘ê¸‰');
 insert into insa_com(gubun, code, name, note)
-values('kosa_class_code', '60003', '°í±Ş', 'KOSAµî±Ş °í±Ş');
+values('kosa_class_code', '60003', 'ê³ ê¸‰', 'KOSAë“±ê¸‰ ê³ ê¸‰');
 
-	
+insert into insa_com(gubun, code, name, note)
+values('join_gbn_code', '70001', 'ì˜ì—…', 'ì§ì¢… ì˜ì—…');
+insert into insa_com(gubun, code, name, note)
+values('join_gbn_code', '70002', 'ê°œë°œ', 'ì§ì¢… ê°œë°œ');
+insert into insa_com(gubun, code, name, note)
+values('join_gbn_code', '70003', 'ì§€ì›', 'ì§ì¢… ì§€ì›');
+insert into insa_com(gubun, code, name, note)
+values('join_gbn_code', '70004', 'ì¸ì‚¬', 'ì§ì¢… ì¸ì‚¬');
+insert into insa_com(gubun, code, name, note)
+values('join_gbn_code', '70005', 'ê²½ì˜', 'ì§ì¢… ê²½ì˜');
+insert into insa_com(gubun, code, name, note)
+values('join_gbn_code', '70006', 'íšŒê³„', 'ì§ì¢… íšŒê³„');
+
+
 drop table insa;
