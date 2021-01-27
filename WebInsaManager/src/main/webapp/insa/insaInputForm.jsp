@@ -197,8 +197,10 @@
 		<td><input type="file" name="upload_cmp_reg_image"></td>
 		
 		<td colspan ="2" align="center">
+			<!-- 
 			<input type="button" onclick="location.href='#modal'" rel="modal:open" value="미리보기" style="width:90px">
 			<input type="button" value="등록" style="width:90px">
+			 -->
 		</td>	 	
 	</tr>	
 	<tr>
@@ -210,8 +212,10 @@
 		<td>이력서</td>
 		<td><input type="file" name="upload_carrier_image"></td>
 		<td colspan="2" align="center">
+			<!--  
 			<input type="button" value="다운" style="width:90px">
 			<input type="button" value="파일업로드" style="width:90px">
+			-->
 		</td>		
 	</tr>
 </table>
