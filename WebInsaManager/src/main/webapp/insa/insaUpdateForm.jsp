@@ -195,10 +195,10 @@
 			</select></td>
 		<td>입영일자</td>
 		<td><input type="text" id="mil_startdate" name="mil_startdate"
-				value="${insa.mil_startdate }" class="testDatepicker"></td>
+				value="${fn:substring(insa.mil_startdate, 0, 10) }" class="testDatepicker"></td>
 		<td>전역일자</td>
 		<td><input type="text" id="mil_enddate" name="mil_enddate"
-				value="${insa.mil_enddate }" class="testDatepicker"></td>
+				value="${fn:substring(insa.mil_enddate, 0, 10) }" class="testDatepicker"></td>
 	</tr>
 
 	<tr>
@@ -218,10 +218,10 @@
 			</select></td>
 		<td>입사일자</td>
 		<td><input type="text" name="join_day" id="join_day" 
-					value="${insa.join_day }" class="testDatepicker"></td>
+					value="${fn:substring(insa.join_day, 0, 10) }" class="testDatepicker"></td>
 		<td>퇴사일자</td>
 		<td><input type="text" name="retire_day" id="retire_day"
-					value="${insa.retire_day }" class="testDatepicker"></td>
+					value="${fn:substring(insa.retire_day, 0, 10) }" class="testDatepicker"></td>
 	</tr>	
 	<tr>
 		<td>사업자번호</td>

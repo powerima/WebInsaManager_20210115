@@ -14,7 +14,7 @@
 				MIL_TYPE, MIL_LEVEL, MIL_STARTDATE, MIL_ENDDATE,
 				KOSA_REG_YN, KOSA_CLASS_CODE, JOIN_DAY, RETIRE_DAY, 
 				CMP_REG_NO, CRM_NAME, CMP_REG_IMAGE, CARRIER_IMAGE, 
-				PROFILE_IMAGE, SELF_INTRO)
+				PROFILE_IMAGE, SELF_INTROM, JOIN_YN)
 			VALUES(#{sabun}, #{name}, #{reg_no}, #{hp}, #{id}, #{pwd},
 				#{eng_name}, #{phone}, #{age}, #{email}, #{join_gbn_code},
 				#{sex}, #{zip}, #{addr1}, #{addr2}, #{pos_gbn_code}, 
@@ -23,26 +23,28 @@
 				#{mil_enddate}, #{kosa_reg_yn}, #{kosa_class_code}, 
 				#{join_day}, #{retire_day}, #{cmp_reg_no}, #{crm_name},
 				#{cmp_reg_image}, #{carrier_image}, #{profile_image},
-				#{self_intro})			
+				#{self_intro}, #{join_yn})			
 		]]>
 	</insert>
 
 	<update id="updateInsa">
-		UPDATE INSA SET
-			NAME = #{name}, REG_NO = #{reg_no},	HP = #{hp},
-			PWD = #{pwd}, ENG_NAME = #{eng_name},
-			PHONE = #{phone}, AGE = #{age}, EMAIL = #{email},
-			JOIN_GBN_CODE = #{join_gbn_code}, SALARY = #{salary},
-			GART_LEVEL = #{gart_level}, PUT_YN = #{put_yn}, 
-			MIL_YN = #{mil_yn}, MIL_TYPE = #{mil_type}, 
-			MIL_LEVEL = #{mil_level}, MIL_STARTDATE = #{mil_startdate},
-			MIL_ENDDATE = #{mil_enddate}, KOSA_REG_YN = #{kosa_reg_yn},
-			KOSA_CLASS_CODE = #{kosa_class_code}, JOIN_DAY = #{join_day},
-			RETIRE_DAY = #{retire_day}, CMP_REG_NO = #{cmp_reg_no},
-			CRM_NAME = #{crm_name}, CMP_REG_IMAGE = #{cmp_reg_image},
-			CARRIER_IMAGE = #{carrier_image}, PROFILE_IMAGE = #{profile_image},
-			SELF_INTRO = #{self_intro}
-		WHERE SABUN = #{sabun}			
+		<![CDATA[
+			UPDATE INSA SET
+				NAME = #{name}, REG_NO = #{reg_no},	HP = #{hp},
+				PWD = #{pwd}, ENG_NAME = #{eng_name}, JOIN_YN = #{join_yn},
+				PHONE = #{phone}, AGE = #{age}, EMAIL = #{email},
+				JOIN_GBN_CODE = #{join_gbn_code}, SALARY = #{salary},
+				GART_LEVEL = #{gart_level}, PUT_YN = #{put_yn}, 
+				MIL_YN = #{mil_yn}, MIL_TYPE = #{mil_type}, 
+				MIL_LEVEL = #{mil_level}, MIL_STARTDATE = #{mil_startdate},
+				MIL_ENDDATE = #{mil_enddate}, KOSA_REG_YN = #{kosa_reg_yn},
+				KOSA_CLASS_CODE = #{kosa_class_code}, JOIN_DAY = #{join_day},
+				RETIRE_DAY = #{retire_day}, CMP_REG_NO = #{cmp_reg_no},
+				CRM_NAME = #{crm_name}, CMP_REG_IMAGE = #{cmp_reg_image},
+				CARRIER_IMAGE = #{carrier_image}, PROFILE_IMAGE = #{profile_image},
+				SELF_INTRO = #{self_intro}
+			WHERE SABUN = #{sabun}		
+		]]>	
 	</update>
 
 	<delete id="deleteInsa">

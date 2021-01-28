@@ -228,18 +228,6 @@
 </table>
 </form>
 </div>
-
-<div id="modal" class="modal">
-	<div align="center">
-		<img src="https://cdn.pixabay.com/photo/2020/04/16/10/16/mountain-5050026__340.jpg" 
-			height="600"/><br>
-		<a href="#" rel="modal:close">닫기</a>
-	</div>
-</div>
- 
-<p><a href="#modal" rel="modal:open">모달창띄우기</a></p>
-
-
 </section>
 </body>
 </html>

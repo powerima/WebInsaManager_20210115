@@ -213,8 +213,6 @@ public class InsaController {
 	@RequestMapping(value="/insaUpdateAjax.do", method=RequestMethod.POST)
 	public void insaUpdateAjax(InsaVo vo, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		System.out.println(vo);
-		
 		// 주민등록 번호 설정
 		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
 		
@@ -223,34 +221,27 @@ public class InsaController {
 			vo.setCarrier_image(FileUpload.uploadNewFile
 					(request, CARRIER_IMAGE_PATH, vo.getUpload_carrier_image()));	// 새로운 파일 업로드
 			FileUpload.deleteFile(request, CARRIER_IMAGE_PATH, vo.getCarrier_image()); // 기존 파일 삭제			
-		} else {
-			vo.setCarrier_image("");
 		}
-		
-		
 		
 		// 사업자 등록증 이미지 설정 및 파일 업로드
 		if(!vo.getUpload_cmp_reg_image().getOriginalFilename().equals("")) {
+			System.out.println("controller cmp_reg 수정중" + vo);
 			vo.setCmp_reg_image(FileUpload.uploadNewFile
 					(request, CMP_REG_IMAGE_PATH, vo.getUpload_cmp_reg_image()));	// 새로운 파일 업로드
 			FileUpload.deleteFile(request, CMP_REG_IMAGE_PATH, vo.getCmp_reg_image());	// 기존 파일 삭제			
-		} else {
-			vo.setCmp_reg_image("");
 		}
-	
 		
 		// 프로필 이미지 설정 및 파일 업로드
 		if(!vo.getUpload_profile_image().getOriginalFilename().equals("")) {
 			vo.setProfile_image(FileUpload.uploadNewFile
 					(request, PROFILE_IMAGE_PATH, vo.getUpload_profile_image()));	// 새로운 파일 업로드
 			FileUpload.deleteFile(request, PROFILE_IMAGE_PATH, vo.getProfile_image());	// 기존 파일 삭제			
-		} else {
-			vo.setProfile_image("");
-		}		
-	
+		} 
+		
 		
 		// 이메일 설정
 		if(vo.getEmail_id() != null) {
+			
 			if(vo.getEmail_domain1() != null) {
 				vo.setEmail(vo.getEmail_id() + '@' + vo.getEmail_domain1());
 			} else if(vo.getEmail_domain2() != null) {
@@ -264,7 +255,6 @@ public class InsaController {
 			vo.setSalary(Integer.parseInt(vo.getSalary_str().replaceAll(",", "")));
 		}		
 		
-		System.out.println(vo);
 		is.updateInsa(vo);
 		
 		response.getWriter().print("수정하였습니다.");
