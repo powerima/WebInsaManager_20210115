@@ -270,7 +270,7 @@
 <div id="profile_image_modal" class="modal">
 	<div align="center">
 		<img src="/biz/file/profile_img/${insa.profile_image }" 
-			height="600"/><br>
+			height="600" width="400"/><br>
 		<a href="#" rel="modal:close">닫기</a>
 	</div>
 </div>

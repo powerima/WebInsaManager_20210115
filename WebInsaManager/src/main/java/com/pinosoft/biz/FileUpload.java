@@ -8,79 +8,79 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
-// ÆÄÀÏ ¾÷·Îµå À¯Æ¿
+// íŒŒì¼ ì—…ë¡œë“œ ìœ í‹¸
 public class FileUpload {	
-	// ÆÄÀÏ ¾÷·Îµå
+	// íŒŒì¼ ì—…ë¡œë“œ
 	public static String uploadNewFile(HttpServletRequest request, String path, 
 				MultipartFile uploadFile) throws IllegalStateException, IOException {
-		String realPath = request.getSession().getServletContext().getRealPath(path);	// ½ÇÁ¦ °æ·Î
-		String fileName = "";	// ¼öÁ¤µÈ ½ÇÁ¦ ÆÄÀÏ ÀÌ¸§
+		String realPath = request.getSession().getServletContext().getRealPath(path);	// ì‹¤ì œ ê²½ë¡œ
+		String fileName = "";	// ìˆ˜ì •ëœ ì‹¤ì œ íŒŒì¼ ì´ë¦„
 		
-		if(uploadFile != null && !uploadFile.isEmpty()) {	// ¾÷·ÎµåµÈ ÆÄÀÏ Á¸Àç ¿©ºÎ È®ÀÎ
+		if(uploadFile != null && !uploadFile.isEmpty()) {	// ì—…ë¡œë“œëœ íŒŒì¼ ì¡´ì¬ ì—¬ë¶€ í™•ì¸
 			
 			
-			String originalFileName = uploadFile.getOriginalFilename();	// ÆÄÀÏÀÌ¸§ ÃßÃâ
+			String originalFileName = uploadFile.getOriginalFilename();	// íŒŒì¼ì´ë¦„ ì¶”ì¶œ
 			File f = new File(realPath + originalFileName);
 			
-			if (f.exists()) {	// ÆÄÀÏ ÀÌ¸§ Áßº¹À» ÇÇÇÏ±â À§ÇÑ
-				// ¿¬¿ùÀÏ½ÃºĞÃÊ ¹®ÀÚ¿­·Î ÃßÃâ
+			if (f.exists()) {	// íŒŒì¼ ì´ë¦„ ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•œ
+				// ì—°ì›”ì¼ì‹œë¶„ì´ˆ ë¬¸ìì—´ë¡œ ì¶”ì¶œ
 				String time = new SimpleDateFormat("yyyyMMddhhmmss").format(System.currentTimeMillis());
 				
-				// ÆÄÀÏÀÌ¸§ Áßº¹À» ÇÇÇÏ±â À§ÇÑ ¿¬¿ùÀÏ½ÃºĞÃÊ ¹®ÀÚ ¿¬°á
+				// íŒŒì¼ì´ë¦„ ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•œ ì—°ì›”ì¼ì‹œë¶„ì´ˆ ë¬¸ì ì—°ê²°
 				fileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + '_' + time 
 							+ originalFileName.substring(originalFileName.lastIndexOf("."));				
-			} else {	// Áßº¹µÈ ÆÄÀÏÀÌ ¾ø´Â °æ¿ì
+			} else {	// ì¤‘ë³µëœ íŒŒì¼ì´ ì—†ëŠ” ê²½ìš°
 				fileName = originalFileName;
 			}
 
 			System.out.println(realPath);
-			uploadFile.transferTo(new File(realPath + fileName));	// ÆÄÀÏ ¾÷·Îµå			
+			uploadFile.transferTo(new File(realPath + fileName));	// íŒŒì¼ ì—…ë¡œë“œ			
 		}
 		
 		return fileName;
 	}
 	
-	// ±âÁ¸ ÆÄÀÏ »èÁ¦ÇÏ°í »õ·Î¿î ÆÄÀÏ ¾÷·Îµå
+	// ê¸°ì¡´ íŒŒì¼ ì‚­ì œí•˜ê³  ìƒˆë¡œìš´ íŒŒì¼ ì—…ë¡œë“œ
 	public static String updateFile(HttpServletRequest request, String path, 
 				String preFileName, MultipartFile uploadFile) throws IllegalStateException, IOException {
-		String realPath = request.getSession().getServletContext().getRealPath(path);	// ½ÇÁ¦ °æ·Î
-		String fileName = "";	// ¼öÁ¤µÈ ½ÇÁ¦ ÆÄÀÏ ÀÌ¸§
+		String realPath = request.getSession().getServletContext().getRealPath(path);	// ì‹¤ì œ ê²½ë¡œ
+		String fileName = "";	// ìˆ˜ì •ëœ ì‹¤ì œ íŒŒì¼ ì´ë¦„
 		
-		if(uploadFile != null && !uploadFile.isEmpty()) {	// ¾÷·ÎµåµÈ ÆÄÀÏ Á¸Àç ¿©ºÎ È®ÀÎ			
-			// ±âÁ¸ ÆÄÀÏ »èÁ¦			
+		if(uploadFile != null && !uploadFile.isEmpty()) {	// ì—…ë¡œë“œëœ íŒŒì¼ ì¡´ì¬ ì—¬ë¶€ í™•ì¸			
+			// ê¸°ì¡´ íŒŒì¼ ì‚­ì œ			
 			File pref = new File(realPath + preFileName);
 			if(pref.exists()) {
 				pref.delete();
 			}
 			
-			// »õ·Î¿î ÆÄÀÏ ¾÷·Îµå
-			String originalFileName = uploadFile.getOriginalFilename();	// ÆÄÀÏÀÌ¸§ ÃßÃâ
+			// ìƒˆë¡œìš´ íŒŒì¼ ì—…ë¡œë“œ
+			String originalFileName = uploadFile.getOriginalFilename();	// íŒŒì¼ì´ë¦„ ì¶”ì¶œ
 			File f = new File(realPath + originalFileName);
 			
-			if (f.exists()) {	// ÆÄÀÏ ÀÌ¸§ Áßº¹À» ÇÇÇÏ±â À§ÇÑ
-				// ¿¬¿ùÀÏ½ÃºĞÃÊ ¹®ÀÚ¿­·Î ÃßÃâ
+			if (f.exists()) {	// íŒŒì¼ ì´ë¦„ ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•œ
+				// ì—°ì›”ì¼ì‹œë¶„ì´ˆ ë¬¸ìì—´ë¡œ ì¶”ì¶œ
 				String time = new SimpleDateFormat("yyyyMMddhhmmss").format(System.currentTimeMillis());
 				
-				// ÆÄÀÏÀÌ¸§ Áßº¹À» ÇÇÇÏ±â À§ÇÑ ¿¬¿ùÀÏ½ÃºĞÃÊ ¹®ÀÚ ¿¬°á
+				// íŒŒì¼ì´ë¦„ ì¤‘ë³µì„ í”¼í•˜ê¸° ìœ„í•œ ì—°ì›”ì¼ì‹œë¶„ì´ˆ ë¬¸ì ì—°ê²°
 				fileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + time 
 							+ originalFileName.substring(originalFileName.lastIndexOf("."));				
-			} else {	// Áßº¹µÈ ÆÄÀÏÀÌ ¾ø´Â °æ¿ì
+			} else {	// ì¤‘ë³µëœ íŒŒì¼ì´ ì—†ëŠ” ê²½ìš°
 				fileName = originalFileName;
 			}
 
-			uploadFile.transferTo(new File(realPath + fileName));	// ÆÄÀÏ ¾÷·Îµå			
+			uploadFile.transferTo(new File(realPath + fileName));	// íŒŒì¼ ì—…ë¡œë“œ			
 		} 
 		
 		return fileName;
 	}
 	
-	// ¾÷·ÎµåµÈ ÆÄÀÏ »èÁ¦
+	// ì—…ë¡œë“œëœ íŒŒì¼ ì‚­ì œ
 	public static void deleteFile(HttpServletRequest request, String path, String fileName) {
-		String realPath = request.getSession().getServletContext().getRealPath(path);	// ½ÇÁ¦ °æ·Î
+		String realPath = request.getSession().getServletContext().getRealPath(path);	// ì‹¤ì œ ê²½ë¡œ
 		
-		if(fileName != null && !fileName.equals("")) {	// ¾÷·ÎµåµÈ ÆÄÀÏ Á¸Àç ¿©ºÎ È®ÀÎ
+		if(fileName != null && !fileName.equals("")) {	// ì—…ë¡œë“œëœ íŒŒì¼ ì¡´ì¬ ì—¬ë¶€ í™•ì¸
 			File f = new File(realPath + fileName);
-			f.delete();			// ÆÄÀÏ »èÁ¦
+			f.delete();			// íŒŒì¼ ì‚­ì œ
 		}
 	}
 	

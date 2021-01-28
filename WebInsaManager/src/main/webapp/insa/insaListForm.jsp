@@ -20,7 +20,7 @@
 		
 	
 		<td>입사구분</td>
-		<td><select style="width:165px">
+		<td><select name="join_yn" style="width:165px">
 				<option value=""></option>
 				<option value="Y">Y</option>
 				<option value="N">N</option>
@@ -29,8 +29,8 @@
 		<td>투입여부</td>
 		<td><select name="put_yn" style="width:165px">
 				<option value=""></option>
-				<option value="1">Y</option>
-				<option value="0">N</option>
+				<option value="Y">Y</option>
+				<option value="N">N</option>
 			</select></td>
 			
 	</tr>
@@ -65,7 +65,7 @@
 </form>
 	
 <div id="getInsaList">
-<table id="insaListTable" border="1" width="1000">
+<table class="line_table" border="1" width="1000">
 	<tr align="center">
 		<td>사번</td>
 		<td>성명</td>
