@@ -11,7 +11,7 @@
 
 <div align="center">
 <form name="inputForm" action="/biz/insa/insaInputForm.do" method="post"
-		onsubmit="return checkInputForm()">
+		onsubmit="return checkInputForm()" enctype="multipart/form-data">
 		
 <table width="1300">
 	<tr>
@@ -23,12 +23,10 @@
 	</tr>
 	<tr>
 		<td colspan="2" rowspan="5" align="center">
-			<img src="profile_img/profile_empty.jpg" height="120">
+			<img src="/biz/file/profile_empty.jpg" height="120">
 		</td> 
 		<td>사번</td>
 		<td><input type="number" name="sabun" value="${sabun }" readonly></td>
-		
-		
 		<td>한글성명</td>
 		<td><input type="text" name="name"></td>
 		<td>영문성명</td>
@@ -59,27 +57,30 @@
 				maxlength="1" size="1" onkeyup="reg_no_check(this.value, this)">	
 			<input type="password" name="reg_no3" id="reg_no3"
 				maxlength="6" size="5" onkeyup="reg_no_check(this.value, this)"></td>
-	</tr>
-	<tr>	
+	</tr>	
+	<tr>
+
 		<td>연령</td>
-		<td><input type="text" name="years" id="years" maxlength="3"
-				onkeyup="years_check(this.value)" ></td>
+		<td><input type="text" name="age" id="age" maxlength="3"
+				onkeyup="age_check(this.value)" ></td>
+				
 		<td colspan="2">이메일
 			<input type="text" name="email_id" size="10"> @ 
-			<select name="email_domain" id="email_check1" style="width:110px">
-				<option value="@naver.com">naver.com</option>
-				<option value="@hanmail.net">hanmail.net</option>
-				<option value="@nate.com">nate.com</option>
-				<option value="@gmail.com">gmail.com</option>
+			<select name="email_domain1" id="email_domain1" style="width:110px">
+				<option value=""></option>
+				<c:forEach items="${email_domain1_list }" var="email_domain1">
+					<option value="${email_domain1.name }">${email_domain1.name }</option>
+				</c:forEach>				
 				<option value="">직접입력</option>				
 			</select>
-		<input type="text" name="email_domain2" id="email_check2" disabled size="10"></td>
+		<input type="text" name="email_domain2" id="email_domain2" disabled size="10"></td>
 		<td colspan="2">
-			직종체크 <select name="job_type" style="width:100px">
-						<option value="1">영업</option>
-						<option value="2">개발</option>
-						<option value="2">지원</option>
-					</select>
+			직종 <select name="join_gbn_code" style="width:100px">
+					<option value=""></option>
+					<c:forEach items="${join_gbn_code_list }" var="join_gbn_code">
+						<option value="${join_gbn_code.name }">${join_gbn_code.name }</option>
+					</c:forEach>						
+				</select>
 			성별 <select id="sex" name="sex" style="width:100px">
 					<option value="남자">남자</option>
 					<option value="여자">여자</option>
@@ -99,34 +100,35 @@
 			<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" >			
 		</td>
 	</tr>
-	
+		
 	<tr>
 		<td	colspan="2">
-			<input type="file" name="profile_image"></td>	
+			<input type="file" name="upload_profile_image"></td>
 		<td>직위</td>
-		<td>
-			<select name="pos_gbn_code" style="width:165px">
+		<td><select name="pos_gbn_code" style="width:165px">
+				<option value=""></option>
 				<c:forEach items="${pos_gbn_code_list }" var="pos_gbn_code">
-					<option value="${pos_gbn_code.code }">${pos_gbn_code.name }</option>
+					<option value="${pos_gbn_code.name }">${pos_gbn_code.name }</option>
 				</c:forEach>		
-			</select>
-		</td>	
+			</select> 
+		</td>
+		
 		<td>부서</td>
 		<td>
 			<select name="dept_code" style="width:165px">
+				<option value=""></option>
 				<c:forEach items="${dept_code_list }" var="dept_code">
-					<option value="${dept_code.code }">${dept_code.name }</option>
+					<option value="${dept_code.name }">${dept_code.name }</option>
 				</c:forEach>	
 			</select>
-		</td>  
+		</td>   
 		<td>연봉</td>
 		<td>
 			<input type="text" style="text-align:right" name="salary_str"
 			placeholder="(만원)" id="salary" maxlengt="2" 
 				onkeyup="numberWithCommas(this.value)" >
-		</td>
+		</td> 
 	</tr>
-
 	<tr>
 		<td>입사구분</td>
 		<td><select style="width:165px">
@@ -135,8 +137,9 @@
 			</select></td>
 		<td>등급</td>
 		<td><select name="gart_level" style="width:165px">
+				<option value=""></option>
 				<c:forEach items="${gart_level_list }" var="gart_level">
-					<option value="${gart_level.code }">${gart_level.name }</option>
+					<option value="${gart_level.name }">${gart_level.name }</option>
 				</c:forEach>					
 			</select></td>
 		<td>투입여부</td>
@@ -154,14 +157,16 @@
 	<tr>
 		<td>군별</td>
 		<td><select id="mil_type" name="mil_type" style="width:165px">
+				<option value=""></option>
 				<c:forEach items="${mil_type_list }" var="mil_type">
-					<option value="${mil_type.code }">${mil_type.name }</option>
+					<option value="${mil_type.name }">${mil_type.name }</option>
 				</c:forEach>	
 			</select></td>
 		<td>계급</td>
 		<td><select id="mil_level" name="mil_level" style="width:165px">
+				<option value=""></option>
 				<c:forEach items="${mil_level_list }" var="mil_level">
-					<option value="${mil_level.code }">${mil_level.name }</option>
+					<option value="${mil_level.name }">${mil_level.name }</option>
 				</c:forEach>			
 			</select></td>
 		<td>입영일자</td>
@@ -178,8 +183,9 @@
 			</select></td>
 		<td>KOSA등급</td>
 		<td><select name="kosa_class_code" id="kosa_class_code" style="width:165px">
+				<option value=""></option>
 				<c:forEach items="${kosa_class_code_list }" var="kosa_class_code">
-					<option value="${kosa_class_code.code }">${kosa_class_code.name }</option>
+					<option value="${kosa_class_code.name }">${kosa_class_code.name }</option>
 				</c:forEach>	
 			</select></td>
 		<td>입사일자</td>
@@ -193,12 +199,16 @@
 				onkeyup="cmp_reg_no_check(this.value)"></td>
 		<td>업체명</td>
 		<td><input type="text" name="crm_name"></td>
+		
 		<td>사업자등록증</td>
-		<td><input type="file" name="cmp_reg_imgae"></td>
+		<td><input type="file" name="upload_cmp_reg_image"></td>
+		
 		<td colspan ="2" align="center">
+			<!-- 
 			<input type="button" onclick="location.href='#modal'" rel="modal:open" value="미리보기" style="width:90px">
 			<input type="button" value="등록" style="width:90px">
-		</td>		
+			 -->
+		</td>	 	
 	</tr>	
 	<tr>
 		<td>자기소개</td>
@@ -207,13 +217,14 @@
 					 placeholder="100자 이내로 적으시오."></textarea>
 		</td>		
 		<td>이력서</td>
-		<td><input type="file" name="carrier_image"></td>
+		<td><input type="file" name="upload_carrier_image"></td>
 		<td colspan="2" align="center">
+			<!--  
 			<input type="button" value="다운" style="width:90px">
 			<input type="button" value="파일업로드" style="width:90px">
+			-->
 		</td>		
 	</tr>
-	
 </table>
 </form>
 </div>

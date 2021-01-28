@@ -30,8 +30,13 @@ section {
 	font-size:12px;
 }
 
+
 .header_link {
 	padding-right:20px;
+}
+
+#insaListTable {
+	border: 1px sold black;
 }
 
 #section_title {

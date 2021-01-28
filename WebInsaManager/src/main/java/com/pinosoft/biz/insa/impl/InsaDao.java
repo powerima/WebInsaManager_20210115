@@ -50,9 +50,16 @@ public class InsaDao {
 		return null;
 	}
 
-	// 목록 조회
-	public List<InsaVo> getInsaLIst(InsaVo vo) {
+	// 목록 레코드 수 조회
+	public int getInsaCnt(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectOne("InsaDao.getInsaCnt", vo);
 	}
+	
+	// 목록 조회
+	public List<InsaVo> getInsaList(InsaVo vo) {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("InsaDao.getInsaList", vo);
+	}
+	
 }

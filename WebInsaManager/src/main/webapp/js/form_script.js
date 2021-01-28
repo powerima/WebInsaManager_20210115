@@ -8,8 +8,8 @@
 
 $(document).ready(function() {
 	// 이메일 체크 후 활성 - 비활성화
-	$('#email_domain').change(function(){
-		if($('#email_domain option:selected').val() == '') {
+	$('#email_domain1').change(function(){
+		if($('#email_domain1 option:selected').val() == '') {
 			$('#email_domain2').attr('disabled', false);
 		} else {
 			$('#email_domain2').attr('disabled', true);
@@ -65,34 +65,41 @@ $(document).ready(function() {
 		});	
 	});
 
-	/*
+	
 	// 인사 등록 - 화면 이동 없음
 	$('#insaInputAjax').click(function(){
-		var query = {
-			sabun: joinForm.sabun.value,
-			name: joinForm.name.value,
-			eng_name: joinForm.eng_name.value,
-			id: joinForm.id.value,
-			pwd: joinForm.pwd.value,
-			phone: joinForm.phone.value,
-			hp: joinForm.hp.value,
-			reg_no: joinForm.reg_no1.value + '-' + joinForm.reg_no2.value
-					+ joinForm.reg_no3.value,
-			age: joinForm.age.value,
-			email: joinForm.email_id.value + joinForm.email_domain.value 
-					+ joinForm.email_domain2.value			
-		};
+		checkInputForm();
+		
+      	var formData = new FormData($('#inputForm')[0]);
 	
 		$.ajax({
 			type: "POST",
-			url: "/biz/insaInputAjax.do",
-			data: query,
+			url: "/biz/insa/insaInputAjax.do",
+			processData: false,	// 필수
+			contentType: false,	// 필수
+			data: formData,
 			success: function(data) {
-				alert(data);
+				alert('등록 되었습니다.');
 			}			
 		});
 	});
-	*/
+	
+	// 직원 테이블 조회 - 화면 이동 없음
+	$('#getInsaList').load("/biz/insa/insaListFormAjax.do");
+	$('#getInsaList_btn').click(function(){
+		var query = $('#getInsaListForm').serialize();
+		
+		$.ajax({
+			type: "GET",
+			url: "/biz/insa/insaListFormAjax.do",
+			data: query,
+			success: function(data) {
+				alert(data);
+				//$('#getInsaList').load('/biz/insa/insaListFormAjax.do');
+				//document.location.reload();
+			}
+		});			
+	});
 
 });
 

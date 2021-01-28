@@ -1,9 +1,12 @@
 package com.pinosoft.biz.insa;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class InsaVo {
 	private int sabun;
 	private String join_day;
 	private String retire_day;
+	private String join_yn;
 	private String put_yn;
 	private String name;
 	private String reg_no;
@@ -16,11 +19,13 @@ public class InsaVo {
 	private String pos_gbn_code;
 	private String cmp_reg_no;
 	private String cmp_reg_image;
+	private MultipartFile upload_cmp_reg_image;
 	private String sex;
-	private int years;
+	private int age;
 	private String email;
 	private String email_id;
-	private String email_domain;
+	private String email_domain1;
+	private String email_domain2;
 	private String zip;
 	private String addr1;
 	private String addr2;
@@ -37,12 +42,13 @@ public class InsaVo {
 	private String mil_level;
 	private String mil_startdate;
 	private String mil_enddate;
-	private String job_type;
 	private String gart_level;
 	private String self_intro;
 	private String crm_name;
 	private String profile_image;
 	private String carrier_image;
+	private MultipartFile upload_profile_image;
+	private MultipartFile upload_carrier_image;
 	
 	public int getSabun() {
 		return sabun;
@@ -61,6 +67,12 @@ public class InsaVo {
 	}
 	public void setRetire_day(String retire_day) {
 		this.retire_day = retire_day;
+	}
+	public String getJoin_yn() {
+		return join_yn;
+	}
+	public void setJoin_yn(String join_yn) {
+		this.join_yn = join_yn;
 	}
 	public String getPut_yn() {
 		return put_yn;
@@ -140,11 +152,11 @@ public class InsaVo {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getYears() {
-		return years;
+	public int getAge() {
+		return age;
 	}
-	public void setYears(int years) {
-		this.years = years;
+	public void setAge(int age) {
+		this.age = age;
 	}
 	public String getEmail() {
 		return email;
@@ -158,11 +170,17 @@ public class InsaVo {
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
 	}
-	public String getEmail_domain() {
-		return email_domain;
+	public String getEmail_domain1() {
+		return email_domain1;
 	}
-	public void setEmail_domain(String email_domain) {
-		this.email_domain = email_domain;
+	public void setEmail_domain1(String email_domain1) {
+		this.email_domain1 = email_domain1;
+	}
+	public String getEmail_domain2() {
+		return email_domain2;
+	}
+	public void setEmail_domain2(String email_domain2) {
+		this.email_domain2 = email_domain2;
 	}
 	public String getZip() {
 		return zip;
@@ -260,12 +278,6 @@ public class InsaVo {
 	public void setMil_enddate(String mil_enddate) {
 		this.mil_enddate = mil_enddate;
 	}
-	public String getJob_type() {
-		return job_type;
-	}
-	public void setJob_type(String job_type) {
-		this.job_type = job_type;
-	}
 	public String getGart_level() {
 		return gart_level;
 	}
@@ -296,19 +308,39 @@ public class InsaVo {
 	public void setCarrier_image(String carrier_image) {
 		this.carrier_image = carrier_image;
 	}
+	public MultipartFile getUpload_cmp_reg_image() {
+		return upload_cmp_reg_image;
+	}
+	public void setUpload_cmp_reg_image(MultipartFile upload_cmp_reg_image) {
+		this.upload_cmp_reg_image = upload_cmp_reg_image;
+	}
+	public MultipartFile getUpload_profile_image() {
+		return upload_profile_image;
+	}
+	public void setUpload_profile_image(MultipartFile upload_profile_image) {
+		this.upload_profile_image = upload_profile_image;
+	}
+	public MultipartFile getUpload_carrier_image() {
+		return upload_carrier_image;
+	}
+	public void setUpload_carrier_image(MultipartFile upload_carrier_image) {
+		this.upload_carrier_image = upload_carrier_image;
+	}
 	@Override
 	public String toString() {
-		return "InsaVo [sabun=" + sabun + ", join_day=" + join_day + ", retire_day=" + retire_day + ", put_yn=" + put_yn
-				+ ", name=" + name + ", reg_no=" + reg_no + ", reg_no1=" + reg_no1 + ", reg_no2=" + reg_no2
-				+ ", reg_no3=" + reg_no3 + ", eng_name=" + eng_name + ", phone=" + phone + ", hp=" + hp
-				+ ", pos_gbn_code=" + pos_gbn_code + ", cmp_reg_no=" + cmp_reg_no + ", cmp_reg_image=" + cmp_reg_image
-				+ ", sex=" + sex + ", years=" + years + ", email=" + email + ", email_id=" + email_id
-				+ ", email_domain=" + email_domain + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
+		return "InsaVo [sabun=" + sabun + ", join_day=" + join_day + ", retire_day=" + retire_day + ", join_yn="
+				+ join_yn + ", put_yn=" + put_yn + ", name=" + name + ", reg_no=" + reg_no + ", reg_no1=" + reg_no1
+				+ ", reg_no2=" + reg_no2 + ", reg_no3=" + reg_no3 + ", eng_name=" + eng_name + ", phone=" + phone
+				+ ", hp=" + hp + ", pos_gbn_code=" + pos_gbn_code + ", cmp_reg_no=" + cmp_reg_no + ", cmp_reg_image="
+				+ cmp_reg_image + ", upload_cmp_reg_image=" + upload_cmp_reg_image + ", sex=" + sex + ", age=" + age
+				+ ", email=" + email + ", email_id=" + email_id + ", email_domain1=" + email_domain1
+				+ ", email_domain2=" + email_domain2 + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
 				+ ", dept_code=" + dept_code + ", join_gbn_code=" + join_gbn_code + ", id=" + id + ", pwd=" + pwd
-				+ ", salary=" + salary + ", kosa_reg_yn=" + kosa_reg_yn + ", kosa_class_code=" + kosa_class_code
-				+ ", mil_yn=" + mil_yn + ", mil_type=" + mil_type + ", mil_level=" + mil_level + ", mil_startdate="
-				+ mil_startdate + ", mil_enddate=" + mil_enddate + ", job_type=" + job_type + ", gart_level="
-				+ gart_level + ", self_intro=" + self_intro + ", crm_name=" + crm_name + ", profile_image="
-				+ profile_image + ", carrier_image=" + carrier_image + "]";
+				+ ", salary=" + salary + ", salary_str=" + salary_str + ", kosa_reg_yn=" + kosa_reg_yn
+				+ ", kosa_class_code=" + kosa_class_code + ", mil_yn=" + mil_yn + ", mil_type=" + mil_type
+				+ ", mil_level=" + mil_level + ", mil_startdate=" + mil_startdate + ", mil_enddate=" + mil_enddate
+				+ ", gart_level=" + gart_level + ", self_intro=" + self_intro + ", crm_name=" + crm_name
+				+ ", profile_image=" + profile_image + ", carrier_image=" + carrier_image + ", upload_profile_image="
+				+ upload_profile_image + ", upload_carrier_image=" + upload_carrier_image + "]";
 	}
 }

@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 // 파일 업로드 유틸
 public class FileUpload {	
 	// 파일 업로드
-	public static void uploadNewFile(HttpServletRequest request, String path, 
+	public static String uploadNewFile(HttpServletRequest request, String path, 
 				MultipartFile uploadFile) throws IllegalStateException, IOException {
 		String realPath = request.getSession().getServletContext().getRealPath(path);	// 실제 경로
 		String fileName = "";	// 수정된 실제 파일 이름
@@ -27,18 +27,21 @@ public class FileUpload {
 				String time = new SimpleDateFormat("yyyyMMddhhmmss").format(System.currentTimeMillis());
 				
 				// 파일이름 중복을 피하기 위한 연월일시분초 문자 연결
-				fileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + time 
+				fileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + '_' + time 
 							+ originalFileName.substring(originalFileName.lastIndexOf("."));				
 			} else {	// 중복된 파일이 없는 경우
 				fileName = originalFileName;
 			}
 
+			System.out.println(realPath);
 			uploadFile.transferTo(new File(realPath + fileName));	// 파일 업로드			
 		}
+		
+		return fileName;
 	}
 	
 	// 기존 파일 삭제하고 새로운 파일 업로드
-	public static void updateFile(HttpServletRequest request, String path, 
+	public static String updateFile(HttpServletRequest request, String path, 
 				String preFileName, MultipartFile uploadFile) throws IllegalStateException, IOException {
 		String realPath = request.getSession().getServletContext().getRealPath(path);	// 실제 경로
 		String fileName = "";	// 수정된 실제 파일 이름
@@ -67,6 +70,8 @@ public class FileUpload {
 
 			uploadFile.transferTo(new File(realPath + fileName));	// 파일 업로드			
 		} 
+		
+		return fileName;
 	}
 	
 	// 업로드된 파일 삭제

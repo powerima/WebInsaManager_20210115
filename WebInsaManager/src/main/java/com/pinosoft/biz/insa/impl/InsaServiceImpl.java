@@ -60,7 +60,14 @@ public class InsaServiceImpl implements InsaService {
 	@Override
 	public List<InsaVo> getInsaList(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return insaDao.getInsaList(vo);
+	}
+
+	// 목록 레코드 수 조회
+	@Override
+	public int getInsaCnt(InsaVo vo) {
+		// TODO Auto-generated method stub
+		return insaDao.getInsaCnt(vo);
 	}
 
 

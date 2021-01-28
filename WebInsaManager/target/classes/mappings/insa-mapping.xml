@@ -42,5 +42,76 @@
 	</select>
 
 
+	<select id="getInsaCnt" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*)	FROM INSA
+			WHERE 1 = 1
+		]]>
+			<if test="sabun != ''">
+				AND SABUN LIKE '%'||#{sabun}||'%'
+			</if>
+			<if test="name != ''">
+				AND name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="join_yn != ''">
+				AND join_yn = #{join_yn}
+			</if>
+			<if test="put_yn != ''">
+				AND put_yn = #{put_yn}
+			</if>
+			<if test="pos_gbn_code != ''">
+				AND POS_GBN_CODE = #{pos_gbn_code}
+			</if>
+			<if test="join_day != ''">
+				AND JOIN_DAY = #{join_day}
+			</if>
+			<if test="retire_day != ''">
+				AND RETIRE_DAY = #{retire_day}
+			</if>
+			<if test="join_gbn_code != ''">
+				AND JOIN_GBN_CODE = #{join_gbn_code}
+			</if>
+		<![CDATA[
+			ORDER BY SABUN
+		]]>
+	</select>
+	
+	
+	<select id="getInsaList" resultType="insa">
+		<![CDATA[
+			SELECT SABUN, NAME, REG_NO, HP,
+				POS_GBN_CODE, JOIN_DAY, RETIRE_DAY,
+				PUT_YN, SALARY
+			FROM INSA
+			WHERE 1 = 1
+		]]>
+			<if test="sabun != ''">
+				AND SABUN LIKE '%'||#{sabun}||'%'
+			</if>
+			<if test="name != ''">
+				AND name LIKE '%'||#{name}||'%'
+			</if>
+			<if test="join_yn != ''">
+				AND join_yn = #{join_yn}
+			</if>
+			<if test="put_yn != ''">
+				AND put_yn = #{put_yn}
+			</if>
+			<if test="pos_gbn_code != ''">
+				AND POS_GBN_CODE = #{pos_gbn_code}
+			</if>
+			<if test="join_day != ''">
+				AND JOIN_DAY = #{join_day}
+			</if>
+			<if test="retire_day != ''">
+				AND RETIRE_DAY = #{retire_day}
+			</if>
+			<if test="join_gbn_code != ''">
+				AND JOIN_GBN_CODE = #{join_gbn_code}
+			</if>
+		<![CDATA[
+			ORDER BY SABUN
+		]]>
+	</select>
 	
 </mapper>
