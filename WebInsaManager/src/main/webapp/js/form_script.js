@@ -79,7 +79,7 @@ $(document).ready(function() {
 			contentType: false,	// 필수
 			data: formData,
 			success: function(data) {
-				alert(data);
+				alert('등록되었습니다.');
 			}			
 		});
 	});
@@ -97,7 +97,7 @@ $(document).ready(function() {
 			contentType: false,	// 필수
 			data: formData,
 			success: function(data) {
-				alert(data);
+				alert('수정되었습니다.');
 			}			
 		});
 	});

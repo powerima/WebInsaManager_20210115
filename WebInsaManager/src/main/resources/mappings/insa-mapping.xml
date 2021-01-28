@@ -96,7 +96,12 @@
 			FROM INSA
 			WHERE 1 = 1
 		]]>
-	
+		<if test="sabun != ''">
+			AND SABUN LIKE '%'||#{sabun}||'%'
+		</if>
+		<if test="name != null">
+			AND NAME LIKE '%'||#{name}||'%'
+		</if>
 	</select>
 	
 		
