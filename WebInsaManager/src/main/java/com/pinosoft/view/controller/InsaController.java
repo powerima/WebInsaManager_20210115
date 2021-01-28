@@ -110,8 +110,10 @@ public class InsaController {
 	}
 	
 	// 등록 - 화면 이동 없음
-	@RequestMapping(value="/insaInputAjax.do", method=RequestMethod.POST)
-	public void insaInputAjax(InsaVo vo, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
+	@RequestMapping(value="/insaInputAjax.do", method=RequestMethod.POST,
+				produces = "application/text; charset=utf8")
+	public void insaInputAjax(InsaVo vo, HttpServletRequest request, 
+			HttpServletResponse response) throws IllegalStateException, IOException {
 		
 		// 주민등록 번호 설정
 		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
@@ -210,8 +212,10 @@ public class InsaController {
 	}
 	
 	// 수정 - 화면 이동 없음
-	@RequestMapping(value="/insaUpdateAjax.do", method=RequestMethod.POST)
-	public void insaUpdateAjax(InsaVo vo, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@RequestMapping(value="/insaUpdateAjax.do", method=RequestMethod.POST, 
+			produces = "application/text; charset=utf8")
+	public void insaUpdateAjax(InsaVo vo, Model model, 
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		// 주민등록 번호 설정
 		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());

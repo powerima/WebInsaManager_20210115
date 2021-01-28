@@ -292,9 +292,6 @@
 	</div>
 </div>
 
-<p><a href="#modal" rel="modal:open">모달창띄우기</a></p>
-
-
 </section>
 </body>
 </html>
