@@ -2,6 +2,7 @@ create table insa(
 	sabun number primary key not null,
 	join_day date,
 	retire_day date,
+	join_yn varchar2(100),
 	put_yn varchar2(100),
 	name varchar2(100) not null,
 	reg_no varchar2(100) not null,
@@ -140,12 +141,12 @@ values('join_gbn_code', '70006', '회계', '직종 회계');
 
 
 insert into insa_com(gubun, code, name, note)
-values('email_domain1', '80001', 'naver.com', '이메일 도메인');
+values('email_domain1', '80001', 'naver.com', 'email 도메인');
 insert into insa_com(gubun, code, name, note)
-values('email_domain1', '80002', 'hanmail.net', '이메일 도메인');
+values('email_domain1', '80002', 'hanmail.net', 'email 도메인');
 insert into insa_com(gubun, code, name, note)
-values('email_domain1', '80003', 'gmail.com', '이메일 도메인');
+values('email_domain1', '80003', 'gmail.com', 'email 도메인');
 insert into insa_com(gubun, code, name, note)
-values('email_domain1', '80004', 'nate.com', '이메일 도메인');
+values('email_domain1', '80004', 'nate.com', 'email 도메인');
 
 drop table insa;

@@ -14,48 +14,48 @@ public class InsacomServiceImpl implements InsacomService {
 	@Autowired
 	private InsacomDao insacomDao;
 	
-	// µî·Ï
+	// ë“±ë¡
 	@Override
 	public void insertInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		insacomDao.insertInsacom(vo);
 	}
 
-	// ¼öÁ¤
+	// ìˆ˜ì •
 	@Override
 	public void updateInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	// »èÁ¦
+	// ì‚­ì œ
 	@Override
 	public void deleteInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		insacomDao.deleteInsacom(vo);
 	}
 
-	// Á¶È¸
+	// ì¡°íšŒ
 	@Override
 	public InsacomVo getInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	// ¸ñ·Ï Á¶È¸
+	// ëª©ë¡ ì¡°íšŒ
 	@Override
 	public List<InsacomVo> getInsacomList(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		return insacomDao.getInsacomList(vo);
 	}
 
-	// ±¸ºĞ¸íÀ¸·Î ¸ñ·Ï Á¶È¸
+	// êµ¬ë¶„ëª…ìœ¼ë¡œ ëª©ë¡ ì¡°íšŒ
 	@Override
 	public List<InsacomVo> getGubunTypeList(String gubun) {
 		return insacomDao.getGubunTypeList(gubun);
 	}
 	
-	// ±¸ºĞ ¸ñ·Ï Á¶È¸
+	// êµ¬ë¶„ ëª©ë¡ ì¡°íšŒ
 	@Override
 	public List<String> getGubunList() {
 		// TODO Auto-generated method stub

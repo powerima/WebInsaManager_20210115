@@ -5,7 +5,7 @@
 <div align="center">
 <h2>인사 공통 코드 입력</h2>
 <hr>
-<form action="insertInsacom.do" method="post">
+<form class="line_table" action="insertInsacom.do" method="post">
 <table border="1">
 	<tr>
 		<td>구분</td>

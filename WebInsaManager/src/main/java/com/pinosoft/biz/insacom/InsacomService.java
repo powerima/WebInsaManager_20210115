@@ -3,11 +3,11 @@ package com.pinosoft.biz.insacom;
 import java.util.List;
 
 public interface InsacomService {
-	public void insertInsacom(InsacomVo vo);		// µî·Ï
-	public void updateInsacom(InsacomVo vo);		// ¼öÁ¤
-	public void deleteInsacom(InsacomVo vo);		// »èÁ¦
-	public InsacomVo getInsacom(InsacomVo vo);		// Á¶È¸	
-	public List<InsacomVo> getInsacomList(InsacomVo vo);	// ¸ñ·Ï Á¶È¸
-	public List<String> getGubunList();						// ±¸ºĞ ¸ñ·Ï Á¶È¸
-	public List<InsacomVo> getGubunTypeList(String gubun) ;	// ±¸ºĞ¸íÀ¸·Î ¸ñ·Ï Á¶È¸
+	public void insertInsacom(InsacomVo vo);				// ë“±ë¡
+	public void updateInsacom(InsacomVo vo);				// ìˆ˜ì •
+	public void deleteInsacom(InsacomVo vo);				// ì‚­ì œ
+	public InsacomVo getInsacom(InsacomVo vo);				// ì¡°íšŒ	
+	public List<InsacomVo> getInsacomList(InsacomVo vo);	// ëª©ë¡ ì¡°íšŒ
+	public List<String> getGubunList();						// êµ¬ë¶„ ëª©ë¡ ì¡°íšŒ
+	public List<InsacomVo> getGubunTypeList(String gubun) ;	// êµ¬ë¶„ëª…ìœ¼ë¡œ ëª©ë¡ ì¡°íšŒ
 }

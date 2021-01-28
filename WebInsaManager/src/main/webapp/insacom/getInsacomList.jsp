@@ -8,7 +8,7 @@
 <hr>
 <a href="/biz/insacom/insertInsacom.do">코드 등록 하기</a>
 <form action="insertInsacom.do" method="get">
-<table border="1" width="700">
+<table class="line_table" border="1" width="700">
 	<tr>
 		<td>구분</td>
 		<td>코드</td>

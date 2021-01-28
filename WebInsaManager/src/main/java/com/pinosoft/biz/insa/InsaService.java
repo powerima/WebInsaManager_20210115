@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface InsaService {
 	
-	public int getMaxSabun();			// »ç¹ø ÃÖ´ë °ª Á¶È¸	
-	public void insertInsa(InsaVo vo);		// µî·Ï
-	public void deleteInsa(InsaVo vo);		// »èÁ¦
-	public void updateInsa(InsaVo vo);		// ¼öÁ¤
-	public InsaVo getInsa(InsaVo vo);		// »ç¹øÀ¸·Î Á¶È¸
-	public InsaVo checkId(InsaVo vo);			// ¾ÆÀÌµğ Áßº¹ Á¶È¸
-	public int getInsaListCnt(InsaVo vo);	// °Ë»ö ·¹ÄÚµå ¼ö Á¶È¸
-	public List<InsaVo> getInsaList(InsaVo vo);	// ¸ñ·Ï Á¶È¸
+	public int getMaxSabun();				// ì‚¬ë²ˆ ìµœëŒ€ ê°’ ì¡°íšŒ	
+	public void insertInsa(InsaVo vo);		// ë“±ë¡
+	public void deleteInsa(InsaVo vo);		// ì‚­ì œ
+	public void updateInsa(InsaVo vo);		// ìˆ˜ì •
+	public InsaVo getInsa(InsaVo vo);		// ì‚¬ë²ˆìœ¼ë¡œ ì¡°íšŒ
+	public InsaVo checkId(InsaVo vo);		// ì•„ì´ë”” ì¤‘ë³µ ì¡°íšŒ
+	public int getInsaListCnt(InsaVo vo);	// ê²€ìƒ‰ ë ˆì½”ë“œ ìˆ˜ ì¡°íšŒ
+	public List<InsaVo> getInsaList(InsaVo vo);	// ëª©ë¡ ì¡°íšŒ
 	
 }

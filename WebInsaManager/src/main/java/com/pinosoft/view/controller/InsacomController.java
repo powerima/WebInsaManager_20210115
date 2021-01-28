@@ -16,14 +16,14 @@ public class InsacomController {
 	@Autowired
 	private InsacomService ics;
 	
-	// µÓ∑œ »≠∏È¿∏∑Œ ¿Ãµø
+	// Îì±Î°ù ÌôîÎ©¥ÏúºÎ°ú Ïù¥Îèô
 	@RequestMapping(value="/insertInsacom.do", method=RequestMethod.GET)
 	public String insertInsacomView() {		
 		return "insertInsacom.jsp";
 	}
 	
 	
-	// µÓ∑œ
+	// Îì±Î°ù
 	@RequestMapping(value="/insertInsacom.do", method=RequestMethod.POST)
 	public String insertInsacom(InsacomVo vo) {
 		ics.insertInsacom(vo);
@@ -31,7 +31,7 @@ public class InsacomController {
 	}
 	
 	
-	// ªË¡¶
+	// ÏÇ≠Ï†ú
 	@RequestMapping(value="/deleteInsacom.do")
 	public String deleteInsacom(InsacomVo vo) {
 		ics.deleteInsacom(vo);
@@ -39,7 +39,7 @@ public class InsacomController {
 	}
 	
 	
-	// ∏Ò∑œ ¡∂»∏
+	// Î™©Î°ù Ï°∞Ìöå
 	@RequestMapping(value="/getInsacomList.do")
 	public String getInsacomList(InsacomVo vo, Model model) {
 		model.addAttribute("insacomList", ics.getInsacomList(vo));

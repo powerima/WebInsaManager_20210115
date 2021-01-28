@@ -14,42 +14,42 @@ public class InsacomDao {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	// µî·Ï
+	// ë“±ë¡
 	public void insertInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		mybatis.insert("InsacomDao.insertInsacom", vo);
 	}
 
-	// ¼öÁ¤
+	// ìˆ˜ì •
 	public void updateInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	// »èÁ¦
+	// ì‚­ì œ
 	public void deleteInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		mybatis.delete("InsacomDao.deleteInsacom", vo);
 	}
 
-	// Á¶È¸
+	// ì¡°íšŒ
 	public InsacomVo getInsacom(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	// ¸ñ·Ï Á¶È¸
+	// ëª©ë¡ ì¡°íšŒ
 	public List<InsacomVo> getInsacomList(InsacomVo vo) {
 		// TODO Auto-generated method stub
 		return mybatis.selectList("InsacomDao.getInsacomList", vo);
 	}
 
-	// ±¸ºĞ¸íÀ¸·Î ¸ñ·Ï Á¶È¸
+	// êµ¬ë¶„ëª…ìœ¼ë¡œ ëª©ë¡ ì¡°íšŒ
 	public List<InsacomVo> getGubunTypeList(String gubun) {
 		return mybatis.selectList("InsacomDao.getGubunTypeList", gubun);
 	}
 	
-	// ±¸ºĞ ¸ñ·Ï Á¶È¸
+	// êµ¬ë¶„ ëª©ë¡ ì¡°íšŒ
 	public List<String> getGubunList() {
 		// TODO Auto-generated method stub
 		return mybatis.selectList("InsacomDao.getGubunList");
