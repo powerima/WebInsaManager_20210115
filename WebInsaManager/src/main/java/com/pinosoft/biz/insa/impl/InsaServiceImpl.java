@@ -32,14 +32,14 @@ public class InsaServiceImpl implements InsaService {
 	@Override
 	public void deleteInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
-		
+		insaDao.deleteInsa(vo);
 	}
 
 	// 수정
 	@Override
 	public void updateInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
-		
+		insaDao.updateInsa(vo);
 	}
 
 	// 아이디 중복 여부 확인
@@ -53,7 +53,7 @@ public class InsaServiceImpl implements InsaService {
 	@Override
 	public InsaVo getInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return insaDao.getInsa(vo);
 	}
 
 	// 목록 조회
@@ -65,9 +65,9 @@ public class InsaServiceImpl implements InsaService {
 
 	// 목록 레코드 수 조회
 	@Override
-	public int getInsaCnt(InsaVo vo) {
+	public int getInsaListCnt(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return insaDao.getInsaCnt(vo);
+		return insaDao.getInsaListCnt(vo);
 	}
 
 

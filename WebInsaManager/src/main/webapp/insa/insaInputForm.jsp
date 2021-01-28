@@ -131,7 +131,7 @@
 	</tr>
 	<tr>
 		<td>입사구분</td>
-		<td><select style="width:165px">
+		<td><select name="join_yn" style="width:165px">
 				<option value="Y">Y</option>
 				<option value="N">N</option>
 			</select></td>
@@ -144,8 +144,8 @@
 			</select></td>
 		<td>투입여부</td>
 		<td><select name="put_yn" style="width:165px">
-				<option value="1">Y</option>
-				<option value="0">N</option>
+				<option value="Y">Y</option>
+				<option value="N">N</option>
 			</select></td>
 				
 		<td>군필여부</td>

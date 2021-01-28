@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -43,9 +43,9 @@
 		<td>${insa.reg_no }</td>
 		<td>${insa.hp }</td>
 		<td>${insa.pos_gbn_code }</td>
-		<td><fmt:formatDate value="${insa.join_day }"
+		<td><fmt:parseDate value="${insa.join_day }"
 				pattern="yyyy-MM-dd" /></td>
-		<td><fmt:formatDate value="${insa.retire_day }"
+		<td><fmt:parseDate value="${insa.retire_day }"
 				pattern="yyyy-MM-dd" /></td>		
 		<td>${insa.put_yn }</td>
 		<td><fmt:formatNumber value="${insa.salary }"

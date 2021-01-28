@@ -36,7 +36,9 @@ section {
 }
 
 #insaListTable {
+	margin-top: 40px;
 	border: 1px sold black;
+	border-collapse: collapse;
 }
 
 #section_title {

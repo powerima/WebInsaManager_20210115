@@ -69,7 +69,7 @@ $(document).ready(function() {
 	// 인사 등록 - 화면 이동 없음
 	$('#insaInputAjax').click(function(){
 		checkInputForm();
-		
+
       	var formData = new FormData($('#inputForm')[0]);
 	
 		$.ajax({
@@ -79,13 +79,33 @@ $(document).ready(function() {
 			contentType: false,	// 필수
 			data: formData,
 			success: function(data) {
-				alert('등록 되었습니다.');
+				alert(data);
 			}			
 		});
 	});
 	
+	// 인사 수정 - 화면 이동 없음
+	$('#insaUpdateAjax').click(function(){
+		checkInputForm();
+
+      	var formData = new FormData($('#inputForm')[0]);
+	
+		$.ajax({
+			type: "POST",
+			url: "/biz/insa/insaUpdateAjax.do",
+			processData: false,	// 필수
+			contentType: false,	// 필수
+			data: formData,
+			success: function(data) {
+				alert(data);
+			}			
+		});
+	});
+	
+	/*
+	적용 안됨
 	// 직원 테이블 조회 - 화면 이동 없음
-	$('#getInsaList').load("/biz/insa/insaListFormAjax.do");
+	// $('#getInsaList').load("/biz/insa/insaListFormAjax.do");
 	$('#getInsaList_btn').click(function(){
 		var query = $('#getInsaListForm').serialize();
 		
@@ -94,13 +114,13 @@ $(document).ready(function() {
 			url: "/biz/insa/insaListFormAjax.do",
 			data: query,
 			success: function(data) {
-				alert(data);
+				alert('!!!!');
 				//$('#getInsaList').load('/biz/insa/insaListFormAjax.do');
 				//document.location.reload();
 			}
 		});			
 	});
-
+	*/
 });
 
 
@@ -215,7 +235,6 @@ function phone_check(x) {
 
 // 입력 폼 값 유효성 검사
 function checkInputForm() {	
-	
 	var date1 = new Date(inputForm.mil_startdate.value);
 	var date2 = new Date(inputForm.mil_enddate.value);
 	var day1 = new Date(inputForm.join_day.value);

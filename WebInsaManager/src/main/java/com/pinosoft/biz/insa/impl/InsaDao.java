@@ -29,13 +29,13 @@ public class InsaDao {
 	// 삭제
 	public void deleteInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
-		
+		mybatis.delete("InsaDao.deleteInda", vo);
 	}
 
 	// 수정
 	public void updateInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
-		
+		mybatis.update("InsaDao.updateInsa", vo);
 	}
 
 	// 아이디 중복 조회
@@ -47,13 +47,13 @@ public class InsaDao {
 	// 사번으로 조회
 	public InsaVo getInsa(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return mybatis.selectOne("InsaDao.getInsa", vo);
 	}
 
 	// 목록 레코드 수 조회
-	public int getInsaCnt(InsaVo vo) {
+	public int getInsaListCnt(InsaVo vo) {
 		// TODO Auto-generated method stub
-		return mybatis.selectOne("InsaDao.getInsaCnt", vo);
+		return mybatis.selectOne("InsaDao.getInsaListCnt", vo);
 	}
 	
 	// 목록 조회

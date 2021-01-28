@@ -3,7 +3,7 @@ package com.pinosoft.biz.insa;
 import org.springframework.web.multipart.MultipartFile;
 
 public class InsaVo {
-	private int sabun;
+	private String sabun;
 	private String join_day;
 	private String retire_day;
 	private String join_yn;
@@ -50,10 +50,10 @@ public class InsaVo {
 	private MultipartFile upload_profile_image;
 	private MultipartFile upload_carrier_image;
 	
-	public int getSabun() {
+	public String getSabun() {
 		return sabun;
 	}
-	public void setSabun(int sabun) {
+	public void setSabun(String sabun) {
 		this.sabun = sabun;
 	}
 	public String getJoin_day() {
@@ -332,15 +332,13 @@ public class InsaVo {
 				+ join_yn + ", put_yn=" + put_yn + ", name=" + name + ", reg_no=" + reg_no + ", reg_no1=" + reg_no1
 				+ ", reg_no2=" + reg_no2 + ", reg_no3=" + reg_no3 + ", eng_name=" + eng_name + ", phone=" + phone
 				+ ", hp=" + hp + ", pos_gbn_code=" + pos_gbn_code + ", cmp_reg_no=" + cmp_reg_no + ", cmp_reg_image="
-				+ cmp_reg_image + ", upload_cmp_reg_image=" + upload_cmp_reg_image + ", sex=" + sex + ", age=" + age
-				+ ", email=" + email + ", email_id=" + email_id + ", email_domain1=" + email_domain1
-				+ ", email_domain2=" + email_domain2 + ", zip=" + zip + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", dept_code=" + dept_code + ", join_gbn_code=" + join_gbn_code + ", id=" + id + ", pwd=" + pwd
-				+ ", salary=" + salary + ", salary_str=" + salary_str + ", kosa_reg_yn=" + kosa_reg_yn
-				+ ", kosa_class_code=" + kosa_class_code + ", mil_yn=" + mil_yn + ", mil_type=" + mil_type
+				+ cmp_reg_image + ", sex=" + sex + ", age=" + age + ", email=" + email + ", email_id=" + email_id
+				+ ", email_domain1=" + email_domain1 + ", email_domain2=" + email_domain2 + ", zip=" + zip + ", addr1="
+				+ addr1 + ", addr2=" + addr2 + ", dept_code=" + dept_code + ", join_gbn_code=" + join_gbn_code + ", id="
+				+ id + ", pwd=" + pwd + ", salary=" + salary + ", salary_str=" + salary_str + ", kosa_reg_yn="
+				+ kosa_reg_yn + ", kosa_class_code=" + kosa_class_code + ", mil_yn=" + mil_yn + ", mil_type=" + mil_type
 				+ ", mil_level=" + mil_level + ", mil_startdate=" + mil_startdate + ", mil_enddate=" + mil_enddate
 				+ ", gart_level=" + gart_level + ", self_intro=" + self_intro + ", crm_name=" + crm_name
-				+ ", profile_image=" + profile_image + ", carrier_image=" + carrier_image + ", upload_profile_image="
-				+ upload_profile_image + ", upload_carrier_image=" + upload_carrier_image + "]";
+				+ ", profile_image=" + profile_image + ", carrier_image=" + carrier_image + "]";
 	}
 }

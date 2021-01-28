@@ -20,7 +20,7 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 <!-- 자바스크립트 파일 추가 -->
-<script src="/biz/js/form_script.js"></script>
+<script src="/biz/js/form_script.js?version=111"></script>
 <!-- css 파일 추가 -->
 <link rel="stylesheet" href="/biz/css/top_style.css" type="text/css">
 </head>
