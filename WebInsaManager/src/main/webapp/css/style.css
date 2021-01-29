@@ -3,14 +3,16 @@
 body{
 	margin:0;
 	padding:0;
+	background:#45a1e4;
 }
 
 header{
-	background:#B0C4DE;
-	padding-bottom:80px;
+	background:#45a1e4;
+	padding-bottom:60px;
 }
 
 section{
+	background:#FFFFFF;
 	padding-left:30px;
 	padding-right:30px;	
 	padding-bottom:130px;
@@ -22,10 +24,14 @@ footer{
 	padding-bottom:10px;
 	text-align:center;
 	font-size:12px;
-	background:#B0C4DE;
+	background:#45a1e4;
 }
 
-.banner {
+.header_link {
+	padding-right:20px;
+}
+
+.header_banner {
 	float: left;
 	padding-left:100px;
 }

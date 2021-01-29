@@ -102,6 +102,21 @@ $(document).ready(function() {
 		});
 	});
 	
+	// 인사 삭제
+	$('#insaDeleteAjax').click(function(){
+		var query = {sabun: inputForm.sabun.value };
+		
+		$.ajax({
+			type: "GET",
+			url: "/biz/insa/insaDelete.do",
+			data: query,
+			success: function(data) {
+				alert("삭제 되었습니다.");
+				location.href="/biz/insa/insaListForm.do";
+			}
+		});
+	});
+	
 	/*
 	적용 안됨
 	// 직원 테이블 조회 - 화면 이동 없음
