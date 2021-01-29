@@ -2,30 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp" %>
 <section>
-<div align="center">
 <h2>인사 공통 코드 입력</h2>
+<div align="center">
 <hr>
-<form class="line_table" action="insertInsacom.do" method="post">
-<table border="1">
+<form action="insertInsacom.do" method="post">
+<table class="table table-hover">
 	<tr>
-		<td>구분</td>
-		<td><input type="text" name="gubun"></td>
+		<td align="center">구분</td>
+		<td><input type="text" name="gubun" class="form-control form-control-sm"></td>
 	</tr>
 	<tr>
-		<td>코드</td>
-		<td><input type="text" name="code"></td>
+		<td align="center">코드</td>
+		<td><input type="text" name="code" class="form-control form-control-sm"></td>
 	</tr>
 	<tr>
-		<td>이름</td>
-		<td><input type="text" name="name"></td>
+		<td align="center">이름</td>
+		<td><input type="text" name="name" class="form-control form-control-sm"></td>
 	</tr>
 	<tr>
-		<td>설명</td>
-		<td><input type="text" name="note"></td>
+		<td align="center">설명</td>
+		<td><input type="text" name="note" class="form-control form-control-sm"></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="submit" value="코드 등록">				  
+			<input type="submit" value="코드 등록" class="btn btn-primary btn-sm">				  
 		</td>
 	</tr>
 </table>
@@ -35,5 +35,4 @@
 <a href="/biz/insacom/getInsacomList.do">등록된 코드 조회</a>
 </div>
 </section>
-</body>
-</html>
+<%@ include file="../bottom.jsp" %>

@@ -11,25 +11,23 @@
 </div><hr>
 <div id="insa_list" align="center">
 <form id="getInsaListForm" method="post" action="/biz/insa/insaListForm.do">
-<table class="table table-hover">
+<table width="1300">
 	<tr>
 		<td>사번</td>
-		<td><input type="number" name="sabun"
-				class="form-control form-control-sm"></td>
+		<td><input type="number" name="sabun"></td>
 		<td>성명</td>
-		<td><input type="text" name="name"
-				class="form-control form-control-sm"></td>
+		<td><input type="text" name="name"></td>
 		
 	
 		<td>입사구분</td>
-		<td><select name="join_yn" class="form-control form-control-sm">
+		<td><select name="join_yn" style="width:165px">
 				<option value=""></option>
 				<option value="Y">Y</option>
 				<option value="N">N</option>
 			</select></td>
 			
 		<td>투입여부</td>
-		<td><select name="put_yn" class="form-control form-control-sm">
+		<td><select name="put_yn" style="width:165px">
 				<option value=""></option>
 				<option value="Y">Y</option>
 				<option value="N">N</option>
@@ -38,22 +36,18 @@
 	</tr>
 	<tr>
 		<td>직위</td>
-		<td><select name="pos_gbn_code" class="form-control form-control-sm">
+		<td><select name="pos_gbn_code" style="width:165px">
 				<option value=""></option>
 				<c:forEach items="${pos_gbn_code_list }" var="pos_gbn_code">
 					<option value="${pos_gbn_code.name }">${pos_gbn_code.name }</option>
 				</c:forEach>		
 			</select> </td>
 		<td>입사일자</td>
-		<td><div class="form-inline form-group" >
-			<input type="text" name="join_day"
-				class="testDatepicker form-control form-control-sm"></div></td>
+		<td><input type="text" name="join_day" class="testDatepicker"></td>
 		<td>퇴사일자</td>
-		<td><div class="form-inline form-group" >
-			<input type="text" name="retire_day"
-			 class="testDatepicker form-control form-control-sm"></div></td>
+		<td><input type="text" name="retire_day" class="testDatepicker"></td>
 		<td>직종분류</td>
-		<td><select name="join_gbn_code" class="form-control form-control-sm">
+		<td><select name="join_gbn_code" style="width:165px">
 				<option value=""></option>
 				<c:forEach items="${join_gbn_code_list }" var="join_gbn_code">
 					<option value="${join_gbn_code.name }">${join_gbn_code.name }</option>
@@ -62,20 +56,16 @@
 	</tr>
 	<tr>
 		<td colspan="8" align="right">
-			<input type="submit" id="getInsaList_btn" value="검색"
-					class="btn btn-primary btn-sm">
-			<input type="reset" value="초기화"
-					class="btn btn-primary btn-sm">
-			<input type="button" onclick="location.href='/biz/index.jsp'" value="이전"
-					class="btn btn-primary btn-sm">
+			<input type="submit" id="getInsaList_btn" value="검색">
+			<input type="reset" value="초기화">
+			<input type="button" onclick="location.href='/biz/index.jsp'" value="이전">
 		</td>
 	</tr>
 </table>
 </form>
-	
+<hr>	
 <div id="getInsaList">
-<hr>
-<table class="table table-hover">
+<table class="line_table" border="1" width="1000">
 	<tr align="center">
 		<td>사번</td>
 		<td>성명</td>
