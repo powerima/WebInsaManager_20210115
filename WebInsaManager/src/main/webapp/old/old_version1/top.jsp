@@ -20,18 +20,18 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 <!-- 자바스크립트 파일 추가 -->
-<script src="/biz/js/form_script.js?version=11121"></script>
+<script src="/biz/js/form_script.js"></script>
 <!-- css 파일 추가 -->
-<link rel="stylesheet" href="/biz/css/content_style.css" type="text/css">
+<link rel="stylesheet" href="/biz/old_version//css/style.css" type="text/css">
 </head>
 <body>
 <header>
 	<div class="topleft">
-		<a href="/biz/index.jsp">PinoSoft</a>		
+		<a href="/biz/old_version/index.jsp">PinoSoft</a>		
 	</div>
 	<div class="topright">
-		<a class="header_link" href="/biz/insa/insaInputForm.do">입력하기</a>
-		<a class="header_link" href="/biz/insa/insaListForm.do">조회하기</a>
-		<a class="header_link" href="/biz/insacom/getInsacomList.do">공통코드</a>
+		<a class="header_link" href="/biz/old_version/insa/insaInputForm.jsp">입력하기</a>
+		<a class="header_link" href="/biz/old_version/insa/insaListForm.jsp">조회하기</a>
+		<a class="header_link" href="/biz/old_version/insacom/getInsacomList.jsp">공통코드</a>
 	</div>
 </header>

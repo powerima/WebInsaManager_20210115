@@ -103,7 +103,9 @@ public class InsaController {
 		if(vo.getSalary_str() != null && !vo.getSalary_str().equals("")) {
 			vo.setSalary(Integer.parseInt(vo.getSalary_str().replaceAll(",", "")));
 		}		
-	
+		
+		System.out.println(vo);
+		
 		is.insertInsa(vo);
 		
 		return "redirect:index.do";
@@ -282,6 +284,8 @@ public class InsaController {
 	public void checkId(InsaVo vo, HttpServletResponse response) {
 		String id = vo.getId();
 		InsaVo insa = is.checkId(vo);
+		
+		System.out.println("checkId : " + vo.getId());
 		
 		// 아이디 사용 불가
 		if(insa != null && insa.getId().equals(id)) {
