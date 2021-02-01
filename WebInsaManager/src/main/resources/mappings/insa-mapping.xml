@@ -40,11 +40,24 @@
 				MIL_ENDDATE = #{mil_enddate}, KOSA_REG_YN = #{kosa_reg_yn},
 				KOSA_CLASS_CODE = #{kosa_class_code}, JOIN_DAY = #{join_day},
 				RETIRE_DAY = #{retire_day}, CMP_REG_NO = #{cmp_reg_no},
-				CRM_NAME = #{crm_name}, CMP_REG_IMAGE = #{cmp_reg_image},
-				CARRIER_IMAGE = #{carrier_image}, PROFILE_IMAGE = #{profile_image},
-				SELF_INTRO = #{self_intro}
-			WHERE SABUN = #{sabun}		
-		]]>	
+				CRM_NAME = #{crm_name}, SELF_INTRO = #{self_intro}
+		]]>
+				
+		<if test="profile_image != null">
+			, PROFILE_IMAGE = #{profile_image}		
+		</if>
+		<if test="carrier_image != null">
+			, CARRIER_IMAGE = #{carrier_image}		
+		</if>
+		<if test="cmp_reg_image != null">
+			, CMP_REG_IMAGE = #{cmp_reg_image}		
+		</if>
+		
+		
+		<![CDATA[
+				WHERE SABUN = #{sabun}		
+		]]>
+		
 	</update>
 
 	<delete id="deleteInsa">
@@ -81,7 +94,30 @@
 			SELECT COUNT(*)	FROM INSA
 			WHERE 1 = 1
 		]]>
-
+		<if test="sabun != ''">
+			AND SABUN LIKE '%'||#{sabun}||'%'
+		</if>
+		<if test="name != ''">
+			AND NAME LIKE '%'||#{name}||'%'
+		</if>
+		<if test="join_yn != ''">
+			AND JOIN_YN = #{join_yn}
+		</if>
+		<if test="put_yn != ''">
+			AND PUT_YN = #{put_yn}
+		</if>
+		<if test="pos_gbn_code != ''">
+			AND POS_GBN_CODE = #{pos_gbn_code}
+		</if>
+		<if test="join_day != ''">
+			AND JOIN_DAY = #{join_day}
+		</if>
+		<if test="retire_day != ''">
+			AND RETIRE_DAY = #{retire_day}
+		</if>
+		<if test="join_gbn_code != ''">
+			AND JOIN_GBN_CODE = #{join_gbn_code}
+		</if>
 		<![CDATA[
 			ORDER BY SABUN
 		]]>

@@ -4,7 +4,6 @@
 
 
 	
-	
 
 $(document).ready(function() {
 	// 이메일 체크 후 활성 - 비활성화
@@ -87,7 +86,6 @@ $(document).ready(function() {
 	// 인사 수정 - 화면 이동 없음
 	$('#insaUpdateAjax').click(function(){
 		checkInputForm();
-
       	var formData = new FormData($('#inputForm')[0]);
 	
 		$.ajax({
@@ -136,19 +134,161 @@ $(document).ready(function() {
 		});			
 	});
 	*/
-});
+});	
 
 
-// 주민등록 번호 값 체크
-function reg_no_check(x, obj) {	
-	x = x.replace(/[^0-9]/g,'');
-	x = x.replace(/(\..*)\./g, '$1');	
+
+// 아이디 입력 이벤트 발생시 중복 체크 - bootstrap 입력값 유효처리
+function id_check(x) {
+	x.value = x.value.replace(/[^A-Za-z0-9]/ig, '');
+	$('#precheck_id').val(x.value);
+	
+	if(x.value == '') {		
+		document.getElementById('div_id_invalid').innerHTML = '아이디를 입력해 주세요';
+		$('#id').removeClass('is-valid');
+		$('#id').addClass('is-invalid');
+				
+	} else if(x.value.length <= 3) {
+		document.getElementById('div_id_invalid').innerHTML = '아이디를 길이를 4글자 이상으로 입력해주세요.';
+		$('#id').removeClass('is-valid');
+		$('#id').addClass('is-invalid');
+				
+	} else {
+		// document.getElementById('div_id_invalid').innerHTML = x.value;
+		$.ajax({
+			type: "GET",
+			url: "/biz/insa/checkId.do",
+			data: {	id: x.value },
+			success: function(data) {
+				if(data != '') {
+					$('#id').removeClass('is-invalid');
+					$('#id').addClass('is-valid');									
+				} else {
+					document.getElementById('div_id_invalid').innerHTML = "사용중인 아이디 입니다.";
+					$('#id').removeClass('is-valid');
+					$('#id').addClass('is-invalid');					
+				}
+			}
+		});		
+	}
+}
+
+
+// 비밀번호 입력 이벤트 발생시 중복 체크 - bootstrap 입력값 유효처리
+function pwd_check(x) {	
+	var len = 3;
+	
+	if(x.value == '') {
+		document.getElementById('div_pwd_invalid').innerHTML = '비밀번호를 입력해주세요.';
+		document.getElementById('div_pwd2_invalid').innerHTML = '';
+		$('#pwd').removeClass('is-valid');
+		$('#pwd').addClass('is-invalid');
+		
+	} else if(x.value.length < len ) {
+		document.getElementById('div_pwd_invalid').innerHTML = '비밀번호 길이는 ' + len + '글자 이상이어야 합니다.';
+		document.getElementById('div_pwd2_invalid').innerHTML = '';
+		$('#pwd').removeClass('is-valid');
+		$('#pwd').addClass('is-invalid');
+		
+		$('#pwd2').removeClass('is-valid');
+		$('#pwd2').addClass('is-invalid');
+		
+	} else {
+		$('#pwd').removeClass('is-invalid');
+		$('#pwd').addClass('is-valid');	
+		
+		// 비밀번호와 비밀번호 확인이 같을 경우
+		if(x.value == $('#pwd2').val()) {
+			$('#pwd2').removeClass('is-invalid');
+			$('#pwd2').addClass('is-valid');	
+		} 
+		
+		// 비밀번호 확인과 비밀번호 입력이 다를 경우
+		else if(x.value != $('#pwd2').val() ) {
+			document.getElementById('div_pwd2_invalid').innerHTML = '비밀번호를 확인해주세요.';
+			$('#pwd2').removeClass('is-valid');
+			$('#pwd2').addClass('is-invalid');
+		}
+		
+	}
+	
+	
+}
+
+// 비밀번호 확인 이벤트 발생시 중복 체크 - bootstrap 입력값 유효처리
+function pwd2_check(x) {	
+	
+	// 비밀번호 입력란에 사용 가능한 비밀번호가 입력된 경우
+	if($('#pwd').hasClass('is-valid')) {
+		// 비밀번호 확인이 된 경우
+		if($('#pwd').val() == x.value) {
+			$('#pwd2').removeClass('is-invalid');
+			$('#pwd2').addClass('is-valid');
+			
+		// 확인이 안된 경우	
+		} else {
+			document.getElementById('div_pwd2_invalid').innerHTML = '비밀번호를 확인해주세요.';
+			$('#pwd2').removeClass('is-valid');
+			$('#pwd2').addClass('is-invalid');
+		}
+		
+	// 비밀번호 입력란에 사용 가능한 비밀번호가 입력되지 않은 경우
+	} else {
+		document.getElementById('div_pwd2_invalid').innerHTML = '';
+		$('#pwd2').removeClass('is-valid');
+		$('#pwd2').addClass('is-invalid');
+	}	
+}
+
+// 이름 입력 이벤트 발생시 중복 체크 - bootstrap 입력값 유효처리
+function name_check(x) {	
+	if(x.value == '') {
+		$('#name').removeClass('is-valid');
+		$('#name').addClass('is-invalid');
+	} else {
+		$('#name').removeClass('is-invalid');
+		$('#name').addClass('is-valid');
+	}
+}
+
+// 주민등록 번호 값 체크 & bootstrap 입력값 유효처리
+function reg_no_check(x) {	
+	x.value = x.value.replace(/[^0-9]/g,'');
+	x.value = x.value.replace(/(\..*)\./g, '$1');	
 	
 	var reg1_len = $('#reg_no1').val().length;
 	var reg2_len = $('#reg_no2').val().length;
 	
+	
+	/* bootstrap 입력값 유효처리 */ 
+	if(x.id == 'reg_no1' && x.value.length == 6) {
+		$('#reg_no1').removeClass('is-invalid');
+		$('#reg_no1').addClass('is-valid');
+	} else if(x.id == 'reg_no1' && x.value.length != 6) {
+		$('#reg_no1').removeClass('is-valid');
+		$('#reg_no1').addClass('is-invalid');
+	}
+	
+	if(x.id == 'reg_no2' && x.value.length == 1) {
+		$('#reg_no2').removeClass('is-invalid');
+		$('#reg_no2').addClass('is-valid');
+	} else if(x.id == 'reg_no2' && x.value.length != 1) {
+		$('#reg_no2').removeClass('is-valid');
+		$('#reg_no2').addClass('is-invalid');
+	}
+	
+	if(x.id == 'reg_no3' && x.value.length == 6) {
+		$('#reg_no3').removeClass('is-invalid');
+		$('#reg_no3').addClass('is-valid');
+	} else if(x.id == 'reg_no3' && x.value.length != 6) {
+		$('#reg_no3').removeClass('is-valid');
+		$('#reg_no3').addClass('is-invalid');
+	}
+	/* bootstrap 입력값 유효처리 끝 */ 
+	
+	
 	// 생년월일 추출
-	if((obj.id == 'reg_no2' || obj.id == 'reg_no1')
+	if((x.id == 'reg_no2' || x.id == 'reg_no1')
 			 && (reg1_len == 6 && reg2_len == 1)) {
 			 
 		var thisDate = new Date();
@@ -186,8 +326,8 @@ function reg_no_check(x, obj) {
 	
 	
 	// 남녀 구분 코드로 성별 추출
-	if(obj.id == 'reg_no2') {
-		switch(x) {
+	if(x.id == 'reg_no2') {
+		switch(x.value) {
 			case '1':	case '3':
 			case '5':	case '7':
 			case '9':
@@ -196,55 +336,72 @@ function reg_no_check(x, obj) {
 			default:
 				$('#sex').val('여자');
 		}
-	}
-		
-	$('#' + obj.id).val(x);
+	}	
 }
 
 // 사업자 번호 체크
 function cmp_reg_no_check(x) {
-	x = x.replace(/[^0-9]/g,'');
-	x = x.replace(/(\..*)\./g, '$1');
-	$('#cmp_reg_no').val(x.replace(/(\d{3})(\d{2})(\d{4})/, '$1-$2-$3'));
+	x.value = x.value.replace(/[^0-9]/g,'');
+	x.value = x.value.replace(/(\..*)\./g, '$1');
+	x.value = x.value.replace(/(\d{3})(\d{2})(\d{4})/, '$1-$2-$3');
 }
 
 // 나이 체크
 function age_check(x) {
-	x = x.replace(/[^0-9]/g,'');
-	$('#age').val(x.replace(/(\..*)\./g, '$1'));
+	x.value = x.value.replace(/[^0-9]/g,'');
+	x.value = x.replace(/(\..*)\./g, '$1');
 }
 
-// 핸드폰 번호 체크
+// 핸드폰 번호 체크 & bootstrap 입력값 유효처리
 function hp_check(x) {
-	x = x.replace(/[^0-9]/g,'');
-	x = x.replace(/(\..*)\./g, '$1');
-	if(x.length == 11) {
-		x = x.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-	} else if(x.length == 10) {
-		x = x.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
-	}
+	x.value = x.value.replace(/[^0-9]/g,'');
+	x.value = x.value.replace(/(\..*)\./g, '$1');
 	
-	$('#hp').val(x);
+	/* bootstrap 입력값 유효처리 */ 
+	if(x.value.length > 9) {
+		$('#hp').removeClass('is-invalid');
+		$('#hp').addClass('is-valid');
+	} else {
+		$('#hp').removeClass('is-valid');
+		$('#hp').addClass('is-invalid');
+	}
+	/* bootstrap 입력값 유효처리 끝 */
+	
+	 
+	if(x.value.length == 11) {
+		x.value = x.value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+	} else if(x.length == 10) {
+		x.value = x.value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+	} 		
 }
 
 // 전화 번호 체크
 function phone_check(x) {
-	x = x.replace(/[^0-9]/g,'');
-	x = x.replace(/(\..*)\./g, '$1');
-	if(x.indexOf('02') == 0) {
-		if(x.length == 9) {
-			x = x.replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
-		} else if(x.length == 10) {
-			x = x.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+	x.value = x.value.replace(/[^0-9]/g,'');
+	x.value = x.value.replace(/(\..*)\./g, '$1');
+	if(x.value.indexOf('02') == 0) {		
+		if(x.value.length == 9) {
+			x.value = x.value.replace(/(\d{2})(\d{3})(\d{4})/, '$1-$2-$3');
+		} else if(x.value.length == 10) {
+			x.value = x.value.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+		} else if(x.value.length > 10) {
+			x.value = x.value.substring(0, 10).replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
 		}			
 	} else {
-		if(x.length == 11) {
-			x = x.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-		} else if(x.length == 10) { 
-			x = x.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+		if(x.value.length == 11) {
+			x.value = x.value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+		} else if(x.value.length == 10) { 
+			x.value = x.value.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 		}
 	}	
-	$('#phone').val(x);
+}
+
+
+// 연봉 체크 - 3자리 수 마다 콤마, 숫자만 입력
+function salary_str_check(x) {
+	x.value = x.value.replace(/[^0-9]/g,'');
+	x.value = x.value.replace(/,/g,'');
+	x.value = x.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
@@ -255,16 +412,9 @@ function checkInputForm() {
 	var day1 = new Date(inputForm.join_day.value);
 	var day2 = new Date(inputForm.retire_day.value);
 	
-	
 	// 이름 입력 여부 확인
 	if(inputForm.name.value == "") {
 		alert('이름을 입력해야 합니다.');
-		return false;
-	}
-		
-	// 아이디 중복 여부 확인
-	if(inputForm.id.value != inputForm.precheck_id.value) {
-		alert('아이디 중복을 확인해 주세요.');
 		return false;
 	}
 
@@ -273,62 +423,66 @@ function checkInputForm() {
 		alert('아이디를 입력해야 합니다.');
 		return false;
 	}
-	
+
+	// 아이디 중복 여부 확인
+	if(inputForm.precheck_id != null && inputForm.id.value != inputForm.precheck_id.value) {
+		alert('아이디 중복을 확인해 주세요.');
+		return false;
+	}
+
 	// 비밀번호 입력 여부 확인
 	if(inputForm.pwd.value == "") {
 		alert('비밀번호를 입력해야 합니다.');
 		return false;
 	}
-	
-	// 비밀번호 재입력 확인
+
 	if(inputForm.pwd.value != inputForm.pwd2.value) {
 		alert('비밀번호를 확인해 주세요.');
 		return false;
 	}
-	
+
 	// 핸드폰 번호 입력 확인
 	if(inputForm.hp.value.length < 10 ) {
 		alert('핸드폰 번호를 입력해 주세요.');
 		return false;
 	}
-	
+
 	// 주민등록번호 입력 확인
 	if(inputForm.reg_no1.value.length != 6) {
 		alert('주민등록번호를 입력해 주세요.');
 		return false;
 	}
-	
+
 	if(inputForm.reg_no2.value.length != 1) {
 		alert('주민등록번호를 입력해 주세요');
 		return false;
 	}
-	
+
 	if(inputForm.reg_no3.value.length != 6) {
 		alert('주민등록번호를 입력해 주세요');
 		return false;
 	}
-	
+
 	// 입대 - 전역 날짜 체크
 	if(date1 > date2) {
 		alert('전역날짜가 입대 날짜보다 더 커야 합니다.');
 		return false;
 	}
-	
+
 	// 입사 - 퇴사 날짜 체크
 	if(day1 > day2) {
 		alert('퇴사일이 입사일 보다 더 커야 합니다.');
 		return false;
 	}
+
+	// 공통코드 구분 - 입력 체크
+	if(inputForm.gubun != null && inputForm.gubun.value == "") {
+		alert('구분 값을 입력하세요.');
+		false;
+	}
+	alert('체크종료');
 }
 
-
-
-// 3자리 수 마다 콤마, 숫자만 입력
-function numberWithCommas(x) {
-	x = x.replace(/[^0-9]/g,'');
-	x = x.replace(/,/g,'');
-	$("#salary").val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-}
 
 // 달력 DatePicker
 $(function(){

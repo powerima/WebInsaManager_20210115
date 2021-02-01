@@ -46,23 +46,23 @@
 	<tr>	
 		<td>전화번호</td>
 		<td><input type="text" name="phone" id="phone" maxlength="13"
-				onkeyup="phone_check(this.value)"></td>
+				oninput="phone_check(this)"></td>
 		<td>핸드폰번호</td>
 		<td><input type="text" name="hp" id="hp" maxlength="13"
-				onkeyup="hp_check(this.value)"></td>
+				oninput="hp_check(this)"></td>
 		<td>주민번호</td>
 		<td><input type="text" name="reg_no1" id="reg_no1"
-				maxlength="6" size="5" onkeyup="reg_no_check(this.value, this)"> - 
+				maxlength="6" size="5" oninput="reg_no_check(this)"> - 
 			<input type="text" name="reg_no2" id="reg_no2"  style="width:10px"
-				maxlength="1" onkeyup="reg_no_check(this.value, this)">	
+				maxlength="1" oninput="reg_no_check(this)">	
 			<input type="password" name="reg_no3" id="reg_no3"
-				maxlength="6" size="5" onkeyup="reg_no_check(this.value, this)"></td>
+				maxlength="6" size="5" oninput="reg_no_check(this)"></td>
 	</tr>	
 	<tr>
 
 		<td>연령</td>
 		<td><input type="text" name="age" id="age" maxlength="3"
-				onkeyup="age_check(this.value)" ></td>
+				oninput="age_check(this)" ></td>
 				
 		<td colspan="2">이메일
 			<input type="text" name="email_id"  style="width:80px"> @ 
@@ -125,8 +125,7 @@
 		<td>연봉</td>
 		<td>
 			<input type="text" style="text-align:right" name="salary_str"
-			placeholder="(만원)" id="salary" maxlengt="2" 
-				onkeyup="numberWithCommas(this.value)" >
+			placeholder="(만원)" 	oninput="salary_str_check(this)" >
 		</td> 
 	</tr>
 	<tr>
@@ -196,7 +195,7 @@
 	<tr>
 		<td>사업자번호</td>
 		<td><input type="text" name="cmp_reg_no" id="cmp_reg_no" maxlength="11" 
-				onkeyup="cmp_reg_no_check(this.value)"></td>
+				oninput="cmp_reg_no_check(this)"></td>
 		<td>업체명</td>
 		<td><input type="text" name="crm_name"></td>
 		

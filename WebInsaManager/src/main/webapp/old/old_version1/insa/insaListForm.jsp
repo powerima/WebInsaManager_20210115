@@ -58,7 +58,7 @@
 		<td colspan="8" align="right">
 			<input type="submit" id="getInsaList_btn" value="검색">
 			<input type="reset" value="초기화">
-			<input type="button" onclick="location.href='/biz/index.jsp'" value="이전">
+			<input type="button" onclick="location.href='index.jsp'" value="이전">
 		</td>
 	</tr>
 </table>

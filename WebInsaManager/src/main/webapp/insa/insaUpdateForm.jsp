@@ -3,269 +3,370 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@ include file="../top.jsp" %>
-
 <section>
-<div id="section_title">
-	<h2>직원 상세 정보</h2>
-</div>
 
-<div align="center">
-<form name="inputForm" action="/biz/insa/insaUpdateForm.do" method="post"
+<div class="m-5">
+	<div class="">
+		<h3>인사 정보 입력</h3>
+	</div>
+	
+	<form class="row" name="inputForm" action="/biz/insa/insaInputForm.do" method="post"
 		id="inputForm" onsubmit="return checkInputForm()" enctype="multipart/form-data">
 		
-<table width="1300">
-	<tr>
-		<td colspan="8" align="right">
-			<input type="button" id="insaUpdateAjax" value="수정">
-			<input type="button" id="insaDeleteAjax" value="삭제">
-			<input type="button" onclick="location.href='/biz/insa/insaListForm.do'" value="이전">
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" rowspan="4" align="center">			
-			<c:if test="${insa.profile_image == null}">
-				<img src="/biz/file/profile_empty.jpg" height="120">			
-			</c:if>
-			<c:if test="${insa.profile_image != null}">
-				<img src="/biz/file/profile_img/${insa.profile_image }" height="120">
-			</c:if>
+		<div class="row">
+			<div class="col-md-12">			
+				<button type="reset" class="btn btn-primary btn-sm float-end m-1" onclick="location.href='/biz/insa/insaListForm.do'">이전</button>
+				<button type="button" class="btn btn-primary btn-sm float-end m-1" id="insaDeleteAjax">삭제</button>					
+				<button type="button" class="btn btn-primary btn-sm float-end m-1" id="insaUpdateAjax">수정</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="align-items-start col-md-2 col-sm-12">
+				<div class="p-2 bg-light border">
+					<c:if test="${insa.profile_image == null}">
+		 				<img src="../file/profile_empty.jpg" alt="Generic placeholder image" height="120"/>
+	 				</c:if>
+	 				<c:if test="${insa.profile_image != null}">
+						<img src="/biz/file/profile_img/${insa.profile_image }" alt="Generic placeholder image" height="120">
+					</c:if>
+	 			</div> 			
+		 		<div class="p-1 bg-light border form-control-sm">
+		 			<div class="input-group">
+						<input type="file" class="form-control form-control-sm" 
+						 	name="upload_profile_image" id="upload_profile_image">	
+			 			<input type="hidden" name="profile_image" value="${insa.profile_image }">				 
+					</div>				
+				</div>
+			</div>
 			
-		</td> 
-		<td>사번</td>
-		<td><input type="number" name="sabun" value="${insa.sabun }" readonly></td>
-		<td>한글성명</td>
-		<td><input type="text" name="name" value="${insa.name }"></td>
-		<td>영문성명</td>
-		<td><input type="text" name="eng_name" value="${insa.eng_name }"></td>
-	</tr>
-	<tr>	
-		<td>아이디</td>
-		<td><input type="text" id="precheck_id"  value="${insa.id }" readonly>
-			<input type="hidden" name="id" id="id" value="${insa.id }"> 
-			
-		<td>패스워드</td>
-		<td><input type="password" name="pwd"></td>
-		<td>패스워드확인</td>
-		<td><input type="password" name="pwd2"></td>
-	</tr>
-	<tr>	
-		<td>전화번호</td>
-		<td><input type="text" name="phone" id="phone" maxlength="13"
-				onkeyup="phone_check(this.value)" value="${insa.phone }"></td>
-		<td>핸드폰번호</td>
-		<td><input type="text" name="hp" id="hp" maxlength="13"
-				onkeyup="hp_check(this.value)" value="${insa.hp }"></td>
-		<td>주민번호</td>
-		<td><input type="text" name="reg_no1" id="reg_no1" value="${fn:substring(insa.reg_no, 0, 6) }"
-				maxlength="6" size="5" onkeyup="reg_no_check(this.value, this)"> - 
-			<input type="text" name="reg_no2" id="reg_no2" value="${fn:substring(insa.reg_no, 7, 8) }"
-				maxlength="1" size="1" onkeyup="reg_no_check(this.value, this)">	
-			<input type="password" name="reg_no3" id="reg_no3" value="${fn:substring(insa.reg_no, 8, 14) }"
-				maxlength="6" size="5" onkeyup="reg_no_check(this.value, this)"></td>
-	</tr>	
-	<tr>
-
-		<td>연령</td>
-		<td><input type="text" name="age" id="age" maxlength="3"
-				onkeyup="age_check(this.value)" value="${insa.age }" ></td>
-				
-		<td colspan="2">이메일
-			<c:set var="index_email" value="${fn:indexOf(insa.email, '@') }"/>
-			<c:set var="len_email" value="${fn:length(insa.email) }" />
-			<input type="text" name="email_id" size="10" value="${fn:substring(insa.email, 0, index_email) }"> @ 
-			<select name="email_domain1" id="email_domain1" style="width:110px">
-				<option value=""></option>
-				<c:forEach items="${email_domain1_list }" var="email_domain1">
-					<option value="${email_domain1.name }">${email_domain1.name }</option>
-				</c:forEach>				
-				<option value="" selected>직접입력</option>				
-			</select>
-		<input type="text" name="email_domain2" id="email_domain2" 
-				value="${fn:substring(insa.email, index_email+1, len_email) }" size="10"></td>
-		<td colspan="2">
-			직종 <select name="join_gbn_code" style="width:100px">
-					<option value="${insa.join_gbn_code }">${insa.join_gbn_code }</option>
-					<option value=""></option>
-					<c:forEach items="${join_gbn_code_list }" var="join_gbn_code">
-						<option value="${join_gbn_code.name }">${join_gbn_code.name }</option>
-					</c:forEach>						
-				</select>
-			성별 <select id="sex" name="sex" style="width:100px">
+			<div class="row col-md-10">
+				<div class="row">
+					<div class="col-md-3">
+						<label for="sabun">사번</label> 
+						<input type="number" class="form-control form-control-sm" name="sabun"
+								 id="sabun"	placeholder="사번" value="${insa.sabun }" readonly>				 	
+					</div>
+					
+					<div class="col-md-3">
+						<label for="id">아이디</label> 
+						<input type="text" class="form-control form-control-sm is-valid" value="${insa.id }"
+							name="id" id="id" placeholder="아이디" oninput="id_check(this)" readonly>					
+						<div class="valid-feedback">사용할 수 있는 아이디 입니다.</div>
+						<div id="div_id_invalid" class="invalid-feedback">아이디를 입력해 주세요.</div>
+					</div>
+					<div class="col-md-3">
+						<label for="pwd">비밀번호</label> 
+						<input type="password" class="form-control form-control-sm is-invalid" 
+							name="pwd" id="pwd" placeholder="비밀번호" oninput="pwd_check(this)" required>					
+						<div id="div_pwd_invalid" class="invalid-feedback">비밀번호를 입력해주세요.</div>
+					</div>
+					<div class="col-md-3">
+						<label for="pwd2">비밀번호 확인</label> 
+						<input type="password" class="form-control form-control-sm is-invalid" 
+							name="pwd2" id="pwd2" oninput="pwd2_check(this)" placeholder="비밀번호 확인">
+						<div class="valid-feedback">비밀번호가 확인 되었습니다.</div>
+						<div id="div_pwd2_invalid" class="invalid-feedback"></div>
+						<div id="div_pwd2"></div>
+					</div>		
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="form-group col-md-3">
+				<label for="name">한글성명</label> 
+				<input type="text" class="form-control form-control-sm is-valid" value="${insa.name }"
+					name="name" id="name" oninput="name_check(this)" placeholder="한글이름" required>					
+				<div class="invalid-feedback">이름을 입력해주세요.</div>
+			</div>
+			<div class="col-md-3">
+				<label for="eng_name">영문성명</label> 
+				<input type="text" class="form-control form-control-sm" value="${insa.eng_name }" 
+					name="eng_name"	id="eng_name" placeholder="영문성명">
+			</div>	
+			<div class="col-md-4">
+				<label for="reg_no" class="form-label">주민등록번호</label>
+				<div class="input-group " id="reg_no">									
+					<input type="text" name="reg_no1" id="reg_no1" maxlength="6" 
+						oninput="reg_no_check(this)"  value="${fn:substring(insa.reg_no, 0, 6) }"
+						class="form-control form-control-sm is-valid">	
+						<span class="form-control-sm">-</span>											
+					<input type="text" name="reg_no2" id="reg_no2" 
+						maxlength="1" oninput="reg_no_check(this)" value="${fn:substring(insa.reg_no, 7, 8) }"
+						class="form-control form-control-sm col-md-1 is-valid">						
+					<input type="password" name="reg_no3" id="reg_no3"
+						maxlength="6" oninput="reg_no_check(this)" value="${fn:substring(insa.reg_no, 8, 14) }"
+						class="form-control form-control-sm is-valid">
+					<div class="invalid-feedback">주민등록번호를 입력해주세요.</div>
+				</div>											
+			</div>		
+			<div class="col-md-1">					
+				<label for="age" class="form-label">연령</label> 
+				<input type="text" name="age" id="age" oninput="age_check(this)"
+					class="form-control form-control-sm" value="${insa.age }">				
+			</div>
+			<div class="col-md-1">
+				<label for="sex" class="form-label">성별</label> 
+				<select id="sex" name="sex" 
+					class="form-select form-control form-control-sm">
 					<option value="${insa.sex }">${insa.sex }</option>
 					<option value="남자">남자</option>
 					<option value="여자">여자</option>
 				</select>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center">			
-			<input type="hidden" name="profile_image" value="${insa.profile_image }">
-			<c:if test="${insa.profile_image != null }">
-				<p>[<a href="#profile_image_modal" rel="modal:open">사진 확인</a>]</p>			
-			</c:if></td>
-		<td>주소</td>
-		<td  colspan="5">		
-			<input type="text" id="sample4_postcode" placeholder="우편번호" name="zip" value="${insa.zip }">
-			<input type="button" onclick="sample4_execDaumPostcode()" value="주소 검색">
-			<input type="text" id="sample4_roadAddress" placeholder="도로명주소" size="40"  name="addr1" value="${insa.addr1 }" >
-			<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="40">
-			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" id="sample4_detailAddress" placeholder="상세주소"  size="40"  name="addr2" value="${insa.addr2 }">
-			<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
-			<input type="hidden" id="sample4_engAddress" placeholder="영문주소"  size="60" >			
-		</td>
-	</tr>
-		
-	<tr>		
-		<td	colspan="2">
-			
-			<input type="file" name="upload_profile_image"></td>
-		<td>직위</td>
-		<td><select name="pos_gbn_code" style="width:165px">
-				<option value="${insa.pos_gbn_code }">${insa.pos_gbn_code }</option>
-				<option value=""></option>
-				<c:forEach items="${pos_gbn_code_list }" var="pos_gbn_code">
-					<option value="${pos_gbn_code.name }">${pos_gbn_code.name }</option>
-				</c:forEach>		
-			</select> 
-		</td>
-		
-		<td>부서</td>
-		<td>
-			<select name="dept_code" style="width:165px">
-				<option value="${insa.dept_code }">${insa.dept_code }</option>
-				<option value=""></option>
-				<c:forEach items="${dept_code_list }" var="dept_code">
-					<option value="${dept_code.name }">${dept_code.name }</option>
-				</c:forEach>	
-			</select>
-		</td>   
-		<td>연봉</td>
-		<td>
-			<input type="text" style="text-align:right" name="salary_str"
-			placeholder="(만원)" id="salary" maxlengt="2" value="${insa.salary }"
-				onkeyup="numberWithCommas(this.value)" >
-		</td> 
-	</tr>
-	<tr>
-		<td>입사구분</td>
-		<td><select name="join_yn" style="width:165px">
-				<option value="${insa.join_yn }">${insa.join_yn }</option>
-				<option value="Y">Y</option>
-				<option value="N">N</option>
-			</select></td>
-		<td>등급</td>
-		<td><select name="gart_level" style="width:165px">
-				<option value="${insa.gart_level }">${insa.gart_level }</option>
-				<option value=""></option>
-				<c:forEach items="${gart_level_list }" var="gart_level">
-					<option value="${gart_level.name }">${gart_level.name }</option>
-				</c:forEach>					
-			</select></td>
-		<td>투입여부</td>
-		<td><select name="put_yn" style="width:165px">
-				<option value="${insa.put_yn }">${insa.put_yn }</option>
-				<option value="Y">Y</option>
-				<option value="N">N</option>
-			</select></td>
-				
-		<td>군필여부</td>
-		<td><select id="mil_yn" name="mil_yn" style="width:165px">
-				<option value="${insa.mil_yn }">${insa.mil_yn }</option>
-				<option value="Y">Y</option>
-				<option value="N">N</option>
-			</select></td>
-	</tr>
-	<tr>
-		<td>군별</td>
-		<td><select id="mil_type" name="mil_type" style="width:165px">
-				<option value="${insa.mil_type }">${insa.mil_type }</option>
-				<option value=""></option>
-				<c:forEach items="${mil_type_list }" var="mil_type">
-					<option value="${mil_type.name }">${mil_type.name }</option>
-				</c:forEach>	
-			</select></td>
-		<td>계급</td>
-		<td><select id="mil_level" name="mil_level" style="width:165px">
-				<option value="${insa.mil_level }">${insa.mil_level }</option>
-				<option value=""></option>
-				<c:forEach items="${mil_level_list }" var="mil_level">
-					<option value="${mil_level.name }">${mil_level.name }</option>
-				</c:forEach>			
-			</select></td>
-		<td>입영일자</td>
-		<td><input type="text" id="mil_startdate" name="mil_startdate"
-				value="${fn:substring(insa.mil_startdate, 0, 10) }" class="testDatepicker"></td>
-		<td>전역일자</td>
-		<td><input type="text" id="mil_enddate" name="mil_enddate"
-				value="${fn:substring(insa.mil_enddate, 0, 10) }" class="testDatepicker"></td>
-	</tr>
-
-	<tr>
-		<td>KOSA등록</td>
-		<td><select name="kosa_reg_yn" id="kosa_reg_yn" style="width:165px">
-				<option value="${insa.kosa_reg_yn }">${insa.kosa_reg_yn }</option>
-				<option value="Y">Y</option>
-				<option value="N">N</option>
-			</select></td>
-		<td>KOSA등급</td>
-		<td><select name="kosa_class_code" id="kosa_class_code" style="width:165px">
-				<option value="${insa.kosa_class_code }">${insa.kosa_class_code }</option>
-				<option value=""></option>
-				<c:forEach items="${kosa_class_code_list }" var="kosa_class_code">
-					<option value="${kosa_class_code.name }">${kosa_class_code.name }</option>
-				</c:forEach>	
-			</select></td>
-		<td>입사일자</td>
-		<td><input type="text" name="join_day" id="join_day" 
-					value="${fn:substring(insa.join_day, 0, 10) }" class="testDatepicker"></td>
-		<td>퇴사일자</td>
-		<td><input type="text" name="retire_day" id="retire_day"
-					value="${fn:substring(insa.retire_day, 0, 10) }" class="testDatepicker"></td>
-	</tr>	
-	<tr>
-		<td>사업자번호</td>
-		<td><input type="text" name="cmp_reg_no" id="cmp_reg_no" maxlength="11" 
-					value="${insa.cmp_reg_no }"	onkeyup="cmp_reg_no_check(this.value)"></td>
-		<td>업체명</td>
-		<td><input type="text" name="crm_name" value="${insa.crm_name }"></td>
-		
-		<td>사업자등록증</td>
-		<td><input type="file" name="upload_cmp_reg_image"></td>
-		
-		<td colspan ="2">
-			<input type="hidden" name="cmp_reg_image" value="${insa.cmp_reg_image }">
-			<c:if test="${insa.cmp_reg_image != null }">
-				<p>[<a href="#cmp_reg_image_modal" rel="modal:open">사업자등록증 확인</a>]</p>
-			</c:if>
-			<!-- 
-			<input type="button" onclick="location.href='#modal'" rel="modal:open" value="미리보기" style="width:90px">
-			<input type="button" value="등록" style="width:90px">
-			 -->
-		</td>	 	
-	</tr>	
-	<tr>
-		<td>자기소개</td>
-		<td colspan="3">
-			<textarea cols="60" rows="2" name="self_intro"
-					 placeholder="100자 이내로 적으시오.">${insa.self_intro }</textarea>
-		</td>		
-		<td>이력서</td>
-		<td><input type="file" name="upload_carrier_image"></td>
-		<td colspan="2">
-			<input type="hidden" name="carrier_image" value="${insa.carrier_image }">
-			<c:if test="${insa.carrier_image != null }">
-				<p>[<a href="#carrier_image_modal" rel="modal:open">이력서 확인</a>]</p>			
-			</c:if>
-			<!--  
-			<input type="button" value="다운" style="width:90px">
-			<input type="button" value="파일업로드" style="width:90px">
-			-->
-		</td>		
-	</tr>
-</table>
-</form>
-</div>
+			</div>		
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<label for="hp">핸드폰 번호</label> 
+				<input type="text" name="hp" id="hp" maxlength="13" placeholder="핸드폰 번호" value="${insa.hp }"
+					oninput="hp_check(this)" class="form-control form-control-sm is-valid">
+				<div class="invalid-feedback">핸드폰 번호를 입력해주세요.</div> 
+			</div>
+			<div class="col-md-3">
+				<label for="phone">전화 번호</label> 
+				<input type="text" name="phone" id="phone" maxlength="13" placeholder="전화번호"
+					oninput="phone_check(this)" class="form-control form-control-sm" value="${insa.phone }">
+			</div>
+			<div class="col-md-4">
+				<label for="input-group-email">Email</label> 
+				<div class="input-group" id="input-group-email">
+					<c:set var="index_email" value="${fn:indexOf(insa.email, '@') }"/>
+					<input type="text" name="email_id" value="${fn:length(insa.email) }"
+						class="form-control form-control-sm">
+					<span class="form-control-sm">@</span>
+					<select name="email_domain1" class="form-select form-control form-control-sm" id="email_domain1">
+						<option selected>선택</option>						
+						<c:forEach items="${email_domain1_list }" var="email_domain1">
+							<option value="${email_domain1.name }">${email_domain1.name }</option>
+						</c:forEach>
+						<option value="naver.com">naver.com</option>
+						<option value="">직접입력</option>	
+					</select> 
+					<input type="text" name="email_domain2" id="email_domain2" 
+							disabled	class="form-control form-control-sm">
+				</div>
+			</div>	
+			<div class="col-md-2">
+				<label for="gart_level">등급</label> 
+				<select name="gart_level" id="gart_level" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.gart_level }" selected>${insa.gart_level } </option>
+					<c:forEach items="${gart_level_list }" var="gart_level">
+						<option value="${gart_level.name }">${gart_level.name }</option>
+					</c:forEach>					
+				</select>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<label for="inputZip">우편 번호</label>
+				<div class="input-group">
+					<input type="text" name="zip" value="${insa.zip }" class="form-control form-control-sm"
+						id="sample4_postcode" placeholder="우편 번호">
+					<div class="input-group-append">
+						<input type="button" class="btn btn-primary btn-sm" 
+							onclick="sample4_execDaumPostcode()" value="주소 검색" />							
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<label for="inputAddress1">도로명 주소</label>
+				<input type="text" name="addr1" value="${insa.addr1 }" class="form-control form-control-sm" 
+					id="sample4_roadAddress" placeholder="도로명 주소">
+				<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  size="40">
+				<span id="guide" style="color:#999;display:none"></span>					
+			</div>	
+			<div class="col-md-3">
+				<label for="inputAddress2">상세 주소</label> 
+				<input type="text" name="addr2" value="${insa.addr2 } "class="form-control form-control-sm" 
+					id="sample4_detailAddress"	placeholder="상세 주소">
+				<input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  size="60">
+				<input type="hidden" id="sample4_engAddress" placeholder="영문주소" size="60" >
+			</div>
+			<div class="col-md-3">
+				<label for="join_yn">입사구분</label> 
+				<select name="join_yn" id="join_yn" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.join_yn }" selected>${insa.join_yn }</option>
+					<option value="Y">Y</option>
+					<option value="N">N</option>
+				</select> 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label for="pos_gbn_code">직위</label>
+				<select name="pos_gbn_code" id="pos_gbn_code"
+					class="form-select form-control form-control-sm">
+					<option value="${insa.pos_gbn_code }" selected>${insa.pos_gbn_code }</option>
+					<c:forEach items="${pos_gbn_code_list }" var="pos_gbn_code">
+						<option value="${pos_gbn_code.name }">${pos_gbn_code.name }</option>
+					</c:forEach>		
+				</select>					
+			</div>
+			<div class="col-md-2">
+				<label for="dept_code">부서</label>
+				<select name="dept_code" id="dept_code" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.dept_code }" selected>${insa.dept_code }</option>
+					<c:forEach items="${dept_code_list }" var="dept_code">
+						<option value="${dept_code.name }">${dept_code.name }</option>
+					</c:forEach>	
+				</select>				
+			</div>
+			<div class="col-md-2">
+				<label for="join_gbn_code">직종</label>
+				<select name="join_gbn_code" id="join_gbn_code" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.join_gbn_code }" selected>${insa.join_gbn_code }</option>
+					<c:forEach items="${join_gbn_code_list }" var="join_gbn_code">
+						<option value="${join_gbn_code.name }">${join_gbn_code.name }</option>
+					</c:forEach>						
+				</select>									
+			</div>
+			<div class="col-md-2">
+				<label for="put_yn">투입여부</label>
+				<select name="put_yn" id="put_yn"
+					class="form-select form-control form-control-sm">
+					<option value="${insa.put_yn }" selected>${insa.put_yn }</option>
+					<option value="Y">Y</option>
+					<option value="N">N</option>
+				</select>													
+			</div>
+			<div class="col-md-4">
+				<label for="salary">연봉</label>
+				<input type="text" name="salary_str" placeholder="(만원)" id="salary" 
+					 oninput="salary_str_check(this)" style="text-align:right"
+					 class="form-control form-control-sm" value="${insa.salary }">																
+			</div>	
+		</div>	
+		<div class="row">
+			<div class="col-md-2">
+				<label for="mil_yn">군필 여부</label> 
+				<select name="mil_yn" id="mil_yn" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.mil_yn }" selected>${insa.mil_yn }</option>
+					<option value="Y">Y</option>
+					<option value="N">N</option>
+				</select> 
+			</div>
+			<div class="col-md-2">
+				<label for="mil_type">군별</label> 
+				<select id="mil_type" name="mil_type"
+					class="form-select form-control form-control-sm">
+					<option value="${insa.mil_type }" selected>${insa.mil_type }</option>
+					<c:forEach items="${mil_type_list }" var="mil_type">
+						<option value="${mil_type.name }">${mil_type.name }</option>
+					</c:forEach>	
+				</select>
+			</div>
+			<div class="col-md-2">
+				<label for="mil_level">계급</label> 
+				<select id="mil_level" name="mil_level" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.mil_level }" selected>${insa.mil_level }</option>
+					<c:forEach items="${mil_level_list }" var="mil_level">
+						<option value="${mil_level.name }">${mil_level.name }</option>
+					</c:forEach>			
+				</select>
+			</div>
+			<div class="col-md-3">
+				<label for="mil_startdate">입영일자</label>
+				<div class="form-inline "> 
+					<input type="text" id="mil_startdate" name="mil_startdate" 
+					class="testDatepicker form-control form-control-sm" 
+					value="${fn:substring(insa.mil_startdate, 0, 10) }">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<label for="mil_enddate">전역일자</label> 
+				<div class="form-inline ">
+					<input type="text" id="mil_enddate" name="mil_enddate" 
+						class="testDatepicker form-control form-control-sm"
+						value="${fn:substring(insa.mil_enddate, 0, 10) }">
+				</div>					
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<label for="kosa_reg_yn">KOSA 등록</label> 
+				<select name="kosa_reg_yn" id="kosa_reg_yn" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.kosa_reg_yn }" selected>${insa.kosa_reg_yn }</option>
+					<option value="Y">Y</option>
+					<option value="N">N</option>
+				</select> 
+			</div>
+			<div class="col-md-3">
+				<label for="kosa_class_code">KOSA 등급</label> 
+				<select name="kosa_class_code" id="kosa_class_code" 
+					class="form-select form-control form-control-sm">
+					<option value="${insa.kosa_class_code }" selected>${insa.kosa_class_code }</option>
+					<c:forEach items="${kosa_class_code_list }" var="kosa_class_code">
+						<option value="${kosa_class_code.name }">${kosa_class_code.name }</option>
+					</c:forEach>	
+				</select>					
+			</div>
+			<div class="col-md-3">
+				<label for="join_day">입사일자</label>
+				<div class="form-inline form-group"> 
+					<input type="text" id="join_day" name="join_day" 
+					value="${fn:substring(insa.join_day, 0, 10) }"
+					class="testDatepicker form-control form-control-sm">
+				</div>
+			</div>
+			<div class="col-md-3">
+				<label for="retire_day">퇴사일자</label> 
+				<div class="form-inline form-group">
+					<input type="text" id="retire_day" name="retire_day" 
+						value="${fn:substring(insa.retire_day, 0, 10) }"
+						class="testDatepicker form-control form-control-sm">
+				</div>					
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label for="kosa_class_code">사업자 번호</label> 
+				<input type="text" name="cmp_reg_no" id="cmp_reg_no" maxlength="11"
+					value="${insa.cmp_reg_no }" 
+					oninput="cmp_reg_no_check(this)"  class="form-control form-control-sm">										
+			</div>
+			<div class="col-md-2">
+				<label for="kosa_class_code">업체명</label> 
+				<input type="text" name="crm_name" value="${insa.crm_name }"
+					class="form-control form-control-sm">										
+			</div>		
+			<div class="col-md-2">
+				<label for="upload_cmp_reg_image">사업자등록증</label>
+				<div class="input-group">
+					<input type="file" class="form-control form-control-sm" 
+					 	name="upload_cmp_reg_image" id="upload_cmp_reg_image">
+				 	<input type="hidden" name="cmp_reg_image" value="${insa.cmp_reg_image }">
+				 	<c:if test="${insa.cmp_reg_image != null }">
+						<p>[<a href="#cmp_reg_image_modal" rel="modal:open">사업자등록증 확인</a>]</p>
+					</c:if>					 
+				</div>				
+			</div>
+			<div class="col-md-2">
+				<label for="upload_carrier_image">이력서</label>
+				<div class="input-group">
+					<input type="file" class="form-control form-control-sm" 
+					 	name="upload_carrier_image" id="upload_carrier_image">
+					<input type="hidden" name="carrier_image" value="${insa.carrier_image }">
+					<c:if test="${insa.carrier_image != null }">
+						<div>[<a href="#carrier_image_modal" rel="modal:open">이력서 확인</a>]</div>			
+					</c:if>					 
+				</div>						
+			</div>
+			<div class="col-md-4">
+				<label for="kosa_reg_yn">자기소개</label> 
+				<textarea name="self_intro" class="form-control form-control-sm" 
+					aria-label="With textarea">${insa.self_intro }</textarea>
+			</div>			
+		</div>
+	</form>
+</div>				
+</section>
 
 <div id="profile_image_modal" class="modal">
 	<div align="center">
@@ -292,6 +393,4 @@
 	</div>
 </div>
 
-</section>
 <%@ include file="../bottom.jsp" %>
-

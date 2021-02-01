@@ -103,7 +103,9 @@ public class InsaController {
 		if(vo.getSalary_str() != null && !vo.getSalary_str().equals("")) {
 			vo.setSalary(Integer.parseInt(vo.getSalary_str().replaceAll(",", "")));
 		}		
-	
+		
+		System.out.println(vo);
+		
 		is.insertInsa(vo);
 		
 		return "redirect:index.do";
@@ -115,6 +117,7 @@ public class InsaController {
 	public void insaInputAjax(InsaVo vo, HttpServletRequest request, 
 			HttpServletResponse response) throws IllegalStateException, IOException {
 		
+		System.out.println("insaInput Ajax");
 		// 주민등록 번호 설정
 		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
 
@@ -192,7 +195,8 @@ public class InsaController {
 		
 		model.addAttribute("insaList", is.getInsaList(vo));
 		model.addAttribute("recordCnt", is.getInsaListCnt(vo));
-		//model.addAttribute("recordCnt", 0);
+		
+		System.out.println("-------------------insaList");
 		
 		return "insaListForm.jsp";
 	}
@@ -216,31 +220,43 @@ public class InsaController {
 			produces = "application/text; charset=utf8")
 	public void insaUpdateAjax(InsaVo vo, Model model, 
 			HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+		System.out.println("insaUpdateAjax: " + vo);
 		// 주민등록 번호 설정
 		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
-		
+					
 		// 이력서 이미지 설정 및 파일 업로드 및 기존 파일 삭제
-		if(!vo.getUpload_carrier_image().getOriginalFilename().equals("")) {
-			vo.setCarrier_image(FileUpload.uploadNewFile
-					(request, CARRIER_IMAGE_PATH, vo.getUpload_carrier_image()));	// 새로운 파일 업로드
-			FileUpload.deleteFile(request, CARRIER_IMAGE_PATH, vo.getCarrier_image()); // 기존 파일 삭제			
+		if(!vo.getUpload_carrier_image().getOriginalFilename().equals("") && 
+				vo.getProfile_image().equals("") ) {	// 기존 업로드된 파일이 없을 경우
+			vo.setCarrier_image(FileUpload.uploadNewFile(
+					request, CARRIER_IMAGE_PATH, vo.getUpload_carrier_image()));	// 새로운 파일 업로드
+			
+		} else if(!vo.getUpload_carrier_image().getOriginalFilename().equals("")) {	// 기존 업로드된 파일이 있을 경우
+			vo.setCarrier_image(FileUpload.updateFile(request, CARRIER_IMAGE_PATH, 
+					vo.getCarrier_image(), vo.getUpload_carrier_image()));			// 파일 업데이트
 		}
 		
 		// 사업자 등록증 이미지 설정 및 파일 업로드
-		if(!vo.getUpload_cmp_reg_image().getOriginalFilename().equals("")) {
-			System.out.println("controller cmp_reg 수정중" + vo);
-			vo.setCmp_reg_image(FileUpload.uploadNewFile
-					(request, CMP_REG_IMAGE_PATH, vo.getUpload_cmp_reg_image()));	// 새로운 파일 업로드
-			FileUpload.deleteFile(request, CMP_REG_IMAGE_PATH, vo.getCmp_reg_image());	// 기존 파일 삭제			
+		if(!vo.getUpload_cmp_reg_image().getOriginalFilename().equals("") && 
+				vo.getProfile_image().equals("") ) {	// 기존 업로드된 파일이 없을 경우
+			vo.setCmp_reg_image(FileUpload.uploadNewFile(
+					request, CMP_REG_IMAGE_PATH, vo.getUpload_cmp_reg_image()));	// 새로운 파일 업로드
+			
+		} else if(!vo.getUpload_cmp_reg_image().getOriginalFilename().equals("")){	// 기존 업로드된 파일이 있을 경우
+			vo.setCmp_reg_image(FileUpload.updateFile(request, CMP_REG_IMAGE_PATH, 
+					vo.getCmp_reg_image(), vo.getUpload_cmp_reg_image()));			// 파일 업데이트
 		}
 		
 		// 프로필 이미지 설정 및 파일 업로드
-		if(!vo.getUpload_profile_image().getOriginalFilename().equals("")) {
-			vo.setProfile_image(FileUpload.uploadNewFile
-					(request, PROFILE_IMAGE_PATH, vo.getUpload_profile_image()));	// 새로운 파일 업로드
-			FileUpload.deleteFile(request, PROFILE_IMAGE_PATH, vo.getProfile_image());	// 기존 파일 삭제			
-		} 
+		if(!vo.getUpload_profile_image().getOriginalFilename().equals("") && 
+				vo.getProfile_image().equals("") ) {	// 기존 업로드된 파일이 없을 경우
+			vo.setProfile_image(FileUpload.uploadNewFile(
+					request, PROFILE_IMAGE_PATH, vo.getUpload_profile_image()));	// 새로운 파일 업로드
+			
+		} else if(!vo.getUpload_profile_image().getOriginalFilename().equals("")){	// 기존 업로드된 파일이 있을 경우
+			vo.setProfile_image(FileUpload.updateFile(request, PROFILE_IMAGE_PATH, 
+					vo.getProfile_image(), vo.getUpload_profile_image()));			// 파일 업데이트
+		}
+		
 		
 		
 		// 이메일 설정
@@ -282,6 +298,8 @@ public class InsaController {
 	public void checkId(InsaVo vo, HttpServletResponse response) {
 		String id = vo.getId();
 		InsaVo insa = is.checkId(vo);
+		
+		System.out.println("checkId : " + vo.getId());
 		
 		// 아이디 사용 불가
 		if(insa != null && insa.getId().equals(id)) {
