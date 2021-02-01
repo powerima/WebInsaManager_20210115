@@ -29,8 +29,9 @@
 
 <!-- 자바스크립트 파일 추가 -->
 <script src="/biz/js/form_script.js?22"></script>
-
+<link rel="stylesheet" href="/biz/css/style.css" type="text/css" />
 <title>인사 관리 시스템</title>
+
 </head>
 <body>
 <header>

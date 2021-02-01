@@ -480,7 +480,6 @@ function checkInputForm() {
 		alert('구분 값을 입력하세요.');
 		false;
 	}
-	alert('체크종료');
 }
 
 
