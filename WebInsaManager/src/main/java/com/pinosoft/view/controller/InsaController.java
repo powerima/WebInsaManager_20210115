@@ -40,8 +40,9 @@ public class InsaController {
 	private final String PROFILE_IMAGE_PATH = "/file/profile_img/";
 			
 	@RequestMapping(value="/test.do")
-	public void test() {
-		dao.insertTest("");
+	public void test(String id) {
+		System.out.println(id);
+		dao.insertTest(id);
 	}
 	
 	
