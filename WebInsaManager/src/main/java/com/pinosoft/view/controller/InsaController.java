@@ -3,7 +3,6 @@ package com.pinosoft.view.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +32,7 @@ public class InsaController {
 	private final String CMP_REG_IMAGE_PATH = "/file/cmp_reg_img/";
 	private final String CARRIER_IMAGE_PATH = "/file/carrier_img/";
 	private final String PROFILE_IMAGE_PATH = "/file/profile_img/";
-	
-	
+			
 	@RequestMapping(value="/index.do")
 	public String index() {
 		return "redirect:../index.jsp";

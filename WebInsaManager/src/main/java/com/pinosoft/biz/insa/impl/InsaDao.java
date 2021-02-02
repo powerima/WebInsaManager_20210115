@@ -61,5 +61,5 @@ public class InsaDao {
 		// TODO Auto-generated method stub		
 		return mybatis.selectList("InsaDao.getInsaList", vo);
 	}
-	
+			
 }

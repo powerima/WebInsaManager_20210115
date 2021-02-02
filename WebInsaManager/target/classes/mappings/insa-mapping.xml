@@ -3,8 +3,6 @@
 <mapper namespace="InsaDao">
 
 
-	
-
 	<insert id="insertInsa">
 		<![CDATA[
 			INSERT INTO INSA (SABUN, NAME, REG_NO,
