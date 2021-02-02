@@ -10,7 +10,7 @@ public interface InsaService {
 	public void updateInsa(InsaVo vo);		// 수정
 	public InsaVo getInsa(InsaVo vo);		// 사번으로 조회
 	public InsaVo checkId(InsaVo vo);		// 아이디 중복 조회
-	public int getInsaListCnt(InsaVo vo);	// 검색 레코드 수 조회
+	public int getInsaListCnt(InsaVo vo);	// 검색 레코드 수 조회	
 	public List<InsaVo> getInsaList(InsaVo vo);	// 목록 조회
-	
+	public void insertBigTestData(InsaVo vo);	// 테스트를 위한 대량의 데이터 등록	
 }

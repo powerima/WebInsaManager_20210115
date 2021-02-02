@@ -70,5 +70,12 @@ public class InsaServiceImpl implements InsaService {
 		return insaDao.getInsaListCnt(vo);
 	}
 
+	// 테스트를 위한 대량의 데이터 등록
+	@Override
+	public void insertBigTestData(InsaVo vo) {
+		// TODO Auto-generated method stub
+		insaDao.insertBigTestData(vo);
+	}
+
 
 }
