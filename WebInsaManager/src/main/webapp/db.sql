@@ -38,6 +38,25 @@ create table insa(
     carrier_image varchar2(100)
 );
 
+ INSERT INTO INSA (SABUN, NAME, REG_NO,
+		HP, ID, PWD, ENG_NAME, PHONE, AGE, EMAIL,
+		JOIN_GBN_CODE, SEX, ZIP, ADDR1, ADDR2, POS_GBN_CODE,
+		DEPT_CODE, SALARY, GART_LEVEL, PUT_YN, MIL_YN, 
+		MIL_TYPE, MIL_LEVEL, MIL_STARTDATE, MIL_ENDDATE,
+		KOSA_REG_YN, KOSA_CLASS_CODE, JOIN_DAY, RETIRE_DAY, 
+		CMP_REG_NO, CRM_NAME, CMP_REG_IMAGE, CARRIER_IMAGE, 
+		PROFILE_IMAGE, SELF_INTRO, JOIN_YN)
+VALUES((SELECT NVL(MAX(SABUN), 10000) + 1 FROM INSA), 
+		'name', '54545-454', '010-1231-1231', 'idk', '123',
+	'engname', '010-1111-1111', '23', 'we@mail.to', '',
+	'남자', '1232', '서울시 마포구', '123', 'y', 
+	'영업', '123213', '고등학교', 'y',
+	'y', NVL(null, 'nvl  null'), '', 
+	'', '', 
+	'n', '', 
+	'2001-02-02', '2004-09-09', '123-23-12334', 'compony',
+	'', '', '', '안녕하세요', 'y');
+					
 
 
 create table insa_com(

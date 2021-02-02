@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pinosoft.biz.FileUpload;
+import com.pinosoft.biz.Page;
 import com.pinosoft.biz.insa.InsaService;
 import com.pinosoft.biz.insa.InsaVo;
+import com.pinosoft.biz.insa.impl.InsaDao;
 import com.pinosoft.biz.insacom.InsacomService;
 
 @Controller
@@ -26,6 +28,9 @@ public class InsaController {
 	@Autowired
 	private InsaService is;
 	
+	@Autowired
+	private InsaDao dao;
+	
 	@Autowired 
 	private InsacomService ics;
 	
@@ -33,6 +38,12 @@ public class InsaController {
 	private final String CARRIER_IMAGE_PATH = "/file/carrier_img/";
 	private final String PROFILE_IMAGE_PATH = "/file/profile_img/";
 			
+	@RequestMapping(value="/test.do")
+	public void test() {
+		dao.insertTest("");
+	}
+	
+	
 	@RequestMapping(value="/index.do")
 	public String index() {
 		return "redirect:../index.jsp";
@@ -67,8 +78,7 @@ public class InsaController {
 			vo.setCarrier_image("");
 		}
 		
-		
-		
+				
 		// 사업자 등록증 이미지 설정 및 파일 업로드
 		if(vo.getUpload_cmp_reg_image() != null) {
 			vo.setCmp_reg_image(FileUpload.uploadNewFile
@@ -119,6 +129,11 @@ public class InsaController {
 		// 주민등록 번호 설정
 		vo.setReg_no(vo.getReg_no1() + '-' + vo.getReg_no2() + vo.getReg_no3());
 
+		if(vo.getMil_type() == null) System.out.println("mil_type null");
+		//if(vo.getMil_level() == null) vo.setMil_level("");
+		
+		
+		
 		// 이력서 이미지 설정 및 파일 업로드
 		if(vo.getUpload_carrier_image() != null) {
 			vo.setCarrier_image(FileUpload.uploadNewFile
@@ -190,9 +205,9 @@ public class InsaController {
 		for(String gubun : gubunList) {					// 공통 코드 목록 파라미터 등록
 			model.addAttribute(gubun + "_list", ics.getGubunTypeList(gubun));
 		}
-		
+				
 		model.addAttribute("insaList", is.getInsaList(vo));
-		model.addAttribute("recordCnt", is.getInsaListCnt(vo));
+		model.addAttribute("page", Page.getInstance(is.getInsaListCnt(vo), vo.getPage(), 10, 10));
 		
 		System.out.println("-------------------insaList");
 		

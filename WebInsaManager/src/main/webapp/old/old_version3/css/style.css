@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+html,body{
+	margin:0;
+	padding:0;
+	width: 100%;
+	height: 100%;	
+}
+
+section {
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 150px;
+}
+
+footer{
+	height: 150px;
+	position: relative;
+	transform: translateY(-100%);
+}
+
+li {
+	font-size: 12pt;	
+}

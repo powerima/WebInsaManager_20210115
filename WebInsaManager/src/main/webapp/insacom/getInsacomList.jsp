@@ -3,11 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ include file="../top.jsp" %>
 <section>
-
-<div class="m-3">
 <h2>인사 공통 코드 목록 조회</h2>
+<div align="center">
+<hr>
+<a href="/biz/insacom/insertInsacom.jsp">코드 등록 하기</a>
 <form action="insertInsacom.do" method="get">
-<table class="table table-hover table-sm col-md-5">
+<table border="1" id="inputForm" class="line_table">
 	<thead align="center">
 		<tr>
 			<td>구분</td>
@@ -37,6 +38,8 @@
 	</tfoot>
 </table>
 </form>
+<br>
+<a href="/biz/insacom/insertInsacom.jsp">코드 등록 하기</a>
 </div>
 </section>
 <%@ include file="../bottom.jsp" %>

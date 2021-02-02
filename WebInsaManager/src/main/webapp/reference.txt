@@ -69,3 +69,5 @@ http://www.homejjang.com/09/border_collapse.php
 쿼리 중복 제거 검색
 https://gent.tistory.com/222
 
+섬네일 파일 업로드 미리보기
+https://sinna94.tistory.com/entry/JavaScript-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%85%EB%A1%9C%EB%93%9C-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0-%EB%A7%8C%EB%93%A4%EA%B8%B0

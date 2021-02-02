@@ -3,6 +3,7 @@ package com.pinosoft.biz.insa;
 import org.springframework.web.multipart.MultipartFile;
 
 public class InsaVo {
+	private int page;
 	private String sabun;
 	private String join_day;
 	private String retire_day;
@@ -50,6 +51,12 @@ public class InsaVo {
 	private MultipartFile upload_profile_image;
 	private MultipartFile upload_carrier_image;
 	
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
 	public String getSabun() {
 		return sabun;
 	}

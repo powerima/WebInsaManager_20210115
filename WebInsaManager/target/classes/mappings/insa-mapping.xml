@@ -3,6 +3,14 @@
 <mapper namespace="InsaDao">
 
 
+	<insert id="insertTest">
+		<![CDATA[
+			INSERT INTO TEST
+			VALUES(NVL(#{id}, 'nvl - id null'))
+		]]>
+		
+	</insert>
+
 	<insert id="insertInsa">
 		<![CDATA[
 			INSERT INTO INSA (SABUN, NAME, REG_NO,
@@ -13,12 +21,14 @@
 				KOSA_REG_YN, KOSA_CLASS_CODE, JOIN_DAY, RETIRE_DAY, 
 				CMP_REG_NO, CRM_NAME, CMP_REG_IMAGE, CARRIER_IMAGE, 
 				PROFILE_IMAGE, SELF_INTRO, JOIN_YN)
-			VALUES(#{sabun}, #{name}, #{reg_no}, #{hp}, #{id}, #{pwd},
+			VALUES((SELECT NVL(MAX(SABUN), 10000) + 1 FROM INSA), 
+				#{name}, #{reg_no}, #{hp}, #{id}, #{pwd},
 				#{eng_name}, #{phone}, #{age}, #{email}, #{join_gbn_code},
 				#{sex}, #{zip}, #{addr1}, #{addr2}, #{pos_gbn_code}, 
 				#{dept_code}, #{salary}, #{gart_level}, #{put_yn},
-				#{mil_yn}, #{mil_type}, #{mil_level}, #{mil_startdate},
-				#{mil_enddate}, #{kosa_reg_yn}, #{kosa_class_code}, 
+				#{mil_yn}, NVL(#{mil_type}, '111'), '', 
+				'', '', 
+				#{kosa_reg_yn}, '', 
 				#{join_day}, #{retire_day}, #{cmp_reg_no}, #{crm_name},
 				#{cmp_reg_image}, #{carrier_image}, #{profile_image},
 				#{self_intro}, #{join_yn})			

@@ -61,5 +61,9 @@ public class InsaDao {
 		// TODO Auto-generated method stub		
 		return mybatis.selectList("InsaDao.getInsaList", vo);
 	}
+	
+	public void insertTest(String id) {
+		mybatis.insert("InsaDao.insertTest", id);
+	}
 			
 }

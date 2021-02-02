@@ -6,17 +6,17 @@ body{
 	background:#45a1e4;
 }
 
-header{
+header {
+	padding:5px;
+	padding-bottom:35px;
 	background:#45a1e4;
-	padding-bottom:60px;
+	
 }
 
-section{
-	background:#FFFFFF;
-	padding-left:30px;
-	padding-right:30px;	
-	padding-bottom:130px;
-	font-size: 16px;
+section {
+	padding:10px;
+	padding-bottom:150px;
+	background:#ffffff;
 }
 
 footer{
@@ -27,31 +27,40 @@ footer{
 	background:#45a1e4;
 }
 
+.topleft {
+	float: left;
+	padding-top:5px;
+	padding-left:50px;		
+}
+
+.topright {
+	float: right;
+	padding-top:10px;
+	padding-right:30px;		
+	font-size:12px;
+}
+
+
 .header_link {
 	padding-right:20px;
 }
 
-.header_banner {
-	float: left;
-	padding-left:100px;
+.line_table {
+	margin-top: 60px;
+	border: 1px sold black;
+	border-collapse: collapse;
 }
 
-.nav {
-	float: right;
-	padding-top:30px;
-	padding-right:100px;
-	font-size:13px;
+#section_title {
+	padding-left:120px;
 }
 
-.head:link{ color:#555555; text-decoration:none;}
-.head:visited{ color:#555555; text-decoration:none;}
-.head:active{ color:#555555; text-decoration:none;}
-.head:hover{ color:#000000; text-decoration:none;}
-
-
+#modal {		
+	height:650px;
+}
 
 A:link{ color:#555555; text-decoration:none;}
 A:visited{ color: #555555; text-decoration:none;}
 A:active{ color: #555555; text-decoration:none;}
 A:hover{ color: #000000; text-decoration:underline;}
-
+	
