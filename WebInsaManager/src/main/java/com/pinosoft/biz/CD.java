@@ -23,6 +23,11 @@ public class CD {
 	static String add1[] = { "서울시", "경기", "인천광역시", "전주", "충북", "충남", "전남", "전북", "경남", "경북", "대구광역시", "대전광역시", "부산광역시",
 			"강원", "울산광역시", "세종시", "제주시" };
 
+	public static void main(String[] args) {
+		String pos[] = {"사원","부사원"};
+		System.out.println(pos[1]);
+	}
+	
 	// 이름 생성
 	public static String getName() {
 		String str = firstname[(int) (Math.random() * firstname.length)];
@@ -72,11 +77,46 @@ public class CD {
 	}
 	
 	
-	// 주민등록번호 생성기
+	// 주민등록번호 전체 생성
 	public static String getRegNo() {
-		int regNo1 = (int) (Math.random() * 899999) + 100000;
-		int regNo2 = (int) (Math.random() * 8999999) + 1000000;
+		return getRegNo(0);
+	}
+	
+	// 주민등록번호 생성기
+	public static String getRegNo(int no) {
+		String birthDay = getDate();
+		String regNo1 = birthDay.substring(2, 8);
+		String regNo2 = "";
+		boolean isLocal = (int) (Math.random() * 100)  < 95 ? true : false;
+		boolean isFemail = (int) (Math.random() * 2)  == 1 ? true : false;
 		
+		if(Integer.parseInt(birthDay.substring(0,2)) >= 20) {	// 2000년대 이후
+			if(isLocal) {	// 내국인
+ 				if(isFemail) regNo2 += "4"; 
+ 				else regNo2 += "3";
+ 			} else {		// 외국인
+ 				if(isFemail) regNo2 += "8"; 
+ 				else regNo2 += "7";
+ 			}
+ 		} else if(Integer.parseInt(birthDay.substring(0,2)) >= 19) {	// 1900년대 이후
+ 			if(isLocal) {	// 내국인
+ 				if(isFemail) regNo2 += "2"; 
+ 				else regNo2 += "1";
+ 			} else {		// 외국인
+ 				if(isFemail) regNo2 += "6"; 
+ 				else regNo2 += "5";
+ 			}
+ 		}
+		
+		regNo2 += "" + ((int)(Math.random() * 899999) + 100001);
+		
+		if(no == 1) {	// 앞지리
+			return regNo1;
+		} else if(no == 2) {	// 성별
+			return regNo2.substring(0,1);
+		} else if(no == 3) { 	// 뒷자리
+			return regNo2;
+		}
 		return regNo1 + "-" + regNo2;
 	}
 	
@@ -86,12 +126,10 @@ public class CD {
 	}
 
 	public static String getDate(int startYear) {
-		int thisYear = Calendar.YEAR;
-		int thisMonth = Calendar.MONTH;
-		int thisDate = Calendar.DATE;
-		System.out.println(Calendar.YEAR);
-		System.out.println(thisMonth);
-		System.out.println(Calendar.DATE);
+		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+		int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		int thisDate = Calendar.getInstance().get(Calendar.DATE);
+		
 		int year = (int) (Math.random() * (thisYear - startYear) + startYear + 1);
 		int month = (int) (Math.random() * 12) + 1;
 		int date;
@@ -133,6 +171,12 @@ public class CD {
 			str += "" + date;
 
 		return str;
+	}
+	
+	
+	// 랜덤한 숫자 범위 start ~ end 까지 
+	public static int getRandom(int start, int end) {
+		return (int) (Math.random() * (end-start +1)) + start;
 	}
 }
 

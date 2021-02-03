@@ -17,7 +17,7 @@
 	<tr>
 		<td colspan="8" align="right">
 			<input type="button" id="insaInputAjax" value="등록">
-			<input type="submit"  value="전화면">
+			<input type="button" id="insaInputAjaxMain" value="전화면">
 			<input type="reset" value="초기화">
 		</td>
 	</tr>
@@ -32,30 +32,30 @@
 		<td>사번</td>
 		<td><input type="number" name="sabun" disabled
 				placeholder="자동입력"></td>
-		<td>한글성명</td>
-		<td><input type="text" name="name"></td>
+		<td>* 한글성명</td>
+		<td><input type="text" name="name" oninput="name_check(this)"></td>
 		<td>영문성명</td>
-		<td><input type="text" name="eng_name"></td>
+		<td><input type="text" name="eng_name" oninput="eng_name_check(this)"></td>
 	</tr>
 	<tr>	
-		<td>아이디</td>
-		<td><input type="text" id="precheck_id" style="width:90px">
+		<td>* 아이디</td>
+		<td><input type="text" id="precheck_id"  style="width:90px">
 			<input type="hidden" name="id" id="id"> 
 			<input type="button" id="idcheck" value="중복확인"></td>
 			
-		<td>패스워드</td>
+		<td>* 패스워드</td>
 		<td><input type="password" name="pwd"></td>
-		<td>패스워드확인</td>
+		<td>* 패스워드확인</td>
 		<td><input type="password" name="pwd2"></td>
 	</tr>
 	<tr>	
 		<td>전화번호</td>
 		<td><input type="text" name="phone" id="phone" maxlength="13"
 				oninput="phone_check(this)"></td>
-		<td>핸드폰번호</td>
+		<td>* 핸드폰번호</td>
 		<td><input type="text" name="hp" id="hp" maxlength="13"
 				oninput="hp_check(this)"></td>
-		<td>주민번호</td>
+		<td>* 주민번호</td>
 		<td><input type="text" name="reg_no1" id="reg_no1"
 				maxlength="6" size="5" oninput="reg_no_check(this)"> - 
 			<input type="text" name="reg_no2" id="reg_no2"  style="width:10px"
@@ -211,11 +211,7 @@
 		
 		<td colspan ="2">
 			<p><a id="link_cmp_reg_modal" href="#cmp_reg_image_modal" 
-				rel="modal:open"></a></p>
-			<!-- 
-			<input type="button" onclick="location.href='#modal'" rel="modal:open" value="미리보기" style="width:90px">
-			<input type="button" value="등록" style="width:90px">
-			 -->
+				rel="modal:open"></a></p>	
 		</td>	 	
 	</tr>	
 	<tr>
@@ -229,12 +225,7 @@
 				onchange="setThumbnail(event, 'img_carrier', 'link_carrier_modal', '');"></td>			
 		<td colspan="2">
 			<p><a id="link_carrier_modal" href="#carrier_image_modal" 
-				rel="modal:open"></a></p>
-		
-			<!--  
-			<input type="button" value="다운" style="width:90px">
-			<input type="button" value="파일업로드" style="width:90px">
-			-->
+				rel="modal:open"></a></p>		
 		</td>		
 	</tr>
 </table>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pinosoft.biz.insa.InsaVo;
+import com.pinosoft.biz.insa.TestVo;
 
 @Repository
 public class InsaDao {
@@ -62,6 +63,8 @@ public class InsaDao {
 		return mybatis.selectList("InsaDao.getInsaList", vo);
 	}
 	
+	
+	
 	public void insertTest(String id) {
 		mybatis.insert("InsaDao.insertTest", id);
 	}
@@ -69,6 +72,16 @@ public class InsaDao {
 	// 테스트를 위한 대량의 데이터 등록
 	public void insertBigTestData(InsaVo vo) {
 		mybatis.insert("InsaDao.insertBigTestData", vo);
+	}
+	
+	// 테스트 목록 조회
+	public List<TestVo> getTestList(TestVo vo) {
+		return mybatis.selectList("InsaDao.getTestList", vo);
+	}
+	
+	// 테스트 등록
+	public void insertTest(TestVo vo) {
+		mybatis.insert("InsaDao.insertTest", vo);
 	}
 			
 }

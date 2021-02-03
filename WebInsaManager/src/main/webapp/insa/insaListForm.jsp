@@ -68,12 +68,12 @@
 <table class="line_table" border="1" width="1000">
 	<tr>
 		<td colspan="10" align="right">
-			<input type="button" value="삭제">
+			<input type="button" id="deleteInsaBtn" value="삭제">
 			
 		</td>
 	</tr>
 	<tr align="center">
-		<td><input type="checkbox" id="all_check" oncheck="setAllcheckbox();"/></td>
+		<td><input type="checkbox" id="all_checkBox" /></td>
 		<td>사번</td>
 		<td>성명</td>
 		<td>주민번호</td>
@@ -94,7 +94,7 @@
 	<c:set var="i" value="1" />
 	<c:forEach items="${insaList }" var="insa">
 	<tr align="center">
-		<td><input type="checkbox" value="${insa.sabun }" id="${insa.sabun }"></td>
+		<td><input type="checkbox" value="${insa.sabun }" id="${insa.sabun + i}"></td>
 		<td><a href="/biz/insa/insaUpdateForm.do?sabun=${insa.sabun }">
 					${insa.sabun }</a></td>
 		<td>${insa.name }</td>

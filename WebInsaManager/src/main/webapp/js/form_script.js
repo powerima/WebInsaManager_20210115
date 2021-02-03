@@ -84,6 +84,27 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	// 인사 등록 - 화면 메인으로 이동
+	$('#insaInputAjaxMain').click(function() {
+		if (!checkInputForm()) {
+			return false;
+		}
+		var formData = new FormData($('#inputForm')[0]);
+
+		$.ajax({
+			type: "POST",
+			url: "/biz/insa/insaInputAjax.do",
+			processData: false,	// 필수
+			contentType: false,	// 필수
+			data: formData,
+			success: function(data) {
+				alert('등록되었습니다.');
+			}
+		});
+		
+		location.href='index.do';
+	});
 
 	// 인사 수정 - 화면 이동 없음
 	$('#insaUpdateAjax').click(function() {
@@ -119,11 +140,38 @@ $(document).ready(function() {
 		});
 	});
 
-	$("#salary").on("propertychange change keyup paste input", function() {
-	    var currentVal = $(this).val();
-	   	   
-	    alert("changed!");
+	// 연봉 3자리 콤마 - 수정 페이지
+	$(function() {
+		$('#salary').val($('#salary').val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	});	
+	
+		
+	// 체크박스 체크 및 해제 - 조회 페이지
+	$('#all_checkBox').change(function(){
+		if($('#all_checkBox').is(':checked')) {
+			for(var i=0; i<document.getElementsByTagName('input').length; i++) {
+				if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {
+					console.log(document.getElementsByTagName('input')[i].getAttribute('id'));
+					document.getElementsByTagName('input')[i].checked = true;
+				}
+			}
+			
+		} else {
+			for(var i=0; i<document.getElementsByTagName('input').length; i++) {
+				if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {
+					document.getElementsByTagName('input')[i].checked = false;
+				}
+			}
+		}
 	});
+	
+	
+	// 삭제 버튼 체크박스가 체크된 데이터를 여러 개 삭제
+	$('#deleteInsaBtn').click(function(){
+	
+	});
+	
+	
 	/*
 	적용 안됨
 	// 직원 테이블 조회 - 화면 이동 없음
@@ -249,8 +297,10 @@ function pwd2_check(x) {
 	}
 }
 
-// 이름 입력 이벤트 발생시 중복 체크 - bootstrap 입력값 유효처리
+// 이름 입력 이벤트 발생시 중복 및 영어 입력 금지 체크 - bootstrap 입력값 유효처리
 function name_check(x) {
+	x.value = x.value.replace(/[\a-zA-Z0-9]/g, '');
+	
 	if (x.value == '') {
 		$('#name').removeClass('is-valid');
 		$('#name').addClass('is-invalid');
@@ -258,6 +308,12 @@ function name_check(x) {
 		$('#name').removeClass('is-invalid');
 		$('#name').addClass('is-valid');
 	}
+}
+
+
+// 영어 이름 한글 입력 금지
+function eng_name_check(x) {
+	x.value = x.value.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
 }
 
 // 주민등록 번호 값 체크 & bootstrap 입력값 유효처리
@@ -406,6 +462,7 @@ function phone_check(x) {
 }
 
 
+
 // 연봉 체크 - 3자리 수 마다 콤마, 숫자만 입력
 function salary_str_check(x) {
 	x.value = x.value.replace(/[^0-9]/g, '');
@@ -413,13 +470,7 @@ function salary_str_check(x) {
 	x.value = x.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// 연봉 체크 - 키 입력 방식
-function salary_check(x) {
-	x.value = x.value.replace(/[^0-9]/g, '');
-	x.value = x.value.replace(/,/g, '');
-	x.value = x.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	$('#salary').val(x.value);
-}
+
 
 // 입력 폼 값 유효성 검사
 function checkInputForm() {
@@ -430,7 +481,7 @@ function checkInputForm() {
 
 	// 이름 입력 여부 확인
 	if (inputForm.name.value == "") {
-		alert('이름을 입력해야 합니다.');
+		alert('한글성명을 입력해야 합니다.');
 		return false;
 	}
 
@@ -517,13 +568,6 @@ $(function() {
 });
 
 
-// 모든 체크박스 체크
-function setAllcheckbox() {
-	
-	
-}
-
-
 // 모달창 이미지 링크와 섬네일, 업로드 이미지 미리보기
 function setThumbnail(event, modal_src, modal_link, thumbnail_src) {
 	var reader = new FileReader();
@@ -532,7 +576,7 @@ function setThumbnail(event, modal_src, modal_link, thumbnail_src) {
 		var modal = document.getElementById(modal_src);		
 		modal.setAttribute("src", event.target.result);
 		
-		document.getElementById(modal_link).innerHTML = '[이미지 확인]';
+		document.getElementById(modal_link).innerHTML = '[미리보기]';
 		// 섬네일 이미지가 필요한 경우
 		if(thumbnail_src != '') {
 			var thumbnail = document.getElementById(thumbnail_src);

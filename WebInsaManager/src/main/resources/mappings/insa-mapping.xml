@@ -2,15 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="InsaDao">
 
-
+	<!-- 테스트 테이블 등록 -->
 	<insert id="insertTest">
 		<![CDATA[
 			INSERT INTO TEST
-			VALUES(NVL(#{id}, ''))
+			VALUES(#{id, jdbcType=VARCHAR})
+		]]>			
+	</insert>
+	
+	<!-- 테스트 테이블 목록 조회 -->
+	<select id="getTestList" resultType="test">
+		<![CDATA[
+			SELECT * FROM TEST
+			WHERE 1 = 1
 		]]>
 		
-	</insert>
+			<if test="id != ''">
+				AND ID LIKE '%'||#{id}||'%'
+			</if>		
+	</select>
 
+	<!-- 등록 -->
 	<insert id="insertInsa">
 		<![CDATA[
 			INSERT INTO INSA (SABUN, NAME, REG_NO,
@@ -26,15 +38,17 @@
 				#{eng_name}, #{phone}, #{age}, #{email}, #{join_gbn_code},
 				#{sex}, #{zip}, #{addr1}, #{addr2}, #{pos_gbn_code}, 
 				#{dept_code}, #{salary}, #{gart_level}, #{put_yn},
-				#{mil_yn}, NVL(#{mil_type}, ''), NVL(#{mil_level}, ''), 
-				NVL(#{mil_startdate}, ''), NVL(#{mil_enddate}, ''), 
-				#{kosa_reg_yn}, nvl(#{kosa_class_code}, ''), 
-				#{join_day}, #{retire_day}, #{cmp_reg_no}, #{crm_name},
+				#{mil_yn}, #{mil_type, jdbcType=VARCHAR}, 
+				#{mil_level, jdbcType=VARCHAR}, #{mil_startdate, jdbcType=VARCHAR},
+				#{mil_enddate, jdbcType=VARCHAR}, #{kosa_reg_yn}, 
+				#{kosa_class_code, jdbcType=VARCHAR}, #{join_day}, 
+				#{retire_day}, #{cmp_reg_no}, #{crm_name},
 				#{cmp_reg_image}, #{carrier_image}, #{profile_image},
 				#{self_intro}, #{join_yn})			
 		]]>
 	</insert>
 
+	<!--  수정 -->
 	<update id="updateInsa">
 		<![CDATA[
 			UPDATE INSA SET
@@ -43,21 +57,24 @@
 				PHONE = #{phone}, AGE = #{age}, EMAIL = #{email},
 				JOIN_GBN_CODE = #{join_gbn_code}, SALARY = #{salary},
 				GART_LEVEL = #{gart_level}, PUT_YN = #{put_yn}, 
-				MIL_YN = #{mil_yn}, MIL_TYPE = #{mil_type}, 
-				MIL_LEVEL = #{mil_level}, MIL_STARTDATE = #{mil_startdate},
-				MIL_ENDDATE = #{mil_enddate}, KOSA_REG_YN = #{kosa_reg_yn},
-				KOSA_CLASS_CODE = #{kosa_class_code}, JOIN_DAY = #{join_day},
-				RETIRE_DAY = #{retire_day}, CMP_REG_NO = #{cmp_reg_no},
-				CRM_NAME = #{crm_name}, SELF_INTRO = #{self_intro}
+				MIL_YN = #{mil_yn}, MIL_TYPE = #{mil_type, jdbcType=VARCHAR}, 
+				MIL_LEVEL = #{mil_level, jdbcType=VARCHAR}, 
+				MIL_STARTDATE = #{mil_startdate, jdbcType=VARCHAR},
+				MIL_ENDDATE = #{mil_enddate, jdbcType=VARCHAR}, 
+				KOSA_REG_YN = #{kosa_reg_yn},
+				KOSA_CLASS_CODE = #{kosa_class_code, jdbcType=VARCHAR}, 
+				JOIN_DAY = #{join_day}, RETIRE_DAY = #{retire_day}, 
+				CMP_REG_NO = #{cmp_reg_no},	CRM_NAME = #{crm_name}, 
+				SELF_INTRO = #{self_intro}
 		]]>
 				
-		<if test="profile_image != null">
+		<if test="profile_image != null and profile_image != ''">
 			, PROFILE_IMAGE = #{profile_image}		
 		</if>
-		<if test="carrier_image != null">
+		<if test="carrier_image != null and carrier_image != ''">
 			, CARRIER_IMAGE = #{carrier_image}		
 		</if>
-		<if test="cmp_reg_image != null">
+		<if test="cmp_reg_image != null and cmp_reg_image != ''">
 			, CMP_REG_IMAGE = #{cmp_reg_image}		
 		</if>
 		
@@ -68,6 +85,7 @@
 		
 	</update>
 
+	<!--  직원 삭제 -->
 	<delete id="deleteInsa">
 		<![CDATA[
 			DELETE FROM INSA
@@ -75,6 +93,7 @@
 		]]>
 	</delete>
 
+	<!-- 사번을 자동으로 생성하기 위한 조회 -->
 	<select id="getMaxSabun" resultType="int">
 		<![CDATA[
 			SELECT NVL(MAX(SABUN), 100000) + 1
@@ -82,6 +101,7 @@
 		]]>	
 	</select>
 	
+	<!-- 아이디 중복 체크를 위한 조회 -->
 	<select id="checkId" resultType="insa">
 		<![CDATA[
 			SELECT * FROM INSA
@@ -89,6 +109,7 @@
 		]]>
 	</select>
 
+	<!-- 사번으로 상세 조회 -->
 	<select id="getInsa" resultType="insa">
 		<![CDATA[
 			SELECT * FROM INSA
@@ -96,30 +117,42 @@
 		]]>
 	</select>
 
-
+	<!-- 조건식 포함 검색 결과 레코드 수 조회 -->
 	<select id="getInsaListCnt" resultType="int">
 		<![CDATA[
 			SELECT COUNT(*)	FROM INSA
 			WHERE 1 = 1
 		]]>
-		<if test="sabun != null">
-			AND SABUN LIKE '%'||#{sabun}||'%'
-		</if>
-		<if test="name != null">
-			AND NAME LIKE '%'||#{name}||'%'
-		</if>		
-		<if test="join_yn != null">
-			AND JOIN_YN = #{join_yn}
-		</if>
-		<if test="join_yn == ''">
-			OR JOIN_YN IS NULL
-		</if>
+			<if test="sabun != ''">
+				AND SABUN LIKE '%'||#{sabun}||'%'
+			</if>
+			<if test="name != null and name != ''">
+				AND NAME LIKE '%'||#{name}||'%'
+			</if>
+			<if test="join_yn != ''">
+				AND JOIN_YN = #{join_yn}							
+			</if>											
+			<if test="put_yn != ''">
+				AND PUT_YN = #{put_yn}
+			</if>	
+			<if test="pos_gbn_code != ''">
+				AND POS_GBN_CODE = #{pos_gbn_code}
+			</if>					
+			<if test="join_day != ''">
+				AND TO_CHAR(JOIN_DAY, 'YYYY-MM-DD') LIKE '%'||#{join_day}||'%'
+			</if>
+			<if test="retire_day != ''">
+				AND TO_CHAR(RETIRE_DAY, 'YYYY-MM-DD') LIKE '%'||#{retire_day}||'%'
+			</if>
+			<if test="join_gbn_code != ''">
+				AND JOIN_GBN_CODE = #{join_gbn_code}
+			</if>
 		<![CDATA[
 			ORDER BY SABUN
 		]]>
 	</select>
 	
-	
+	<!-- 직원 리스트 조건 목록 조회 -->
 	<select id="getInsaList" resultType="insa">
 		<![CDATA[
 			SELECT ROWNUM, P.* FROM
@@ -130,19 +163,32 @@
 					FROM INSA
 					WHERE 1 = 1
 		]]>
-		
-						<if test="sabun != null">
-							AND SABUN LIKE '%'||#{sabun}||'%'
-						</if>
-						<if test="name != null">
-							AND NAME LIKE '%'||#{name}||'%'
-						</if>
-						<if test="join_yn != null">
-							AND JOIN_YN = #{join_yn}							
-						</if>
-						<if test="join_yn == ''">
-							OR JOIN_YN IS NULL
-						</if>
+	
+					<if test="sabun != ''">
+						AND SABUN LIKE '%'||#{sabun}||'%'
+					</if>
+					<if test="name != ''">
+						AND NAME LIKE '%'||#{name}||'%'
+					</if>
+					<if test="join_yn != ''">
+						AND JOIN_YN = #{join_yn}							
+					</if>											
+					<if test="put_yn != ''">
+						AND PUT_YN = #{put_yn}
+					</if>	
+					<if test="pos_gbn_code != ''">
+						AND POS_GBN_CODE = #{pos_gbn_code}
+					</if>					
+					<if test="join_day != ''">
+						AND TO_CHAR(JOIN_DAY, 'YYYY-MM-DD') LIKE '%'||#{join_day}||'%'
+					</if>
+					<if test="retire_day != ''">
+						AND TO_CHAR(RETIRE_DAY, 'YYYY-MM-DD') LIKE '%'||#{retire_day}||'%'
+					</if>
+					<if test="join_gbn_code != ''">
+						AND JOIN_GBN_CODE = #{join_gbn_code}
+					</if>
+						
 		
 		<![CDATA[
 					ORDER BY SABUN) K
@@ -152,11 +198,15 @@
 	</select>
 	
 	
+	<!-- 대량의 데이터 입력 -->
 	<insert id="insertBigTestData">
 		<![CDATA[
-			INSERT INTO INSA(SABUN, ID, PWD, REG_NO, HP, NAME)
+			INSERT INTO INSA(SABUN, ID, PWD, REG_NO, HP, NAME, JOIN_DAY,
+				RETIRE_DAY, PUT_YN, JOIN_YN, POS_GBN_CODE, JOIN_GBN_CODE)
 			VALUES((SELECT NVL(MAX(SABUN), 100000) + 1 FROM INSA),
-				#{id}, #{pwd}, #{reg_no}, #{hp}, #{name})				
+				#{id}, #{pwd}, #{reg_no}, #{hp}, #{name}, #{join_day},
+				#{retire_day}, #{put_yn}, #{join_yn}, #{pos_gbn_code},
+				#{join_gbn_code})				
 		]]>
 	</insert>
 

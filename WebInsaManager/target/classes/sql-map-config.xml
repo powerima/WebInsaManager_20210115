@@ -10,6 +10,8 @@
 			alias="insa" />
 		<typeAlias type="com.pinosoft.biz.insacom.InsacomVo"
 			alias="insacom" />
+		<typeAlias type="com.pinosoft.biz.insa.TestVo"
+			alias="test" />
 	</typeAliases>
 
 	<mappers>

@@ -37,29 +37,29 @@
 		</td> 
 		<td>사번</td>
 		<td><input type="number" name="sabun" value="${insa.sabun }" readonly></td>
-		<td>한글성명</td>
+		<td>* 한글성명</td>
 		<td><input type="text" name="name" value="${insa.name }"></td>
 		<td>영문성명</td>
 		<td><input type="text" name="eng_name" value="${insa.eng_name }"></td>
 	</tr>
 	<tr>	
-		<td>아이디</td>
+		<td>* 아이디</td>
 		<td><input type="text" id="precheck_id"  value="${insa.id }" readonly>
 			<input type="hidden" name="id" id="id" value="${insa.id }"> 
 			
-		<td>패스워드</td>
+		<td>* 패스워드</td>
 		<td><input type="password" name="pwd"></td>
-		<td>패스워드확인</td>
+		<td>* 패스워드확인</td>
 		<td><input type="password" name="pwd2"></td>
 	</tr>
 	<tr>	
 		<td>전화번호</td>
 		<td><input type="text" name="phone" id="phone" maxlength="13"
 				oninput="phone_check(this)" value="${insa.phone }"></td>
-		<td>핸드폰번호</td>
+		<td>* 핸드폰번호</td>
 		<td><input type="text" name="hp" id="hp" maxlength="13"
 				oninput="hp_check(this)" value="${insa.hp }"></td>
-		<td>주민번호</td>
+		<td>* 주민번호</td>
 		<td><input type="text" name="reg_no1" id="reg_no1" value="${fn:substring(insa.reg_no, 0, 6) }"
 				maxlength="6" size="5" oninput="reg_no_check(this)"> - 
 			<input type="text" name="reg_no2" id="reg_no2" value="${fn:substring(insa.reg_no, 7, 8) }"
@@ -104,7 +104,7 @@
 		<td colspan="2" align="center">			
 			<input type="hidden" name="profile_image" value="${insa.profile_image }">
 			<c:if test="${insa.profile_image != null }">
-				<p>[<a href="#profile_image_modal" rel="modal:open">사진 확인</a>]</p>			
+				<p>[<a href="#upload_profile_modal" rel="modal:open">사진 확인</a>]</p>			
 			</c:if></td>
 		<td>주소</td>
 		<td  colspan="5">		
@@ -120,10 +120,11 @@
 	</tr>
 		
 	<tr>		
-		<td	colspan="2">
-			
-			<input type="file" name="upload_profile_image" accept="image/*"
-				onchange="setThumbnail(event);"></td>
+		<td colspan="2">
+			<input type="file" name="upload_profile_image" accept="image/*" style="width:180px"
+				onchange="setThumbnail(event, 'img_profile', 'link_profile_modal', '');">
+			<a id="link_profile_modal" href="#preview_profile_modal" 
+					rel="modal:open"></a></td>
 		<td>직위</td>
 		<td><select name="pos_gbn_code" style="width:165px">
 				<option value="${insa.pos_gbn_code }">${insa.pos_gbn_code }</option>
@@ -148,7 +149,7 @@
 		<td>
 			<input type="text" style="text-align:right" name="salary_str"
 				placeholder="(만원)" id="salary"  value="${insa.salary }"
-				onchanage="salary_check(this)" >
+				oninput="salary_str_check(this)" >
 		</td> 
 	</tr>
 	<tr>
@@ -235,18 +236,14 @@
 		<td><input type="text" name="crm_name" value="${insa.crm_name }"></td>
 		
 		<td>사업자등록증</td>
-		<td><input type="file" name="upload_cmp_reg_image"></td>
-		
-		<td colspan ="2">
-			<input type="hidden" name="cmp_reg_image" value="${insa.cmp_reg_image }">
+		<td><input type="file" name="upload_cmp_reg_image"
+				onchange="setThumbnail(event, 'img_cmp_reg', 'link_cmp_reg_modal', '')"></td>
+		<td><p><a id="link_cmp_reg_modal" href="#preview_cmp_reg_modal" 
+				rel="modal:open"></a></p></td>	 
+		<td><input type="hidden" name="cmp_reg_image" value="${insa.cmp_reg_image }">
 			<c:if test="${insa.cmp_reg_image != null }">
-				<p>[<a href="#cmp_reg_image_modal" rel="modal:open">사업자등록증 확인</a>]</p>
-			</c:if>
-			<!-- 
-			<input type="button" onclick="location.href='#modal'" rel="modal:open" value="미리보기" style="width:90px">
-			<input type="button" value="등록" style="width:90px">
-			 -->
-		</td>	 	
+				<p>[<a href="#upload_cmp_reg_modal" rel="modal:open">사업자등록증 확인</a>]</p>
+			</c:if></td>		
 	</tr>	
 	<tr>
 		<td>자기소개</td>
@@ -255,23 +252,22 @@
 					 placeholder="100자 이내로 적으시오.">${insa.self_intro }</textarea>
 		</td>		
 		<td>이력서</td>
-		<td><input type="file" name="upload_carrier_image"></td>
-		<td colspan="2">
-			<input type="hidden" name="carrier_image" value="${insa.carrier_image }">
+		<td><input type="file" name="upload_carrier_image"
+				onchange="setThumbnail(event, 'img_carrier', 'link_carrier_modal', '')"></td>
+		<td><p><a id="link_carrier_modal" href="#preview_carrier_modal" 
+				rel="modal:open"></a></p></td>		
+		<td><input type="hidden" name="carrier_image" value="${insa.carrier_image }">
 			<c:if test="${insa.carrier_image != null }">
-				<p>[<a href="#carrier_image_modal" rel="modal:open">이력서 확인</a>]</p>			
-			</c:if>
-			<!--  
-			<input type="button" value="다운" style="width:90px">
-			<input type="button" value="파일업로드" style="width:90px">
-			-->
-		</td>		
+				<p>[<a href="#upload_carrier_modal" rel="modal:open">이력서 확인</a>]</p>			
+			</c:if></td>		
 	</tr>
 </table>
 </form>
 </div>
 
-<div id="profile_image_modal" class="modal">
+
+<!-- 업로드된 이미지 -->
+<div id="upload_profile_modal" class="modal">
 	<div align="center">
 		<img src="/biz/file/profile_img/${insa.profile_image }" 
 			height="600" width="400"/><br>
@@ -280,7 +276,7 @@
 </div>
 
 
-<div id="carrier_image_modal" class="modal">
+<div id="upload_carrier_modal" class="modal">
 	<div align="center">
 		<img src="/biz/file/carrier_img/${insa.carrier_image }" 
 			height="600"/><br>
@@ -288,10 +284,36 @@
 	</div>
 </div>
  
- <div id="cmp_reg_image_modal" class="modal">
+ <div id="upload_cmp_reg_modal" class="modal">
 	<div align="center">
 		<img src="/biz/file/cmp_reg_img/${insa.cmp_reg_image }" 
 			height="600"/><br>
+		<a href="#" rel="modal:close">닫기</a>
+	</div>
+</div>
+
+
+
+<!-- carrier modal 창 div -->
+<div id="preview_carrier_modal" class="modal">
+	<div align="center">
+		<img id="img_carrier" src="" height="600" width="400"/><br>
+		<a href="#" rel="modal:close">닫기</a>
+	</div>
+</div>
+
+<!-- cmp_reg_image modal 창 div -->
+<div id="preview_cmp_reg_modal" class="modal">
+	<div align="center">
+		<img id="img_cmp_reg" src="" height="600" width="400"/><br>
+		<a href="#" rel="modal:close">닫기</a>
+	</div>
+</div>
+
+<!-- profile modal 창 div -->
+<div id="preview_profile_modal" class="modal">
+	<div align="center">
+		<img id="img_profile" src="" height="600" width="400"/><br>
 		<a href="#" rel="modal:close">닫기</a>
 	</div>
 </div>
