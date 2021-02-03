@@ -6,7 +6,7 @@
 	<insert id="insertTest">
 		<![CDATA[
 			INSERT INTO TEST
-			VALUES(NVL(#{id}, 'nvl - id null'))
+			VALUES(NVL(#{id}, ''))
 		]]>
 		
 	</insert>
@@ -26,9 +26,9 @@
 				#{eng_name}, #{phone}, #{age}, #{email}, #{join_gbn_code},
 				#{sex}, #{zip}, #{addr1}, #{addr2}, #{pos_gbn_code}, 
 				#{dept_code}, #{salary}, #{gart_level}, #{put_yn},
-				#{mil_yn}, NVL(#{mil_type}, '111'), '', 
-				'', '', 
-				#{kosa_reg_yn}, '', 
+				#{mil_yn}, NVL(#{mil_type}, ''), NVL(#{mil_level}, ''), 
+				NVL(#{mil_startdate}, ''), NVL(#{mil_enddate}, ''), 
+				#{kosa_reg_yn}, nvl(#{kosa_class_code}, ''), 
 				#{join_day}, #{retire_day}, #{cmp_reg_no}, #{crm_name},
 				#{cmp_reg_image}, #{carrier_image}, #{profile_image},
 				#{self_intro}, #{join_yn})			
@@ -102,29 +102,17 @@
 			SELECT COUNT(*)	FROM INSA
 			WHERE 1 = 1
 		]]>
-		<if test="sabun != ''">
+		<if test="sabun != null">
 			AND SABUN LIKE '%'||#{sabun}||'%'
 		</if>
-		<if test="name != ''">
+		<if test="name != null">
 			AND NAME LIKE '%'||#{name}||'%'
-		</if>
-		<if test="join_yn != ''">
+		</if>		
+		<if test="join_yn != null">
 			AND JOIN_YN = #{join_yn}
 		</if>
-		<if test="put_yn != ''">
-			AND PUT_YN = #{put_yn}
-		</if>
-		<if test="pos_gbn_code != ''">
-			AND POS_GBN_CODE = #{pos_gbn_code}
-		</if>
-		<if test="join_day != ''">
-			AND JOIN_DAY = #{join_day}
-		</if>
-		<if test="retire_day != ''">
-			AND RETIRE_DAY = #{retire_day}
-		</if>
-		<if test="join_gbn_code != ''">
-			AND JOIN_GBN_CODE = #{join_gbn_code}
+		<if test="join_yn == ''">
+			OR JOIN_YN IS NULL
 		</if>
 		<![CDATA[
 			ORDER BY SABUN
@@ -134,40 +122,42 @@
 	
 	<select id="getInsaList" resultType="insa">
 		<![CDATA[
-			SELECT SABUN, NAME, REG_NO, HP,
-				POS_GBN_CODE, JOIN_DAY, RETIRE_DAY,
-				PUT_YN, SALARY
-			FROM INSA
-			WHERE 1 = 1
+			SELECT ROWNUM, P.* FROM
+				(SELECT ROWNUM AS RNUM, K.* FROM
+					(SELECT SABUN, NAME, REG_NO, HP,
+						POS_GBN_CODE, JOIN_DAY, RETIRE_DAY,
+						PUT_YN, SALARY
+					FROM INSA
+					WHERE 1 = 1
 		]]>
-		<if test="sabun != ''">
-			AND SABUN LIKE '%'||#{sabun}||'%'
-		</if>
-		<if test="name != ''">
-			AND NAME LIKE '%'||#{name}||'%'
-		</if>
-		<if test="join_yn != ''">
-			AND JOIN_YN = #{join_yn}
-		</if>
-		<if test="put_yn != ''">
-			AND PUT_YN = #{put_yn}
-		</if>
-		<if test="pos_gbn_code != ''">
-			AND POS_GBN_CODE = #{pos_gbn_code}
-		</if>
-		<if test="join_day != ''">
-			AND JOIN_DAY = #{join_day}
-		</if>
-		<if test="retire_day != ''">
-			AND RETIRE_DAY = #{retire_day}
-		</if>
-		<if test="join_gbn_code != ''">
-			AND JOIN_GBN_CODE = #{join_gbn_code}
-		</if>
+		
+						<if test="sabun != null">
+							AND SABUN LIKE '%'||#{sabun}||'%'
+						</if>
+						<if test="name != null">
+							AND NAME LIKE '%'||#{name}||'%'
+						</if>
+						<if test="join_yn != null">
+							AND JOIN_YN = #{join_yn}							
+						</if>
+						<if test="join_yn == ''">
+							OR JOIN_YN IS NULL
+						</if>
+		
 		<![CDATA[
-			ORDER BY SABUN
+					ORDER BY SABUN) K
+				WHERE ROWNUM <= #{endRow}) P
+			WHERE RNUM >= #{startRow}
 		]]>
 	</select>
 	
+	
+	<insert id="insertBigTestData">
+		<![CDATA[
+			INSERT INTO INSA(SABUN, ID, PWD, REG_NO, HP, NAME)
+			VALUES((SELECT NVL(MAX(SABUN), 100000) + 1 FROM INSA),
+				#{id}, #{pwd}, #{reg_no}, #{hp}, #{name})				
+		]]>
+	</insert>
 
 </mapper>

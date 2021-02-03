@@ -10,7 +10,7 @@
 	<h2>직원 리스트</h2>
 </div><hr>
 <div id="insa_list" align="center">
-<form id="getInsaListForm" method="post" action="/biz/insa/insaListForm.do">
+<form id="getInsaListForm" method="get" action="/biz/insa/insaListForm.do">
 <table width="1300">
 	<tr>		
 		<td>사번</td>
@@ -112,21 +112,30 @@
 <div class="page">
 	<c:if test="${page.recordCnt > 0 }">
 		<c:if test="${page.startPage > page.pageBlock }" >
-			<a href="getArticleList.do?pageNum=${page.startPage - page.pageBlock}
-				&searchCondition=${searchCondition }&searchKeyword=${searchKeyword }">[이전]</a>
+			<a href="/biz/insa/insaListForm.do?page=${page.startPage - page.pageBlock}
+				&sabun=${page.insa.sabun }&name=${page.insa.name }&join_yn=${page.insa.join_yn }
+				&put_yn=${page.insa.put_yn }&pos_gbn_code=${page.insa.pos_gbn_code }
+				&join_day=${page.insa.join_day }&retire_day=${page.insa.retire_day }
+				&join_gbn_code=${page.insa.join_gbn_code }">[이전]</a>
 		</c:if>
 		<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }" step="1">
 			<c:if test="${page.currentPage == i }">
 				${i }
 			</c:if>
 			<c:if test="${page.currentPage != i }">
-				[<a href="getArticleList.do?pageNum=${i }
-					&searchCondition=${searchCondition }&searchKeyword=${searchKeyword }">${i }</a>]
+				[<a href="/biz/insa/insaListForm.do?page=${i }
+					&sabun=${page.insa.sabun }&name=${page.insa.name }&join_yn=${page.insa.join_yn }
+				&put_yn=${page.insa.put_yn }&pos_gbn_code=${page.insa.pos_gbn_code }
+				&join_day=${page.insa.join_day }&retire_day=${page.insa.retire_day }
+				&join_gbn_code=${page.insa.join_gbn_code }">${i }</a>]
 			</c:if>
 		</c:forEach>
-		<c:if test="${page.endPage < page.pageCount }">
-			<a href="getArticleList.do?pageNum=${page.startPage + page.pageBlock}
-				&searchCondition=${searchCondition }&searchKeyword=${searchKeyword }">[다음 10개]</a>
+		<c:if test="${page.endPage < page.pageCnt }">
+			<a href="/biz/insa/insaListForm.do?page=${page.startPage + page.pageBlock}
+				&sabun=${page.insa.sabun }&name=${page.insa.name }&join_yn=${page.insa.join_yn }
+				&put_yn=${page.insa.put_yn }&pos_gbn_code=${page.insa.pos_gbn_code }
+				&join_day=${page.insa.join_day }&retire_day=${page.insa.retire_day }
+				&join_gbn_code=${page.insa.join_gbn_code }">[다음 10개]</a>
 		</c:if>
 	</c:if>
 </div>

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.pinosoft.biz.CD;
 import com.pinosoft.biz.FileUpload;
 import com.pinosoft.biz.Page;
 import com.pinosoft.biz.insa.InsaService;
@@ -39,8 +40,9 @@ public class InsaController {
 	private final String PROFILE_IMAGE_PATH = "/file/profile_img/";
 			
 	@RequestMapping(value="/test.do")
-	public void test() {
-		dao.insertTest("");
+	public void test(String id) {
+		System.out.println(id);
+		dao.insertTest(id);
 	}
 	
 	
@@ -186,34 +188,32 @@ public class InsaController {
 	
 	// 목록 조회 화면으로 이동
 	@RequestMapping(value="/insaListForm.do", method=RequestMethod.GET)
-	public String insaListFormView(Model model) {
+	public String insaListFormView(InsaVo vo, Model model) {
 		List<String> gubunList = ics.getGubunList();	// 공통 코드 구분 목록 조회
 		
 		for(String gubun : gubunList) {					// 공통 코드 목록 파라미터 등록
 			model.addAttribute(gubun + "_list", ics.getGubunTypeList(gubun));
 		}
 		
-		return "insaListForm.jsp";
-	}
-		
-	// 목록 조회
-	@RequestMapping(value="/insaListForm.do", method=RequestMethod.POST)
-	public String insaListForm(InsaVo vo, Model model) {
-		System.out.println(vo);
-		List<String> gubunList = ics.getGubunList();	// 공통 코드 구분 목록 조회
-		
-		for(String gubun : gubunList) {					// 공통 코드 목록 파라미터 등록
-			model.addAttribute(gubun + "_list", ics.getGubunTypeList(gubun));
-		}
-				
-		model.addAttribute("insaList", is.getInsaList(vo));
-		model.addAttribute("page", Page.getInstance(is.getInsaListCnt(vo), vo.getPage(), 10, 10));
-		
-		System.out.println("-------------------insaList");
-		
-		return "insaListForm.jsp";
-	}
+		if(vo != null) {
+			
+			Page page = Page.getInstance(vo.getPage(), is.getInsaListCnt(vo), 10, 10);
 	
+			
+			page.setInsa(new InsaVo(vo.getSabun(), vo.getJoin_day(), vo.getRetire_day(), vo.getJoin_day(),
+						vo.getPut_yn(), vo.getName(), vo.getPos_gbn_code(), vo.getJoin_gbn_code()));
+						
+			vo.setStartRow(page.getStartRow());
+			vo.setEndRow(page.getEndRow());
+			
+			model.addAttribute("page", page);
+			model.addAttribute("insaList", is.getInsaList(vo));
+		}
+		
+		return "insaListForm.jsp";
+	}
+		
+		
 	// 수정 화면으로 이동  
 	@RequestMapping(value="/insaUpdateForm.do", method=RequestMethod.GET)
 	public String insaUpdateFormView(InsaVo vo, Model model) {
@@ -325,6 +325,26 @@ public class InsaController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	// 테스트를 위한 대량의 데이터 등록
+	@RequestMapping(value="/insertBigTestData.do")
+	public void insertBigTestData() {
+		for(int i=1; i<246; i++) {
+			InsaVo vo = new InsaVo();
+			
+			vo.setName(CD.getName());
+			vo.setId("member2" + i);
+			vo.setPwd("1234");
+			vo.setReg_no(CD.getRegNo());
+			vo.setHp(CD.getPhone());
+			vo.setZip(CD.getPost());
+			vo.setAddr1(CD.getAddress(1));
+			vo.setAddr2(CD.getAddress(2));
+			
+			is.insertBigTestData(vo);
+			System.out.println(vo);;			
 		}
 	}
 }

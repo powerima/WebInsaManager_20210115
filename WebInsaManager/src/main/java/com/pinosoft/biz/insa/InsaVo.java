@@ -48,9 +48,25 @@ public class InsaVo {
 	private String crm_name;
 	private String profile_image;
 	private String carrier_image;
+	private int startRow;
+	private int endRow;
 	private MultipartFile upload_profile_image;
 	private MultipartFile upload_carrier_image;
 	
+	public InsaVo() {}
+	
+	public InsaVo(String sabun, String join_day, String retire_day, String join_yn, String put_yn, String name,
+			String pos_gbn_code, String join_gbn_code) {
+		super();
+		this.sabun = sabun;
+		this.join_day = join_day;
+		this.retire_day = retire_day;
+		this.join_yn = join_yn;
+		this.put_yn = put_yn;
+		this.name = name;
+		this.pos_gbn_code = pos_gbn_code;
+		this.join_gbn_code = join_gbn_code;
+	}
 	public int getPage() {
 		return page;
 	}
@@ -314,6 +330,18 @@ public class InsaVo {
 	}
 	public void setCarrier_image(String carrier_image) {
 		this.carrier_image = carrier_image;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
 	}
 	public MultipartFile getUpload_cmp_reg_image() {
 		return upload_cmp_reg_image;

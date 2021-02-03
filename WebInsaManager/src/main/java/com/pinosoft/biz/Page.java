@@ -1,6 +1,8 @@
 package com.pinosoft.biz;
 
-public class Page {
+import com.pinosoft.biz.insa.InsaVo;
+
+public class Page {	
 	private int currentPage;	// 현재 페이지
 	private int startPage;		// 시작 페이지
 	private int endPage;		// 마지막 페이지
@@ -10,33 +12,39 @@ public class Page {
 	private int recordCnt;		// 전체 레코드 수 
 	private int startRow;		// 시작 레코드 행 번호
 	private int endRow;			// 마지막 레코드 행 번호
+	private InsaVo insa;		// 서치를 위한 객체
 	
 	private static Page page = new Page();
 	
 	private Page() {}	
 	
 	public static Page getInstance(int currentPage, int recordCnt, int recordBlock, int pageBlock) {
-		page.setCurrentPage(currentPage);
+		if(currentPage < 1) {
+			currentPage = 1;
+		}		
+		page.setCurrentPage(currentPage);		
 		page.setRecordCnt(recordCnt);
 		page.setRecordBlock(recordBlock);
 		page.setPageBlock(pageBlock);		
-		
-		page.setPageCnt(recordCnt / recordBlock + (recordCnt % recordBlock == 0 ? 0 : 1));
 		page.setStartRow((currentPage - 1) * recordBlock + 1);
 		page.setEndRow(currentPage * recordBlock);
 		
-		if(currentPage % pageBlock != 0) { 
-			page.setStartPage((int) (currentPage/pageBlock) * pageBlock + 1);
+		if(recordCnt > 0) {
+			page.setPageCnt(recordCnt / recordBlock + (recordCnt % recordBlock == 0 ? 0 : 1));		
+			page.setStartPage(1);
+			
+			if(currentPage % pageBlock != 0) { 
+				page.setStartPage((int)(currentPage/pageBlock) * pageBlock + 1);
+			} else {
+				page.setStartPage((int)(currentPage/pageBlock - 1) * pageBlock + 1);
+			}
+			
 			page.setEndPage(page.getStartPage() + pageBlock - 1);
-		} else { 
-			page.setStartPage((int) (currentPage/pageBlock-1) * pageBlock + 1);
-			page.setEndPage(page.getStartPage() + pageBlock - 1);
+			
+			if(page.getEndPage() > page.getPageCnt()) {
+				page.setEndPage(page.getPageCnt());
+			}
 		}
-		
-		if(page.getEndPage() > page.getPageCnt()) {
-			page.setEndPage(page.getPageCnt());
-		}
-		
 		return page;
 	}
 	
@@ -127,6 +135,22 @@ public class Page {
 
 	public void setEndRow(int endRow) {
 		this.endRow = endRow;
+	}
+	
+
+	public InsaVo getInsa() {
+		return insa;
+	}
+
+	public void setInsa(InsaVo insa) {
+		this.insa = insa;
+	}
+
+	@Override
+	public String toString() {
+		return "Page [currentPage=" + currentPage + ", startPage=" + startPage + ", endPage=" + endPage + ", pageBlock="
+				+ pageBlock + ", recordBlock=" + recordBlock + ", pageCnt=" + pageCnt + ", recordCnt=" + recordCnt
+				+ ", startRow=" + startRow + ", endRow=" + endRow + "]";
 	}
 	
 }

@@ -65,5 +65,10 @@ public class InsaDao {
 	public void insertTest(String id) {
 		mybatis.insert("InsaDao.insertTest", id);
 	}
+	
+	// 테스트를 위한 대량의 데이터 등록
+	public void insertBigTestData(InsaVo vo) {
+		mybatis.insert("InsaDao.insertBigTestData", vo);
+	}
 			
 }
