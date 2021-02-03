@@ -245,6 +245,21 @@ public class InsaController {
 		is.deleteInsa(vo);
 		return "redirect:index.do";
 	}
+	
+	// 삭제 Ajax
+	@RequestMapping(value = "/insaDeleteAjax.do")
+	public void insaDeleteAjax(InsaVo vo, HttpServletResponse response) {		
+		System.out.println(vo);
+		try {
+			PrintWriter out = response.getWriter();
+			is.deleteInsa(vo);
+			out.print(vo.getSabun() + " delete success!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	// 아이디 중복 여부 확인
 	@RequestMapping(value = "/checkId.do")
@@ -320,6 +335,7 @@ public class InsaController {
 
 			System.out.println(vo);
 
+			System.out.println(vo);
 			is.insertBigTestData(vo);
 
 		}

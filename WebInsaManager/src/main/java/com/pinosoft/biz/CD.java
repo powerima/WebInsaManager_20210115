@@ -73,7 +73,7 @@ public class CD {
 
 	// 우편번호
 	public static String getPost() {
-		return "" + (int) (Math.random() * 899999) + 100000;
+		return "" + getRandom(101011, 987654);
 	}
 	
 	

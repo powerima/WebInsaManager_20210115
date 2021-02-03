@@ -131,7 +131,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "GET",
-			url: "/biz/insa/insaDelete.do",
+			url: "/biz/insa/insaDeleteAjax.do",
 			data: query,
 			success: function(data) {
 				alert("삭제 되었습니다.");
@@ -150,8 +150,7 @@ $(document).ready(function() {
 	$('#all_checkBox').change(function(){
 		if($('#all_checkBox').is(':checked')) {
 			for(var i=0; i<document.getElementsByTagName('input').length; i++) {
-				if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {
-					console.log(document.getElementsByTagName('input')[i].getAttribute('id'));
+				if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {					
 					document.getElementsByTagName('input')[i].checked = true;
 				}
 			}
@@ -168,7 +167,27 @@ $(document).ready(function() {
 	
 	// 삭제 버튼 체크박스가 체크된 데이터를 여러 개 삭제
 	$('#deleteInsaBtn').click(function(){
-	
+		console.log('delete');
+		
+		for(var i=0; i<document.getElementsByTagName('input').length; i++) {
+			if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {
+				var sabun = document.getElementsByTagName('input')[i].getAttribute('id');
+				if($('#' + sabun).is(':checked')) {				
+					console.log(sabun + " !");
+					$.ajax({
+						type: "GET",
+						url: "/biz/insa/insaDeleteAjax.do",
+						data: {sabun: sabun},
+						success: function(data) {
+							console.log(data);
+						}
+					});
+				}
+			}
+		}
+		alert("삭제 되었습니다.");
+		window.location.reload();		
+		
 	});
 	
 	
@@ -470,6 +489,10 @@ function salary_str_check(x) {
 	x.value = x.value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// 텍스트 박스 이미지를 넣기 위한
+function search_clr() {
+	document.frm.search.style.background = "";
+}
 
 
 // 입력 폼 값 유효성 검사
