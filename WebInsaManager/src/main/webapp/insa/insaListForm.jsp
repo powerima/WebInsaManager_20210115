@@ -94,7 +94,7 @@
 	<c:set var="i" value="1" />
 	<c:forEach items="${insaList }" var="insa">
 	<tr align="center">
-		<td><input type="checkbox" value="${insa.sabun }" id="${insa.sabun + i}"></td>
+		<td><input type="checkbox" value="${insa.sabun }" id="${insa.sabun}"></td>
 		<td><a href="/biz/insa/insaUpdateForm.do?sabun=${insa.sabun }">
 					${insa.sabun }</a></td>
 		<td>${insa.name }</td>

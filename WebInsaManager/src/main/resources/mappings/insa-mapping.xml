@@ -201,12 +201,13 @@
 	<!-- 대량의 데이터 입력 -->
 	<insert id="insertBigTestData">
 		<![CDATA[
-			INSERT INTO INSA(SABUN, ID, PWD, REG_NO, HP, NAME, JOIN_DAY,
-				RETIRE_DAY, PUT_YN, JOIN_YN, POS_GBN_CODE, JOIN_GBN_CODE)
+			INSERT INTO INSA(SABUN, ID, PWD, REG_NO, HP, NAME, 
+				JOIN_DAY, RETIRE_DAY, PUT_YN, JOIN_YN, 
+				POS_GBN_CODE, JOIN_GBN_CODE, SALARY)
 			VALUES((SELECT NVL(MAX(SABUN), 100000) + 1 FROM INSA),
-				#{id}, #{pwd}, #{reg_no}, #{hp}, #{name}, #{join_day},
-				#{retire_day}, #{put_yn}, #{join_yn}, #{pos_gbn_code},
-				#{join_gbn_code})				
+				#{id}, #{pwd}, #{reg_no}, #{hp}, #{name}, 
+				#{join_day}, #{retire_day}, #{put_yn}, #{join_yn}, 
+				#{pos_gbn_code}, #{join_gbn_code}, #{salary})				
 		]]>
 	</insert>
 
