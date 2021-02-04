@@ -108,36 +108,45 @@ $(document).ready(function() {
 
 	// 인사 수정 - 화면 이동 없음
 	$('#insaUpdateAjax').click(function() {
-		if (!checkInputForm()) {
-			return false;
-		}
-		var formData = new FormData($('#inputForm')[0]);
-
-		$.ajax({
-			type: "POST",
-			url: "/biz/insa/insaUpdateAjax.do",
-			processData: false,	// 필수
-			contentType: false,	// 필수
-			data: formData,
-			success: function(data) {
-				alert('수정되었습니다.');
+		var result = confirm('수정하시겠습니까?');
+		
+		if(result) {
+			if (!checkInputForm()) {
+				return false;
 			}
-		});
+			var formData = new FormData($('#inputForm')[0]);
+	
+			$.ajax({
+				type: "POST",
+				url: "/biz/insa/insaUpdateAjax.do",
+				processData: false,	// 필수
+				contentType: false,	// 필수
+				data: formData,
+				success: function(data) {
+					alert('수정되었습니다.');
+					window.location.reload();	
+				}
+			});
+		}
 	});
 
 	// 인사 삭제
 	$('#insaDeleteAjax').click(function() {
-		var query = { sabun: inputForm.sabun.value };
-
-		$.ajax({
-			type: "GET",
-			url: "/biz/insa/insaDeleteAjax.do",
-			data: query,
-			success: function(data) {
-				alert("삭제 되었습니다.");
-				location.href = "/biz/insa/insaListForm.do";
-			}
-		});
+		var result = confirm("삭제하시겠습니까?");
+		
+		if(result) {
+			var query = { sabun: inputForm.sabun.value };
+	
+			$.ajax({
+				type: "GET",
+				url: "/biz/insa/insaDeleteAjax.do",
+				data: query,
+				success: function(data) {
+					alert("삭제 되었습니다.");
+					location.href = "/biz/insa/insaListForm.do";
+				}
+			});
+		}
 	});
 
 	// 연봉 3자리 콤마 - 수정 페이지
@@ -167,27 +176,31 @@ $(document).ready(function() {
 	
 	// 삭제 버튼 체크박스가 체크된 데이터를 여러 개 삭제
 	$('#deleteInsaBtn').click(function(){
-		console.log('delete');
+		var result = confirm("삭제하시겠습니까?");
+		var count = 0;		
 		
-		for(var i=0; i<document.getElementsByTagName('input').length; i++) {
-			if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {
-				var sabun = document.getElementsByTagName('input')[i].getAttribute('id');
-				if($('#' + sabun).is(':checked')) {				
-					console.log(sabun + " !");
-					$.ajax({
-						type: "GET",
-						url: "/biz/insa/insaDeleteAjax.do",
-						data: {sabun: sabun},
-						success: function(data) {
-							console.log(data);
-						}
-					});
+		
+		if(result) {		
+			for(var i=0; i<document.getElementsByTagName('input').length; i++) {
+				if(document.getElementsByTagName('input')[i].getAttribute('type') == 'checkbox') {
+					var sabun = document.getElementsByTagName('input')[i].getAttribute('id');
+					if($('#' + sabun).is(':checked')) {		
+						count = count + 1;		
+						$.ajax({
+							type: "GET",
+							url: "/biz/insa/insaDeleteAjax.do",
+							data: {sabun: sabun},
+							success: function(data) {	
+								console.log(count);						
+								
+							}
+						});
+					}
 				}
 			}
-		}
-		alert("삭제 되었습니다.");
-		window.location.reload();		
-		
+			alert(count + "개의 데이터가 삭제 되었습니다.");
+			window.location.reload();		
+		}		
 	});
 	
 	
@@ -593,6 +606,7 @@ $(function() {
 
 // 모달창 이미지 링크와 섬네일, 업로드 이미지 미리보기
 function setThumbnail(event, modal_src, modal_link, thumbnail_src) {
+	console.log('thunmbnail');
 	var reader = new FileReader();
 	
 	reader.onload = function(event) {		

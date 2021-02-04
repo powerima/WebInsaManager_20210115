@@ -54,24 +54,22 @@
 				</c:forEach>						
 			</select></td>
 	</tr>
+</table>
+<hr>
+<table width="1200">
 	<tr>
-		<td colspan="8" align="right">
+		<td align="right">
 			<input type="submit" id="getInsaList_btn" value="검색">
+			<input type="button" id="deleteInsaBtn" value="삭제">
 			<input type="reset" value="초기화">
 			<input type="button" onclick="location.href='index.do'" value="이전">
 		</td>
 	</tr>
 </table>
 </form>
-<hr>	
+	
 <div id="getInsaList">
-<table class="line_table" border="1" width="1000">
-	<tr>
-		<td colspan="10" align="right">
-			<input type="button" id="deleteInsaBtn" value="삭제">
-			
-		</td>
-	</tr>
+<table class="line_table" border="1" width="1200">	
 	<tr align="center">
 		<td><input type="checkbox" id="all_checkBox" /></td>
 		<td>사번</td>
@@ -82,7 +80,9 @@
 		<td>입사일자</td>
 		<td>퇴사일자</td>
 		<td>투입여부</td>
-		<td>연봉</td>		
+		<td>연봉</td>	
+		<td>등록일자</td>
+		<td>최근 수정일자</td>	
 	</tr>
 	<c:if test="${page.recordCnt == 0 }">
 	<tr>
@@ -106,6 +106,8 @@
 		<td>${insa.put_yn }</td>
 		<td><fmt:formatNumber value="${insa.salary }"
 				pattern="#,###" /></td>
+		<td>${fn:substring(insa.regdate, 0, 10) }</td>
+		<td>${insa.modifieddate }</td>
 	</tr>
 	</c:forEach>
 </table>

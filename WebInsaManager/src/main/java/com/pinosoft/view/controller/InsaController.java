@@ -332,9 +332,7 @@ public class InsaController {
 				vo.setPut_yn("Y");
 			else
 				vo.setPut_yn("N");
-
-			System.out.println(vo);
-
+			
 			System.out.println(vo);
 			is.insertBigTestData(vo);
 

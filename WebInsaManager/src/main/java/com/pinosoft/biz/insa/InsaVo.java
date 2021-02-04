@@ -50,6 +50,8 @@ public class InsaVo {
 	private String carrier_image;
 	private int startRow;
 	private int endRow;
+	private String regdate;
+	private String modifieddate;
 	private MultipartFile upload_profile_image;
 	private MultipartFile upload_carrier_image;
 	
@@ -343,6 +345,20 @@ public class InsaVo {
 	public void setEndRow(int endRow) {
 		this.endRow = endRow;
 	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
+	public String getModifieddate() {
+		return modifieddate;
+	}
+	public void setModifieddate(String modifieddate) {
+		this.modifieddate = modifieddate;
+	}
+
 	public MultipartFile getUpload_cmp_reg_image() {
 		return upload_cmp_reg_image;
 	}

@@ -1,4 +1,4 @@
-create table insa(
+create table insa2(
 	sabun number primary key not null,
 	join_day date,
 	retire_day date,
@@ -35,7 +35,9 @@ create table insa(
 	self_intro clob,
 	crm_name varchar2(100),    
 	profile_image varchar2(100),
-    carrier_image varchar2(100)
+    carrier_image varchar2(100),
+    regdate date,
+    modifieddate date
 );
 
  INSERT INTO INSA (SABUN, NAME, REG_NO,

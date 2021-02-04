@@ -24,14 +24,14 @@
 	<tr>
 		<td colspan="2" rowspan="4" align="center">
 			<div id="profile_image_container">			
-				<c:if test="${insa.profile_image == null}">
-					<img id="profile_thumbnail" width="100" 
-						src="/biz/file/profile_empty.jpg" height="120">			
-				</c:if>
-				<c:if test="${insa.profile_image != null}">
-					<img id="profile_thumnail" width="100"
-						src="/biz/file/profile_img/${insa.profile_image }" height="120">
-				</c:if>
+				<img id="profile_thumbnail" src=
+					<c:if test="${insa.profile_image == null}">					
+							"/biz/file/profile_empty.jpg" 			
+					</c:if>
+					<c:if test="${insa.profile_image != null}">					
+							"/biz/file/profile_img/${insa.profile_image }" 
+					</c:if>
+				width="100" height="120">
 			</div>
 			
 		</td> 
@@ -48,9 +48,9 @@
 			<input type="hidden" name="id" id="id" value="${insa.id }"> 
 			
 		<td>* 패스워드</td>
-		<td><input type="password" name="pwd"></td>
+		<td><input type="password" value="${insa.pwd }" name="pwd"></td>
 		<td>* 패스워드확인</td>
-		<td><input type="password" name="pwd2"></td>
+		<td><input type="password" value="${insa.pwd }" name="pwd2"></td>
 	</tr>
 	<tr>	
 		<td>전화번호</td>
@@ -122,7 +122,7 @@
 	<tr>		
 		<td colspan="2">
 			<input type="file" name="upload_profile_image" accept="image/*" style="width:180px"
-				onchange="setThumbnail(event, 'img_profile', 'link_profile_modal', '');">
+				onchange="setThumbnail(event, 'img_profile', 'link_profile_modal', 'profile_thumbnail');">
 			<a id="link_profile_modal" href="#preview_profile_modal" 
 					rel="modal:open"></a></td>
 		<td>직위</td>
@@ -149,7 +149,7 @@
 		<td>
 			<input type="text" style="text-align:right" name="salary_str"
 				placeholder="(만원)" id="salary"  value="${insa.salary }"
-				oninput="salary_str_check(this)" >
+				oninput="salary_str_check(this)" > (만원)
 		</td> 
 	</tr>
 	<tr>

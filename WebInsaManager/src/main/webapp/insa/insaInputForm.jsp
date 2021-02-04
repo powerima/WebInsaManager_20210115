@@ -131,7 +131,7 @@
 		<td>연봉</td>
 		<td>
 			<input type="text" style="text-align:right" name="salary_str"
-			placeholder="(만원)" 	oninput="salary_str_check(this)" >
+			placeholder="(만원)" 	oninput="salary_str_check(this)" > (만원)
 		</td> 
 	</tr>
 	<tr>
