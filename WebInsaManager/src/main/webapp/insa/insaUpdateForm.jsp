@@ -4,6 +4,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@ include file="../top.jsp" %>
 
+  <!-- The jQuery library is a prerequisite for all jqSuite products -->
+    <script type="text/ecmascript" src="/biz/jqgrid/js/jquery.min.js"></script> 
+    <!-- We support more than 40 localizations -->
+    <script type="text/ecmascript" src="/biz/jqgrid/js/i18n/grid.locale-en.js"></script>
+    <!-- This is the Javascript file of jqGrid -->   
+    <script type="text/ecmascript" src="/biz/jqgrid/js/jquery.jqGrid.min.js"></script>
+    <!-- This is the localization file of the grid controlling messages, labels, etc.
+    <!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+    <!-- The link to the CSS that the grid needs -->
+    <link rel="stylesheet" type="text/css" media="screen" href="/biz/jqgrid/css/ui.jqgrid-bootstrap.css" />
+	<script>
+		$.jgrid.defaults.width = 780;
+		$.jgrid.defaults.styleUI = 'Bootstrap';
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	
 <section>
 <div id="section_title">
 	<h2>직원 상세 정보</h2>
@@ -265,6 +282,12 @@
 </form>
 </div>
 
+<!-- jqGrid -->
+<div style="padding-top:50px;" align="center">
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+</div>
+
 
 <!-- 업로드된 이미지 -->
 <div id="upload_profile_modal" class="modal">
@@ -319,5 +342,32 @@
 </div>
 
 </section>
+<!-- jQgrid를 위한 추가 -->
+<script type="text/javascript"> 
+
+$(document).ready(function () {
+	console.log('bac!!!!~~~~~~~~');
+		$("#jqGrid").jqGrid({
+		url: 'data.json',
+		datatype: "json",
+		 colModel: [
+			{ label: 'Category Name', name: 'CategoryName', width: 75 },
+			{ label: 'Product Name', name: 'ProductName', width: 90 },
+			{ label: 'Country', name: 'Country', width: 100 },
+			{ label: 'Price', name: 'Price', width: 80, sorttype: 'integer' },
+			// sorttype is used only if the data is loaded locally or loadonce is set to true
+			{ label: 'Quantity', name: 'Quantity', width: 80, sorttype: 'number' }                   
+		],
+		viewrecords: true, // show the current page, data rang and total records on the toolbar
+		width: 780,
+		height: 200,
+		rowNum: 30,
+		loadonce: true, // this is just for the demo
+		pager: "#jqGridPager"
+	});
+	console.log('bac!!!!');
+});
+
+ </script>
 <%@ include file="../bottom.jsp" %>
 

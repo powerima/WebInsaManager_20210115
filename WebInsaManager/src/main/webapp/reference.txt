@@ -72,7 +72,8 @@ https://gent.tistory.com/222
 한글 및 영어 입력 방지 자바스크립트
 https://rockdrumy.tistory.com/1239
 
-
+기본키, 외래키 제약조건
+https://preamtree.tistory.com/31
 
 다중 체크박스 체크하기
 https://www.everdevel.com/JavaScript/checkbox-checked-all/

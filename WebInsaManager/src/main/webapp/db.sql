@@ -60,7 +60,50 @@ VALUES((SELECT NVL(MAX(SABUN), 10000) + 1 FROM INSA),
 	'', '', '', '안녕하세요', 'y');
 					
 
+	
+-- 투입가능정보 테이블
+create table insa_input_info(
+	sabun number,
+	seq number,
+	wrk_posb_day date,
+	sugst_money number,
+	pjt_gbn_code varchar2(100),
+	eqm_yn varchar2(10),
+	current_salary number,
+	work_area varchar2(200),
+	constraint pk_insa_input_info primary key(seq),
+	constraint fk_insa_input_info foreign key(sabun) references insa(sabun)
+);	
 
+-- 학력사항 테이블
+create table insa_acad_ability(
+	sabun number,
+	seq number,
+	majar_stud_gbn varchar2(100),
+	gart_level varchar2(100),
+	gart_year number,
+	gart_month number,
+	school_name varchar2(100),
+	constraint pk_insa_acad_ability primary key(seq),
+	constraint fk_insa_acad_ability foreign key(sabun) references insa(sabun)
+);
+
+-- 경력사항 테이블
+create table insa_carrier(
+	sabun number,
+	seq number,
+	cmp_name_carrier varchar2(100),
+	work_start_day date,
+	work_end_day date,
+	pos_gbn_code varchar2(100),
+	respon_dept varchar2(200),
+	work_contents varchar2(200),
+	constraint pk_insa_carrier primary key(seq),
+	constraint fk_insa_carrier foreign key(sabun) references insa(sabun)
+);
+
+
+-- 공통 코드 테이블
 create table insa_com(
 	gubun varchar2(20) not null,
 	code varchar2(20) not null,
