@@ -320,7 +320,7 @@ public class InsaController {
 			join_day = join_day.substring(0,4) + "-" + join_day.substring(4, 6) +  "-" + join_day.substring(6, 8);
 			retire_day = retire_day.substring(0,4) + "-" + retire_day.substring(4, 6) +  "-" + retire_day.substring(6, 8);
 			vo.setJoin_day(join_day);
-			vo.setRetire_day(retire_day);
+			//vo.setRetire_day(retire_day);
 			
 			if (CD.getRandom(0, 1) == 0)
 				vo.setJoin_yn("Y");

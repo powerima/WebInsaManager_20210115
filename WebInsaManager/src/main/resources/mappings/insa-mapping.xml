@@ -150,6 +150,12 @@
 			</if>		
 	</select>
 	
+	<select id="getTest" resultType="string">
+		<![CDATA[
+			SELECT #{name} from dual;
+		]]>
+	</select>
+	
 	<!-- 직원 리스트 조건 목록 조회 -->
 	<select id="getInsaList" resultType="insa">
 		<![CDATA[
@@ -204,7 +210,7 @@
 				POS_GBN_CODE, JOIN_GBN_CODE, SALARY, REGDATE)
 			VALUES((SELECT NVL(MAX(SABUN), 100000) + 1 FROM INSA),
 				#{id}, #{pwd}, #{reg_no}, #{hp}, #{name}, 
-				#{join_day}, #{retire_day}, #{put_yn}, #{join_yn}, 
+				#{join_day}, #{retire_day, jdbcType=VARCHAR}, #{put_yn}, #{join_yn}, 
 				#{pos_gbn_code}, #{join_gbn_code}, #{salary}, SYSDATE)				
 		]]>
 	</insert>

@@ -19,5 +19,6 @@
 		<mapper resource="mappings/insacom-mapping.xml" />
 	</mappers>
 
+
 </configuration>
 

@@ -1,4 +1,4 @@
-create table insa2(
+create table insa(
 	sabun number primary key not null,
 	join_day date,
 	retire_day date,

@@ -11,7 +11,26 @@
 
 	<context:component-scan base-package="com.pinosoft.biz"  />
 
-	<!-- DataSource 설정하기 -->
+	<context:property-placeholder
+			location="classpath:config/database.properties" />
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="driverClassName" value="${jdbc.driver}"/>
+	    <property name="url" value="${jdbc.url}"/>
+	    <property name="username" value="${jdbc.username}"/>
+	    <property name="password" value="${jdbc.password}"/>
+	</bean> 
+	 
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource"> 
+	    <constructor-arg ref="dataSourceSpied" /> 
+	    <property name="logFormatter"> 
+	        <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter"> 
+	            <property name="loggingType" value="MULTI_LINE" /> 
+	            <property name="sqlPrefix" value="SQL : "/> 
+	        </bean> 
+	    </property> 
+	</bean>
+<!-- 
+	 DataSource 설정하기 
 	<context:property-placeholder
 		location="classpath:config/database.properties" />
 	<bean id="dataSource"
@@ -21,7 +40,7 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-
+ -->
 	<!-- Mybatis DB 연동 위한 객체 -->
 	<bean id="sessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
