@@ -8,10 +8,10 @@
 		<hr>
 		<p>인사정보를 입력하겠습니다. 
 			<input type="button" value="입력" class="btn btn-primary btn-sm"
-			onclick="location.href='insa/insaInputForm.jsp'" /></p>
+			onclick="location.href='insa/insaInputForm.do'" /></p>
 		<p>인사정보를 조회하겠습니다. 
 			<input type="button" value="조회" class="btn btn-primary btn-sm"
-			 onclick="location.href='insa/insaListForm.jsp'"/></p>
+			 onclick="location.href='insa/insaListForm.do'"/></p>
 	</div>
 </section>
 <%@ include file="bottom.jsp" %>
